@@ -1,0 +1,33 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="frameyu-bg" x1="24" y1="18" x2="136" y2="142" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1D185B"/>
+      <stop offset="0.24" stop-color="#5528E8"/>
+      <stop offset="0.52" stop-color="#D946C8"/>
+      <stop offset="0.74" stop-color="#FF6D6D"/>
+      <stop offset="1" stop-color="#FFD84D"/>
+    </linearGradient>
+    <linearGradient id="frameyu-frame" x1="45" y1="48" x2="118" y2="111" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7B5CFF"/>
+      <stop offset="0.45" stop-color="#FF4FD8"/>
+      <stop offset="1" stop-color="#FFD66E"/>
+    </linearGradient>
+    <radialGradient id="frameyu-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(102 112) rotate(-135) scale(92)">
+      <stop stop-color="#FFE76A" stop-opacity="0.95"/>
+      <stop offset="0.46" stop-color="#FF47CA" stop-opacity="0.44"/>
+      <stop offset="1" stop-color="#5528E8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="frameyu-shadow" x="8" y="6" width="144" height="150" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#1D185B" flood-opacity="0.36"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#FFF2A3" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect x="17" y="15" width="126" height="126" rx="31" fill="url(#frameyu-bg)" filter="url(#frameyu-shadow)"/>
+  <rect x="17" y="15" width="126" height="126" rx="31" fill="url(#frameyu-glow)"/>
+  <path d="M43 82.2C43 64.5 43 55.7 48.5 50.2C54 44.7 62.8 44.7 80.5 44.7H108.8C114.6 44.7 119.3 49.4 119.3 55.2V83.5C119.3 101.2 119.3 110 113.8 115.5C108.3 121 99.5 121 81.8 121H53.5C47.7 121 43 116.3 43 110.5V82.2Z" fill="white" fill-opacity="0.08"/>
+  <path d="M47.5 82C47.5 66.7 47.5 59.1 52.3 54.3C57.1 49.5 64.7 49.5 80 49.5H107.5C111.5 49.5 114.8 52.8 114.8 56.8V84.3C114.8 99.6 114.8 107.2 110 112C105.2 116.8 97.6 116.8 82.3 116.8H54.8C50.8 116.8 47.5 113.5 47.5 109.5V82Z" stroke="url(#frameyu-frame)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M82.2 72H109.8C113.7 72 116.8 75.1 116.8 79V96.6C116.8 100.5 113.7 103.6 109.8 103.6H82.2C78.3 103.6 75.2 100.5 75.2 96.6V79C75.2 75.1 78.3 72 82.2 72Z" fill="#FFD84D" fill-opacity="0.58"/>
+  <path d="M83.1 74.4H110.4C111.9 74.4 113.2 75.7 113.2 77.2V95.8C113.2 97.3 111.9 98.6 110.4 98.6H83.1C81.6 98.6 80.3 97.3 80.3 95.8V77.2C80.3 75.7 81.6 74.4 83.1 74.4Z" fill="#1D185B" fill-opacity="0.22"/>
+  <path d="M39 35C47 25 58 21 75 22" stroke="white" stroke-opacity="0.35" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M119 128C109 136 92 140 75 137" stroke="white" stroke-opacity="0.22" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

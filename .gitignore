@@ -1,0 +1,10 @@
+# Original video backup
+videos_original/
+# Python cache
+__pycache__/
+*.pyc
+# macOS
+.DS_Store
+# Data files (not needed for deployment)
+cases_data.json
+cases_final.json

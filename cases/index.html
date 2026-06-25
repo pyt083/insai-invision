@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>营赛 智影 - 案例作品展示</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary: #4F6EF7;
+    --primary-dark: #3B54D4;
+    --primary-light: #6B8AFF;
+    --accent-blue: #2DB7F5;
+    --accent-purple: #8B5CF6;
+    --bg-primary: #F8FAFF;
+    --bg-white: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --border-light: #E2E8F0;
+    --shadow-sm: 0 1px 3px rgba(79,110,247,0.06);
+    --shadow-md: 0 4px 20px rgba(79,110,247,0.08);
+    --shadow-lg: 0 12px 40px rgba(79,110,247,0.12);
+    --shadow-xl: 0 20px 60px rgba(79,110,247,0.15);
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --gradient-primary: linear-gradient(135deg, #4F6EF7 0%, #8B5CF6 100%);
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========= Nav ========= */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 72px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(226,232,240,0.6);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 20px; font-weight: 800; color: var(--text-primary);
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--gradient-primary);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 18px; font-weight: 900;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-secondary); font-size: 15px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-links a.active { color: var(--primary); }
+  .nav-actions { display: flex; gap: 12px; align-items: center; }
+  .btn-nav-login {
+    padding: 8px 20px; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    text-decoration: none; color: var(--primary);
+    border: 1px solid var(--border-light); background: transparent;
+    transition: all 0.2s ease;
+  }
+  .btn-nav-login:hover { border-color: var(--primary); background: rgba(79,110,247,0.04); }
+  .btn-nav-cta {
+    padding: 8px 22px; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    text-decoration: none; color: white;
+    background: var(--gradient-primary); border: none;
+    box-shadow: 0 2px 12px rgba(79,110,247,0.3);
+    transition: all 0.25s ease;
+  }
+  .btn-nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(79,110,247,0.4); }
+
+  /* ========= Hero ========= */
+  .cases-hero {
+    position: relative; padding: 140px 48px 60px;
+    background: linear-gradient(135deg, #1a1050 0%, #2d1b69 30%, #4F6EF7 100%);
+    overflow: hidden; text-align: center;
+  }
+  .cases-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .cases-hero-content { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
+  .cases-hero .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 5px 16px; border-radius: 100px;
+    background: rgba(255,255,255,0.15);
+    color: #E0E7FF; font-size: 13px; font-weight: 600;
+    margin-bottom: 18px; letter-spacing: 0.5px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .cases-hero h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900; color: #FFFFFF;
+    margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.2;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .cases-hero p {
+    font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.7;
+  }
+
+  /* ========= Filter ========= */
+  .filter-bar {
+    position: sticky; top: 72px; z-index: 100;
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+    padding: 16px 48px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .filter-btn {
+    padding: 7px 18px; border-radius: 100px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    border: 1px solid var(--border-light); background: white;
+    color: var(--text-secondary); transition: all 0.2s ease;
+  }
+  .filter-btn:hover { border-color: var(--primary-light); color: var(--primary); }
+  .filter-btn.active {
+    background: var(--gradient-primary); color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 16px rgba(79,110,247,0.25);
+  }
+
+  /* ========= Masonry Grid (CSS columns) ========= */
+  .cases-section { padding: 48px 48px 90px; }
+  .cases-masonry {
+    column-count: 4;
+    column-gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  @media (max-width: 1200px) { .cases-masonry { column-count: 3; } }
+  @media (max-width: 900px) { .cases-masonry { column-count: 2; } }
+  @media (max-width: 600px) { .cases-masonry { column-count: 1; } }
+
+  .case-card {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    overflow: hidden; transition: all 0.35s ease;
+    cursor: pointer;
+    display: block;
+  }
+  .case-card:hover {
+    transform: translateY(-5px); box-shadow: var(--shadow-xl);
+    border-color: transparent;
+  }
+
+  /* Thumbnail — shows video's native aspect ratio, no cropping */
+  .case-thumb-wrap {
+    position: relative; width: 100%;
+    background: #0a0a1a;
+    overflow: hidden;
+  }
+  .case-thumb-wrap img {
+    display: block; width: 100%; height: auto;
+  }
+  .case-play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(255,255,255,0.92); border: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--primary); cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: all 0.25s ease; z-index: 3;
+  }
+  .case-card:hover .case-play-btn {
+    background: var(--primary); color: white;
+    box-shadow: 0 6px 24px rgba(79,110,247,0.4);
+    transform: translate(-50%,-50%) scale(1.1);
+  }
+  /* Duration badge */
+  .case-duration {
+    position: absolute; bottom: 8px; right: 8px;
+    background: rgba(0,0,0,0.7); color: white;
+    font-size: 12px; font-weight: 600;
+    padding: 2px 8px; border-radius: 6px;
+    z-index: 3;
+  }
+
+  .case-card-info {
+    padding: 16px 18px;
+  }
+  .case-card-info h4 {
+    font-size: 14px; font-weight: 700; color: var(--text-primary);
+    line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .case-card-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .case-card-tags span {
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+    background: rgba(79,110,247,0.07); color: var(--primary);
+  }
+
+  /* ========= Footer ========= */
+  .footer {
+    background: #0C1222; padding: 40px 48px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-inner { max-width: 1080px; margin: 0 auto; }
+  .footer p { color: rgba(255,255,255,0.35); font-size: 13px; line-height: 1.8; }
+  .footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer a:hover { color: var(--primary-light); }
+
+  /* ========= Back to top ========= */
+  .back-top {
+    position: fixed; bottom: 32px; right: 32px; z-index: 999;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--gradient-primary); color: white;
+    border: none; cursor: pointer; font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 28px rgba(79,110,247,0.3);
+    opacity: 0; transform: translateY(20px); transition: all 0.3s ease;
+  }
+  .back-top.show { opacity: 1; transform: translateY(0); }
+  .back-top:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(79,110,247,0.4); }
+
+  /* ========= Video Modal ========= */
+  .video-modal-overlay {
+    position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.88);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+  }
+  .video-modal-overlay.active {
+    opacity: 1; visibility: visible;
+  }
+  .video-modal-box {
+    position: relative;
+    background: #000; border-radius: var(--radius-lg);
+    overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.35s ease;
+    max-width: 90vw; max-height: 88vh;
+  }
+  .video-modal-overlay.active .video-modal-box {
+    transform: scale(1) translateY(0);
+  }
+  .video-modal-box video {
+    display: block; max-width: 90vw; max-height: 88vh;
+  }
+  .video-modal-close {
+    position: absolute; top: -44px; right: 0;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); color: white;
+    border: none; font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .video-modal-close:hover { background: rgba(255,255,255,0.3); }
+  .video-modal-title {
+    position: absolute; bottom: -44px; left: 0;
+    color: rgba(255,255,255,0.8); font-size: 14px;
+    font-weight: 500; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+    max-width: calc(100% - 60px);
+  }
+
+  /* ========= Responsive ========= */
+  @media (max-width: 768px) {
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .cases-hero, .cases-section, .footer { padding-left: 20px; padding-right: 20px; }
+    .cases-hero { padding-top: 110px; padding-bottom: 40px; }
+    .filter-bar { padding: 12px 20px; top: 66px; }
+  }
+</style>
+<link rel="icon" href="../assets/frameyu-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/frameyu-logo.png">
+<link rel="stylesheet" href="../assets/frameyu-theme.css">
+</head>
+<body>
+
+<!-- ==================== Nav ==================== -->
+<nav class="nav">
+  <a href="../product-intro/index.html" class="nav-logo">
+    <div class="nav-logo-icon" aria-hidden="true"></div>
+    <span class="nav-brand-text">
+      <span class="nav-brand-cn">营赛 智影</span>
+      <span class="nav-brand-en">Insai InVision</span>
+    </span>
+  </a>
+  <div class="nav-links">
+    <a href="../product-intro/index.html#core-value">核心能力</a>
+    <a href="../product-intro/index.html#models">功能亮点</a>
+    <a href="../cases/index.html" class="active">案例作品</a>
+    <a href="../product-intro/index.html#industries">行业方案</a>
+    <a href="../points-rules/index.html">积分体系</a>
+    <a href="https://scw1b70ve5.feishu.cn/wiki/PHwUwZC3Nitd50kozv5cWETOnTg" target="_blank">使用文档</a>
+  </div>
+  <div class="nav-actions">
+    <a href="https://film.yingsaidata.com/generate" target="_blank" class="btn-nav-login">登录</a>
+    <a href="https://film.yingsaidata.com/generate" target="_blank" class="btn-nav-cta">免费试用</a>
+  </div>
+</nav>
+
+<!-- ==================== Hero ==================== -->
+<section class="cases-hero">
+  <div class="cases-hero-content">
+    <div class="section-tag">&#127912; 案例作品</div>
+    <h1>AI 实战案例作品展示</h1>
+    <p>精选来自各行各业的一线创作者 AI 案例，从电商到游戏，从美妆到金融<br>看他们如何用营赛 智影降本增效，人均效率提升 10 倍+</p>
+  </div>
+</section>
+
+<!-- ==================== Filter ==================== -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" data-filter="all">全部</button><button class="filter-btn" data-filter="电商">电商</button><button class="filter-btn" data-filter="游戏">游戏</button><button class="filter-btn" data-filter="家居建材">家居建材</button><button class="filter-btn" data-filter="汽车">汽车</button><button class="filter-btn" data-filter="保险">保险</button><button class="filter-btn" data-filter="海外">海外</button><button class="filter-btn" data-filter="教育">教育</button>
+</div>
+
+<!-- ==================== Cases Masonry ==================== -->
+<section class="cases-section">
+  <div class="cases-masonry" id="casesGrid"></div>
+</section>
+
+<!-- ==================== Footer ==================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>&copy; 2025 深圳东信时代信息技术有限公司 &middot; 营赛 智影</p>
+    <p style="margin-top: 8px;">
+      <a href="../product-intro/index.html">产品主页</a>
+      &nbsp;&middot;&nbsp;
+      <a href="../points-rules/index.html">星火币规则</a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://scw1b70ve5.feishu.cn/wiki/PHwUwZC3Nitd50kozv5cWETOnTg" target="_blank">使用手册</a>
+      &nbsp;&middot;&nbsp;
+      <span style="color:rgba(255,255,255,0.2)">营赛 智影 V1.0</span>
+    </p>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<!-- Video Modal -->
+<div class="video-modal-overlay" id="videoModal">
+  <div class="video-modal-box">
+    <video id="modalVideo" controls playsinline></video>
+    <button class="video-modal-close" id="videoModalClose">&times;</button>
+    <div class="video-modal-title" id="videoModalTitle"></div>
+  </div>
+</div>
+
+<script>
+var caseData = [
+  {"title":"电商创意混剪 · 品牌视觉篇","thumb":"thumbs/case_001.jpg","video":"videos/case_001.mp4","w":720,"h":1280,"duration":22.5,"industries":["电商"]},
+  {"title":"电商创意混剪 · 产品展示篇","thumb":"thumbs/case_002.jpg","video":"videos/case_002.mp4","w":720,"h":1280,"duration":6.1,"industries":["电商"]},
+  {"title":"电商创意混剪 · 促销活动篇","thumb":"thumbs/case_003.jpg","video":"videos/case_003.mp4","w":720,"h":1280,"duration":6.1,"industries":["电商"]},
+  {"title":"电商创意混剪 · 场景大片篇","thumb":"thumbs/case_004.jpg","video":"videos/case_004.mp4","w":720,"h":1280,"duration":10.1,"industries":["电商"]},
+  {"title":"电商AI创意 · 动态展示","thumb":"thumbs/case_005.jpg","video":"videos/case_005.mp4","w":720,"h":1280,"duration":12.1,"industries":["电商"]},
+  {"title":"电商AI创意 · 商品渲染","thumb":"thumbs/case_006.jpg","video":"videos/case_006.mp4","w":1280,"h":720,"duration":6.1,"industries":["电商"]},
+  {"title":"电商AI创意 · 直播切片","thumb":"thumbs/case_007.jpg","video":"videos/case_007.mp4","w":1280,"h":720,"duration":5.1,"industries":["电商"]},
+  {"title":"电商AI创意 · 品牌故事","thumb":"thumbs/case_008.jpg","video":"videos/case_008.mp4","w":720,"h":1280,"duration":50.2,"industries":["电商"]},
+  {"title":"海外电商投放素材 · 英语版","thumb":"thumbs/case_009.jpg","video":"videos/case_009.mp4","w":720,"h":1310,"duration":22.9,"industries":["海外"]},
+  {"title":"《三角洲行动》AI宣传片","thumb":"thumbs/case_010.jpg","video":"videos/case_010.mp4","w":1280,"h":720,"duration":15.8,"industries":["游戏"]},
+  {"title":"保险AI情景剧 · 家庭保障篇","thumb":"thumbs/case_011.jpg","video":"videos/case_011.mp4","w":720,"h":1280,"duration":15.1,"industries":["保险"]},
+  {"title":"保险AI情景剧 · 出行安全篇","thumb":"thumbs/case_012.jpg","video":"videos/case_012.mp4","w":720,"h":1280,"duration":15.1,"industries":["保险"]},
+  {"title":"AI游戏创意 · 古代糕点铺","thumb":"thumbs/case_013.jpg","video":"videos/case_013.mp4","w":1280,"h":720,"duration":25.1,"industries":["游戏"]},
+  {"title":"AI游戏创意 · 街头猫咪","thumb":"thumbs/case_014.jpg","video":"videos/case_014.mp4","w":720,"h":1280,"duration":10.1,"industries":["游戏"]},
+  {"title":"AI美妆广告 · 品牌大片","thumb":"thumbs/case_015.jpg","video":"videos/case_015.mp4","w":1080,"h":1920,"duration":9.1,"industries":["电商"]},
+  {"title":"国漫风AI创意 · 冰箱产品","thumb":"thumbs/case_016.jpg","video":"videos/case_016.mp4","w":1080,"h":1920,"duration":15.3,"industries":["电商"]},
+  {"title":"山海经AI创意 · 神话再现","thumb":"thumbs/case_017.jpg","video":"videos/case_017.mp4","w":1080,"h":1920,"duration":15.7,"industries":["电商"]},
+  {"title":"敦煌飞天AI创意 · 国风美学","thumb":"thumbs/case_018.jpg","video":"videos/case_018.mp4","w":1080,"h":1920,"duration":15.5,"industries":["电商"]},
+  {"title":"古埃及AI创意 · 法老传奇","thumb":"thumbs/case_019.jpg","video":"videos/case_019.mp4","w":1080,"h":1920,"duration":15.0,"industries":["电商"]},
+  {"title":"皮影戏AI创意 · 天宫来客","thumb":"thumbs/case_020.jpg","video":"videos/case_020.mp4","w":1080,"h":1920,"duration":15.0,"industries":["电商"]},
+  {"title":"红星美凯龙 · AI剧情《空城计》","thumb":"thumbs/case_021.jpg","video":"videos/case_021.mp4","w":1080,"h":1920,"duration":43.0,"industries":["家居建材"]},
+  {"title":"红星美凯龙 · AI剧情《马拉之死》","thumb":"thumbs/case_022.jpg","video":"videos/case_022.mp4","w":1080,"h":1920,"duration":27.7,"industries":["家居建材"]},
+  {"title":"红星美凯龙 · AI剧情《喵咪咪》","thumb":"thumbs/case_023.jpg","video":"videos/case_023.mp4","w":1080,"h":1920,"duration":40.2,"industries":["家居建材"]},
+  {"title":"红星美凯龙 · AI剧情《酱板鸭》","thumb":"thumbs/case_024.jpg","video":"videos/case_024.mp4","w":1080,"h":1920,"duration":32.2,"industries":["家居建材"]},
+  {"title":"AI城市画卷 · 国风宣传大片","thumb":"thumbs/case_025.jpg","video":"videos/case_025.mp4","w":1280,"h":720,"duration":10.5,"industries":["教育"]},
+  {"title":"AI电商短剧 · 剧情带货","thumb":"thumbs/case_026.jpg","video":"videos/case_026.mp4","w":1080,"h":1920,"duration":14.8,"industries":["电商"]},
+  {"title":"防脱产品AI广告 · 痛点营销","thumb":"thumbs/case_027.jpg","video":"videos/case_027.mp4","w":1080,"h":1920,"duration":30.2,"industries":["电商"]},
+  {"title":"游戏AI动态素材 · 角色展示","thumb":"thumbs/case_028.jpg","video":"videos/case_028.mp4","w":1280,"h":2276,"duration":8.8,"industries":["游戏"]},
+  {"title":"游戏AI动态素材 · 场景渲染","thumb":"thumbs/case_029.jpg","video":"videos/case_029.mp4","w":720,"h":1280,"duration":8.0,"industries":["游戏"]},
+  {"title":"游戏创意短片 · 《如願》","thumb":"thumbs/case_030.jpg","video":"videos/case_030.mp4","w":1080,"h":1920,"duration":18.1,"industries":["游戏"]},
+  {"title":"电商AI创意混剪 · 潮流风尚","thumb":"thumbs/case_031.jpg","video":"videos/case_031.mp4","w":720,"h":1280,"duration":10.1,"industries":["电商"]},
+  {"title":"电商AI创意混剪 · 精致生活","thumb":"thumbs/case_032.jpg","video":"videos/case_032.mp4","w":720,"h":1280,"duration":10.1,"industries":["电商"]},
+  {"title":"电商AI创意混剪 · 品质好物","thumb":"thumbs/case_033.jpg","video":"videos/case_033.mp4","w":720,"h":1280,"duration":10.1,"industries":["电商"]},
+  {"title":"二轮车项目AI空境 · 公路疾行","thumb":"thumbs/case_034.jpg","video":"videos/case_034.mp4","w":1080,"h":1906,"duration":10.1,"industries":["汽车"]},
+  {"title":"二轮车项目AI空境 · 城市穿梭","thumb":"thumbs/case_035.jpg","video":"videos/case_035.mp4","w":1080,"h":1906,"duration":10.1,"industries":["汽车"]},
+  {"title":"二轮车项目AI空境 · 落日大道","thumb":"thumbs/case_036.jpg","video":"videos/case_036.mp4","w":1080,"h":1906,"duration":10.1,"industries":["汽车"]},
+  {"title":"二轮车项目AI空境 · 山林越野","thumb":"thumbs/case_037.jpg","video":"videos/case_037.mp4","w":1080,"h":1906,"duration":10.1,"industries":["汽车"]},
+  {"title":"二轮车项目AI空境 · 橙色竞速","thumb":"thumbs/case_038.jpg","video":"videos/case_038.mp4","w":1080,"h":1906,"duration":8.3,"industries":["汽车"]},
+  {"title":"二轮车项目AI空境 · 赛道驰骋","thumb":"thumbs/case_039.jpg","video":"videos/case_039.mp4","w":1080,"h":1906,"duration":10.1,"industries":["汽车"]},
+  {"title":"二轮车项目AI空境 · 极限飞跃","thumb":"thumbs/case_040.jpg","video":"videos/case_040.mp4","w":1080,"h":1906,"duration":10.1,"industries":["汽车"]},
+  {"title":"二轮车项目AI空境 · 都市潮玩","thumb":"thumbs/case_041.jpg","video":"videos/case_041.mp4","w":1080,"h":1906,"duration":10.1,"industries":["汽车"]},
+  {"title":"二轮车项目AI空境 · 极光之旅","thumb":"thumbs/case_042.jpg","video":"videos/case_042.mp4","w":1080,"h":1906,"duration":10.1,"industries":["汽车"]},
+  {"title":"泰康保险AI微动 · 健康守护","thumb":"thumbs/case_043.jpg","video":"videos/case_043.mp4","w":1280,"h":720,"duration":5.1,"industries":["保险"]},
+  {"title":"泰康保险AI微动 · 安心养老","thumb":"thumbs/case_044.jpg","video":"videos/case_044.mp4","w":1280,"h":720,"duration":5.1,"industries":["保险"]},
+  {"title":"泰康保险AI微动 · 家庭保障","thumb":"thumbs/case_045.jpg","video":"videos/case_045.mp4","w":1080,"h":1920,"duration":5.1,"industries":["保险"]},
+  {"title":"泰康保险AI微动 · 财富规划","thumb":"thumbs/case_046.jpg","video":"videos/case_046.mp4","w":1080,"h":1920,"duration":5.1,"industries":["保险"]},
+  {"title":"海外游戏投放素材 · 韓語版","thumb":"thumbs/case_047.jpg","video":"videos/case_047.mp4","w":720,"h":1280,"duration":17.2,"industries":["海外"]},
+  {"title":"AI视频生成 · Seedance特效","thumb":"thumbs/case_048.jpg","video":"videos/case_048.mp4","w":720,"h":1280,"duration":10.1,"industries":["海外"]},
+  {"title":"AI视频生成 · 原生素材","thumb":"thumbs/case_049.jpg","video":"videos/case_049.mp4","w":1080,"h":1920,"duration":10.1,"industries":["海外"]},
+  {"title":"海外投放素材 · 创意Banner","thumb":"thumbs/case_050.jpg","video":"videos/case_050.mp4","w":1080,"h":1920,"duration":16.6,"industries":["海外"]},
+  {"title":"海外投放素材 · 互动海报","thumb":"thumbs/case_051.jpg","video":"videos/case_051.mp4","w":1080,"h":1920,"duration":16.6,"industries":["海外"]},
+  {"title":"海外投放素材 · 墨版设计","thumb":"thumbs/case_052.jpg","video":"videos/case_052.mp4","w":1080,"h":1920,"duration":19.9,"industries":["海外"]},
+  {"title":"海外ALA墨西哥 · 脚本试做","thumb":"thumbs/case_053.jpg","video":"videos/case_053.mp4","w":1080,"h":1920,"duration":33.1,"industries":["海外"]}
+];
+
+var currentFilter = 'all';
+
+function formatDuration(sec) {
+  var m = Math.floor(sec / 60);
+  var s = Math.floor(sec % 60);
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function renderCases(filter) {
+  var grid = document.getElementById('casesGrid');
+  grid.innerHTML = '';
+  var filtered = filter === 'all' ? caseData : caseData.filter(function(c) {
+    return c.industries.indexOf(filter) >= 0;
+  });
+  filtered.forEach(function(c) {
+    var tags = c.industries.slice(0,4).map(function(t){return '<span>'+t+'</span>';}).join('');
+    var durStr = c.duration ? formatDuration(c.duration) : '';
+    var thumbHtml = c.thumb
+      ? '<img src="' + c.thumb + '" alt="' + c.title + '" loading="lazy">'
+      : '<div style="width:100%;aspect-ratio:' + c.w + '/' + c.h + ';background:#0a0a1a"></div>';
+    var html = '<div class="case-card" data-video="' + c.video + '" data-title="' + c.title.replace(/"/g, '&quot;') + '">' +
+      '<div class="case-thumb-wrap">' +
+        thumbHtml +
+        '<button class="case-play-btn">&#9654;</button>' +
+        (durStr ? '<span class="case-duration">' + durStr + '</span>' : '') +
+      '</div>' +
+      '<div class="case-card-info">' +
+        '<h4>' + c.title + '</h4>' +
+        '<div class="case-card-tags">' + tags + '</div>' +
+      '</div>' +
+    '</div>';
+    grid.insertAdjacentHTML('beforeend', html);
+  });
+  // Bind clicks
+  grid.querySelectorAll('.case-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      openVideoModal(this.dataset.video, this.dataset.title);
+    });
+  });
+}
+
+// Filter
+document.getElementById('filterBar').addEventListener('click', function(e) {
+  if (e.target.classList.contains('filter-btn')) {
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    e.target.classList.add('active');
+    currentFilter = e.target.dataset.filter;
+    renderCases(currentFilter);
+  }
+});
+
+// Back to top
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('backTop');
+  if (window.scrollY > 400) { btn.classList.add('show'); }
+  else { btn.classList.remove('show'); }
+});
+
+// Video Modal
+var modal = document.getElementById('videoModal');
+var modalVideo = document.getElementById('modalVideo');
+var modalTitle = document.getElementById('videoModalTitle');
+
+function openVideoModal(src, title) {
+  modalVideo.src = src;
+  modalTitle.textContent = title || '';
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function() { modalVideo.play(); }, 350);
+}
+function closeVideoModal() {
+  modal.classList.remove('active');
+  modalVideo.pause();
+  document.body.style.overflow = '';
+  setTimeout(function() { modalVideo.src = ''; }, 300);
+}
+document.getElementById('videoModalClose').addEventListener('click', closeVideoModal);
+modal.addEventListener('click', function(e) { if (e.target === modal) closeVideoModal(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeVideoModal(); });
+
+renderCases('all');
+</script>
+
+</body>
+</html>
