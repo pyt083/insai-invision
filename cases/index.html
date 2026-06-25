@@ -2,6 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>营赛 智影 - 案例作品展示</title>
 <style>
@@ -442,7 +445,7 @@ function renderCases(filter) {
     var tags = c.industries.slice(0,4).map(function(t){return '<span>'+t+'</span>';}).join('');
     var durStr = c.duration ? formatDuration(c.duration) : '';
     var thumbHtml = c.thumb
-      ? '<img src="' + c.thumb + '?v=283896f" alt="' + c.title + '" loading="lazy">'
+      ? '<img src="' + c.thumb + '?t=20260625162200" alt="' + c.title + '" loading="lazy">'
       : '<div style="width:100%;aspect-ratio:' + c.w + '/' + c.h + ';background:#0a0a1a"></div>';
     var html = '<div class="case-card" data-video="' + c.video + '" data-title="' + c.title.replace(/"/g, '&quot;') + '">' +
       '<div class="case-thumb-wrap">' +
