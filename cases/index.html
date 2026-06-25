@@ -442,7 +442,7 @@ function renderCases(filter) {
     var tags = c.industries.slice(0,4).map(function(t){return '<span>'+t+'</span>';}).join('');
     var durStr = c.duration ? formatDuration(c.duration) : '';
     var thumbHtml = c.thumb
-      ? '<img src="' + c.thumb + '" alt="' + c.title + '" loading="lazy">'
+      ? '<img src="' + c.thumb + '?v=283896f" alt="' + c.title + '" loading="lazy">'
       : '<div style="width:100%;aspect-ratio:' + c.w + '/' + c.h + ';background:#0a0a1a"></div>';
     var html = '<div class="case-card" data-video="' + c.video + '" data-title="' + c.title.replace(/"/g, '&quot;') + '">' +
       '<div class="case-thumb-wrap">' +
