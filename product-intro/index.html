@@ -386,8 +386,8 @@
       radial-gradient(circle at 80% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
   }
   .stats-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    gap: 32px; max-width: 1160px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 32px; max-width: 1060px; margin: 0 auto;
     position: relative; z-index: 2;
   }
   .stat-item { text-align: center; }
@@ -400,7 +400,6 @@
   .stat-2 h3 { color: #34D399; }
   .stat-3 h3 { color: #FBBF24; }
   .stat-4 h3 { color: #C084FC; }
-  .stat-5 h3 { color: #F472B6; }
 
   /* ========= Model Cards ========= */
   .model-section { background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFF 100%); }
@@ -686,35 +685,103 @@
   .footer a:hover { color: var(--primary-light); }
 
   /* ========= Responsive ========= */
+  /* ---- Large screens (1440px+) ---- */
+  @media (min-width: 1440px) {
+    .hero { padding: 120px 80px 80px; }
+    .section { padding: 100px 80px; }
+    .stats-section { padding: 80px 80px; }
+    .cta-section { padding: 100px 80px; }
+    .nav { padding: 0 80px; }
+    .hero-container { max-width: 1400px; }
+  }
+
+  /* ---- Tablet (1024px) ---- */
   @media (max-width: 1024px) {
+    .nav { padding: 0 28px; }
+    .hero { padding: 100px 28px 60px; }
+    .section { padding: 70px 28px; }
+    .stats-section { padding: 60px 28px; }
+    .cta-section { padding: 70px 28px; }
     .hero-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .hero-left { order: 1; }
     .hero-right { order: 0; max-width: 420px; margin: 0 auto; }
     .hero-desc, .hero-sub { margin-left: auto; margin-right: auto; }
     .hero-btns { justify-content: center; }
     .features-grid, .model-grid, .enterprise-grid { grid-template-columns: repeat(2, 1fr); }
-    .model-aggregate-block { gap: 24px; padding: 24px 28px; }
-    .model-count-side { min-width: 110px; }
-    .model-count { font-size: 2.4rem; }
+    .model-aggregate-block { padding: 24px 28px; }
     .cases-grid { grid-template-columns: repeat(2, 1fr); }
     .industries-grid { grid-template-columns: repeat(2, 1fr); }
     .toolbox-grid { grid-template-columns: repeat(2, 1fr); }
+    .compare-table-wrap { max-width: 100%; }
   }
+
+  /* ---- Mobile (768px) ---- */
   @media (max-width: 768px) {
-    .nav { padding: 0 20px; }
+    .nav { padding: 0 16px; height: 60px; }
+    .nav-logo { font-size: 17px; }
+    .nav-logo-icon { width: 30px; height: 30px; font-size: 15px; }
     .nav-links { display: none; }
-    .hero, .section, .stats-section, .cta-section, .footer { padding-left: 20px; padding-right: 20px; }
-    .hero { padding-top: 100px; min-height: auto; padding-bottom: 50px; }
+    .hero, .section, .stats-section, .cta-section, .footer { padding-left: 16px; padding-right: 16px; }
+    .hero { padding-top: 80px; min-height: auto; padding-bottom: 40px; }
+    .section { padding: 56px 16px; }
+    .stats-section { padding: 48px 16px; }
+    .cta-section { padding: 56px 16px; }
+    .section-header { margin-bottom: 36px; }
+    .section-header h2 { font-size: 1.6rem; }
+    .hero h1 { font-size: 2rem; }
+    .hero-desc { font-size: 15px; }
+    .btn-hero-primary, .btn-hero-secondary { padding: 12px 24px; font-size: 14px; }
     .flow-grid { grid-template-columns: 1fr; }
-    .stats-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .stat-item h3 { font-size: 1.8rem; }
     .features-grid, .model-grid, .enterprise-grid, .industries-grid, .quickstart-steps, .cases-grid { grid-template-columns: 1fr; }
-    .model-aggregate-block { flex-direction: column; gap: 16px; padding: 20px 20px; }
-    .model-count-side { min-width: auto; padding: 8px 0; }
-    .model-count { font-size: 2rem; }
-    .toolbox-grid { grid-template-columns: 1fr; }
+    .model-aggregate-block { padding: 18px 16px; }
+    .model-detail-side h3 { font-size: 17px; }
+    .model-highlights li { font-size: 13px; }
+    .toolbox-grid { grid-template-columns: repeat(2, 1fr); }
     .compare-table { font-size: 13px; }
-    .compare-table thead th, .compare-table tbody td { padding: 10px 14px; }
+    .compare-table thead th, .compare-table tbody td { padding: 10px 12px; }
     .float-card { display: none; }
+    .hero-orb-1 { width: 280px; height: 280px; }
+    .hero-orb-2 { width: 220px; height: 220px; }
+    .flow-card { padding: 28px 24px; }
+    .feature-card { padding: 24px 20px; }
+    .footer { padding: 30px 16px; }
+  }
+
+  /* ---- Small phone (480px) ---- */
+  @media (max-width: 480px) {
+    .nav { height: 52px; }
+    .nav-logo { font-size: 15px; gap: 6px; }
+    .nav-logo-icon { width: 26px; height: 26px; font-size: 13px; border-radius: 8px; }
+    .nav-actions .btn-nav-login { padding: 6px 12px; font-size: 12px; }
+    .nav-actions .btn-nav-cta { padding: 6px 14px; font-size: 12px; }
+    .hero { padding-top: 60px; padding-bottom: 30px; }
+    .hero h1 { font-size: 1.5rem; line-height: 1.25; }
+    .hero-desc { font-size: 13px; }
+    .hero-sub { font-size: 12px; }
+    .hero-badge { font-size: 11px; padding: 4px 12px; }
+    .hero-btns { flex-direction: column; width: 100%; }
+    .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; padding: 12px 20px; }
+    .section { padding: 40px 12px; }
+    .section-header h2 { font-size: 1.3rem; }
+    .section-header p { font-size: 13px; }
+    .section-tag { font-size: 11px; }
+    .stats-section { padding: 36px 12px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .stat-item h3 { font-size: 1.4rem; }
+    .stat-item p { font-size: 12px; }
+    .cta-section { padding: 40px 12px; }
+    .cta-section h2 { font-size: 1.4rem; }
+    .model-aggregate-block { padding: 14px 12px; }
+    .model-detail-side h3 { font-size: 15px; }
+    .toolbox-grid { grid-template-columns: 1fr; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .flow-card { padding: 20px 16px; }
+    .feature-card { padding: 18px 14px; }
+    .compare-table-wrap { overflow-x: auto; }
+    .compare-table { min-width: 540px; }
+    .footer { padding: 24px 12px; }
   }
 </style>
 <link rel="icon" href="../assets/frameyu-logo.png" type="image/png">
@@ -979,7 +1046,6 @@
     <div class="stat-item stat-2"><h3>14万+</h3><p>累计任务数</p></div>
     <div class="stat-item stat-3"><h3>95%+</h3><p>任务成功率</p></div>
     <div class="stat-item stat-4"><h3>3万+</h3><p>周素材产出</p></div>
-    <div class="stat-item stat-5"><h3>2亿+</h3><p>累计 Token 消耗</p></div>
   </div>
 </section>
 
