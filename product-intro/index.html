@@ -437,6 +437,54 @@
   .model-summary p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
   .model-summary strong { color: var(--primary); }
 
+  /* ========= Model Aggregate (New) ========= */
+  .model-aggregate-block {
+    display: flex; align-items: flex-start; gap: 40px;
+    padding: 32px 36px; border-radius: var(--radius-lg);
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    margin-bottom: 28px; max-width: 1160px; margin-left: auto; margin-right: auto;
+    transition: all 0.3s ease;
+  }
+  .model-aggregate-block:hover {
+    transform: translateY(-4px); box-shadow: var(--shadow-xl);
+    border-color: transparent;
+  }
+  .model-count-side {
+    min-width: 140px; text-align: center; flex-shrink: 0;
+    padding: 20px 0;
+  }
+  .model-count {
+    font-size: 3.2rem; font-weight: 900; line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .model-count-label {
+    font-size: 14px; font-weight: 600; line-height: 1.4;
+  }
+  .mc-blue .model-count { color: var(--primary); }
+  .mc-purple .model-count { color: var(--accent-purple); }
+  .mc-green .model-count { color: var(--accent-green); }
+  .mc-blue .model-count-label { color: var(--primary-dark); }
+  .mc-purple .model-count-label { color: #6D28D9; }
+  .mc-green .model-count-label { color: #047857; }
+  .model-detail-side { flex: 1; }
+  .model-detail-side h3 {
+    font-size: 20px; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .model-highlights { list-style: none; padding: 0; margin: 0; }
+  .model-highlights li {
+    font-size: 14.5px; color: var(--text-secondary); line-height: 1.75;
+    padding: 8px 0 8px 24px; position: relative;
+  }
+  .model-highlights li::before {
+    content: ''; position: absolute; left: 4px; top: 14px;
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .mc-blue .model-highlights li::before { background: var(--primary); }
+  .mc-purple .model-highlights li::before { background: var(--accent-purple); }
+  .mc-green .model-highlights li::before { background: var(--accent-green); }
+
   /* ========= Toolbox ========= */
   .toolbox-section { background: white; }
   .toolbox-grid {
@@ -644,6 +692,9 @@
     .hero-desc, .hero-sub { margin-left: auto; margin-right: auto; }
     .hero-btns { justify-content: center; }
     .features-grid, .model-grid, .enterprise-grid { grid-template-columns: repeat(2, 1fr); }
+    .model-aggregate-block { gap: 24px; padding: 24px 28px; }
+    .model-count-side { min-width: 110px; }
+    .model-count { font-size: 2.4rem; }
     .cases-grid { grid-template-columns: repeat(2, 1fr); }
     .industries-grid { grid-template-columns: repeat(2, 1fr); }
     .toolbox-grid { grid-template-columns: repeat(2, 1fr); }
@@ -656,6 +707,9 @@
     .flow-grid { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
     .features-grid, .model-grid, .enterprise-grid, .industries-grid, .quickstart-steps, .cases-grid { grid-template-columns: 1fr; }
+    .model-aggregate-block { flex-direction: column; gap: 16px; padding: 20px 20px; }
+    .model-count-side { min-width: auto; padding: 8px 0; }
+    .model-count { font-size: 2rem; }
     .toolbox-grid { grid-template-columns: 1fr; }
     .compare-table { font-size: 13px; }
     .compare-table thead th, .compare-table tbody td { padding: 10px 14px; }
@@ -788,98 +842,60 @@
 <section class="section model-section" id="models">
   <div class="section-header">
     <div class="section-tag">&#10024; 核心亮点</div>
-    <h2>三大类主流爆火大模型聚合</h2>
-    <p>视频、图片、文本全覆盖，一个平台搞定全场景创意生产</p>
+    <h2>聚合 15+ 主流热门大模型，一站调用全场景创意</h2>
+    <p>视频、图片、文本全覆盖，无需逐个对接 API，一个平台搞定所有创意生产需求</p>
   </div>
 
   <!-- 视频生成模型 -->
-  <div class="model-category">
-    <div class="model-category-title" style="justify-content:center;">&#127916; 视频生成模型</div>
-    <div class="model-grid">
-      <div class="model-card">
-        <h4>满血版高清出片</h4>
-        <div class="model-tag">画质天花板 · 原生 4K</div>
-        <p>画面稳定、细节精修，适合正式出片和高端素材制作</p>
-      </div>
-      <div class="model-card">
-        <h4>极速推理验证</h4>
-        <div class="model-tag">速度翻倍 · 价格减半</div>
-        <p>快速预览验证方向，低成本试错，满意再提分辨率与时长</p>
-      </div>
-      <div class="model-card">
-        <h4>文生 / 图生 / 视频编辑</h4>
-        <div class="model-tag">全驱动模式</div>
-        <p>纯文本驱动、首帧生成、参考图生成，灵活适配各类创作入口</p>
-      </div>
-      <div class="model-card">
-        <h4>商业级短片制作</h4>
-        <div class="model-tag">高质量 · 专业级</div>
-        <p>适合品牌广告、商业宣传、高质量短片，视觉质感出色</p>
-      </div>
-      <div class="model-card">
-        <h4>国际顶尖生成质量</h4>
-        <div class="model-tag">海外顶级模型</div>
-        <p>搭载全球领先视频生成模型，画面表现力达国际水准</p>
-      </div>
-      <div class="model-card">
-        <h4>成本适中选择</h4>
-        <div class="model-tag">性价比优 · 稳定可靠</div>
-        <p>产品微动、图生视频等场景的理想选择，平衡画质与成本</p>
-      </div>
+  <div class="model-aggregate-block mc-blue">
+    <div class="model-count-side">
+      <div class="model-count">8+</div>
+      <div class="model-count-label">家主流视频生成模型</div>
+    </div>
+    <div class="model-detail-side">
+      <h3>&#127916; 视频生成模型聚合</h3>
+      <ul class="model-highlights">
+        <li>原生 4K 画质、高速推理、文生/图生/视频编辑全覆盖</li>
+        <li>从商业级短片到产品微动，全场景视频生产能力</li>
+        <li>国内国际顶尖模型统一接入，画面表现力达国际水准</li>
+      </ul>
     </div>
   </div>
 
   <!-- 图片生成模型 -->
-  <div class="model-category">
-    <div class="model-category-title" style="justify-content:center;">&#128444; 图片生成模型</div>
-    <div class="model-grid">
-      <div class="model-card">
-        <h4>智能文生图 + 图片编辑</h4>
-        <div class="model-tag">生图编辑一体化</div>
-        <p>电商主图、创意海报一键生成，支持局部重绘、扩图、消除</p>
-      </div>
-      <div class="model-card">
-        <h4>品牌视觉风格探索</h4>
-        <div class="model-tag">更智能 · 更可控</div>
-        <p>精准控制画面风格与细节，品牌视觉一致性强</p>
-      </div>
-      <div class="model-card">
-        <h4>快速风格验证</h4>
-        <div class="model-tag">秒级出图 · 多方案</div>
-        <p>快速生成多风格预览图，验证创意方向，节省试错成本</p>
-      </div>
-      <div class="model-card">
-        <h4>经济型多参考图生成</h4>
-        <div class="model-tag">免费 · 多图参考</div>
-        <p>自研模型免费使用，支持多参考图驱动，性价比极高</p>
-      </div>
+  <div class="model-aggregate-block mc-purple">
+    <div class="model-count-side">
+      <div class="model-count">5+</div>
+      <div class="model-count-label">家主流图片生成模型</div>
+    </div>
+    <div class="model-detail-side">
+      <h3>&#128444; 图片生成模型聚合</h3>
+      <ul class="model-highlights">
+        <li>文生图、图编辑、风格探索一站式完成</li>
+        <li>电商主图、品牌海报、创意素材快速生成</li>
+        <li>自研模型免费使用，多参考图驱动，成本可控</li>
+      </ul>
     </div>
   </div>
 
   <!-- 文本生成模型 -->
-  <div class="model-category">
-    <div class="model-category-title" style="justify-content:center;">&#128221; 文本生成模型</div>
-    <div class="model-grid">
-      <div class="model-card">
-        <h4>深度理解 + 脚本生成</h4>
-        <div class="model-tag">理解能力强 · 创意改写</div>
-        <p>精准理解产品卖点，一键生成创意脚本、分镜、文案</p>
-      </div>
-      <div class="model-card">
-        <h4>逻辑清晰 + 风格多样</h4>
-        <div class="model-tag">专业文案 · 深度内容</div>
-        <p>结构化脚本输出，风格从幽默到严肃灵活切换</p>
-      </div>
-      <div class="model-card">
-        <h4>素材理解 + 多轮对话优化</h4>
-        <div class="model-tag">越聊越精准</div>
-        <p>分析素材自动提炼提示词，多轮对话持续优化创意方向</p>
-      </div>
+  <div class="model-aggregate-block mc-green">
+    <div class="model-count-side">
+      <div class="model-count">3+</div>
+      <div class="model-count-label">家主流文本生成模型</div>
+    </div>
+    <div class="model-detail-side">
+      <h3>&#128221; 文本生成模型聚合</h3>
+      <ul class="model-highlights">
+        <li>深度理解产品卖点，一键生成脚本、分镜、文案</li>
+        <li>多轮对话持续优化，越聊越精准</li>
+        <li>从创意发想到成稿输出，全链路智能辅助</li>
+      </ul>
     </div>
   </div>
 
   <div class="model-summary">
-    <p>一句话总结：一个平台，聚合<strong>视频、图片、文本三大类主流爆火模型</strong>，花一份星火币的钱，选最适合场景的模型。</p>
+    <p>一个平台聚合 <strong>15+ 家主流热门大模型</strong>，花一份成本，调用全场景最佳模型，省去逐个对接、管理多个 API 的繁琐。</p>
   </div>
 </section>
 
@@ -918,7 +934,7 @@
     </div>
     <div class="tool-card">
       <h4>&#128270; 反推提示词</h4>
-      <p>分析图片/视频，反推适合 Seedance 的中文提示词</p>
+      <p>分析图片/视频，反推适合主流视频生成模型的中文提示词</p>
       <div class="tool-scene">拿到参考素材快速提炼</div>
     </div>
     <div class="tool-card">
