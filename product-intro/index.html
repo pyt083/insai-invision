@@ -488,8 +488,8 @@
   /* ========= Toolbox ========= */
   .toolbox-section { background: white; }
   .toolbox-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 18px; max-width: 1160px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 20px; max-width: 1160px; margin: 0 auto;
   }
   .tool-card {
     padding: 22px 18px; border-radius: var(--radius-md);
@@ -509,70 +509,177 @@
   .tool-card .tool-scene { font-size: 11.5px; color: var(--accent-blue); margin-top: 6px; font-weight: 500; }
 
   /* ========= Sub-section blocks ========= */
-  .toolbox-block { max-width: 1160px; margin: 0 auto 52px; }
-  .toolbox-block-title { font-size: 20px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; text-align: center; }
+  .toolbox-block { max-width: 1200px; margin: 0 auto 56px; }
+  .toolbox-block-title {
+    font-size: 22px; font-weight: 800; color: var(--text-primary);
+    margin-bottom: 28px; text-align: center; letter-spacing: -0.01em;
+  }
 
-  /* ========= Scene Category Cards ========= */
-  .scene-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+  /* ========= Scene Category Cards (Premium) ========= */
+  .scene-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
   .scene-card {
-    border-radius: var(--radius-md); overflow: hidden; background: white;
-    border: 1px solid var(--border-light); transition: all 0.35s ease;
+    border-radius: 16px; overflow: hidden; background: white;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 2px 10px rgba(15,23,42,0.05);
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column;
   }
-  .scene-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: transparent; }
-  .scene-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #0F172A; }
-  .scene-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-  .scene-card:hover .scene-img-wrap img { transform: scale(1.06); }
-  .scene-info { padding: 16px 16px 18px; }
-  .scene-info h4 { font-size: 15px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; }
-  .scene-tags { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
-  .scene-tag-more { display: inline-block; font-size: 11px; color: var(--primary); font-weight: 600; margin-top: 8px; padding: 3px 10px; border-radius: 100px; background: rgba(79,110,247,0.07); }
+  .scene-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px rgba(79,110,247,0.14);
+    border-color: rgba(79,110,247,0.18);
+  }
+  .scene-img-wrap {
+    width: 100%; height: 160px; overflow: hidden; position: relative;
+    background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+  }
+  .scene-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease; display: block;
+  }
+  .scene-card:hover .scene-img-wrap img { transform: scale(1.08); }
+  .scene-img-overlay {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 45%, transparent 100%);
+  }
+  .scene-category-label {
+    position: absolute; left: 14px; bottom: 12px; z-index: 2;
+    color: #fff; font-size: 16px; font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.65); letter-spacing: 0.02em;
+  }
+  .scene-info { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .scene-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .scene-pill {
+    font-size: 12px; color: var(--text-secondary); font-weight: 500;
+    background: var(--bg-primary); border: 1px solid var(--border-subtle);
+    padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+  }
+  .scene-badge {
+    display: inline-flex; align-items: center; gap: 4px; align-self: flex-start;
+    font-size: 12px; color: #fff; font-weight: 600; white-space: nowrap;
+    padding: 4px 12px; border-radius: 100px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    box-shadow: 0 2px 10px rgba(79,110,247,0.28);
+  }
 
-  /* ========= Tool Image Cards ========= */
+  /* ========= Tool Image Cards (Premium) ========= */
   .tool-card-with-img {
-    border-radius: var(--radius-md); overflow: hidden; background: white;
-    border: 1px solid var(--border-light); transition: all 0.3s ease; text-align: left;
+    flex: 0 1 calc((100% - 60px) / 4); min-width: 220px;
+    border-radius: 16px; overflow: hidden; background: white;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 2px 10px rgba(15,23,42,0.05);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1); text-align: left;
+    display: flex; flex-direction: column;
   }
-  .tool-card-with-img:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
-  .tool-card-with-img > img { width: 100%; aspect-ratio: 16/10; object-fit: cover; background: #0F172A; transition: transform 0.4s ease; display: block; }
-  .tool-card-with-img:hover > img { transform: scale(1.05); }
-  .tool-card-with-img h4 { font-size: 15px; font-weight: 700; color: var(--text-primary); padding: 14px 16px 4px; }
-  .tool-card-with-img p { font-size: 12.5px; color: var(--text-muted); padding: 0 16px 16px; line-height: 1.6; }
+  .tool-card-with-img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(79,110,247,0.13);
+    border-color: rgba(79,110,247,0.15);
+  }
+  .tool-card-bar { height: 4px; width: 100%; }
+  .tool-bar-blue { background: linear-gradient(90deg, #4F6EF7, #6B8AFF); }
+  .tool-bar-purple { background: linear-gradient(90deg, #8B5CF6, #A78BFA); }
+  .tool-bar-cyan { background: linear-gradient(90deg, #06B6D4, #22D3EE); }
+  .tool-bar-orange { background: linear-gradient(90deg, #F59E0B, #FBBF24); }
+  .tool-bar-green { background: linear-gradient(90deg, #10B981, #34D399); }
+  .tool-bar-pink { background: linear-gradient(90deg, #EC4899, #F472B6); }
+  .tool-bar-yellow { background: linear-gradient(90deg, #EAB308, #FACC15); }
+  .tool-card-img-wrap {
+    width: 100%; height: 120px; overflow: hidden; background: #0F172A;
+  }
+  .tool-card-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease; display: block;
+  }
+  .tool-card-with-img:hover .tool-card-img-wrap img { transform: scale(1.06); }
+  .tool-card-body { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; }
+  .tool-card-body h4 {
+    font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .tool-emoji { font-size: 17px; line-height: 1; }
+  .tool-card-body p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-  /* ========= 4K Highlight ========= */
-  .k4-section { background: linear-gradient(135deg, #0F172A 0%, #1E1B3A 50%, #1A1E2E 100%); color: white; position: relative; overflow: hidden; }
+  /* ========= 4K Highlight (Cinematic Glassmorphism) ========= */
+  .k4-section {
+    background: linear-gradient(135deg, #0A0E1A 0%, #15123A 40%, #1A1540 70%, #0F172A 100%);
+    color: white; position: relative; overflow: hidden;
+  }
   .k4-section::before {
     content: ''; position: absolute; inset: 0;
     background-image:
-      radial-gradient(circle at 20% 30%, rgba(79,110,247,0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(139,92,246,0.12) 0%, transparent 50%);
+      radial-gradient(circle at 15% 25%, rgba(79,110,247,0.24) 0%, transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(139,92,246,0.20) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(45,183,245,0.08) 0%, transparent 60%);
+  }
+  .k4-section::after {
+    content: ''; position: absolute; top: -15%; right: -8%;
+    width: 520px; height: 520px; pointer-events: none;
+    background: radial-gradient(circle, rgba(139,92,246,0.13) 0%, transparent 70%);
+    filter: blur(50px);
   }
   .k4-section .section-header { position: relative; z-index: 2; }
-  .k4-section .section-header h2 { color: white; }
-  .k4-section .section-header p { color: rgba(255,255,255,0.7); }
-  .k4-section .section-tag { background: rgba(79,110,247,0.15); border: 1px solid rgba(79,110,247,0.3); color: #A5B4FC; }
-  .k4-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 1000px; margin: 0 auto; position: relative; z-index: 2; }
-  .k4-card {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius-md); padding: 28px 26px; transition: all 0.3s ease;
+  .k4-section .section-header h2 {
+    color: white;
+    text-shadow: 0 0 32px rgba(79,110,247,0.35);
   }
-  .k4-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(79,110,247,0.3); transform: translateY(-3px); }
-  .k4-card h4 { font-size: 1.1rem; font-weight: 800; color: #FFD166; margin-bottom: 10px; }
-  .k4-card p { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.7; }
-  .k4-card ul { list-style: none; padding: 0; margin-top: 14px; }
-  .k4-card li { font-size: 13.5px; color: rgba(255,255,255,0.88); padding: 5px 0; padding-left: 22px; position: relative; }
-  .k4-card li::before { content: "✓"; position: absolute; left: 0; color: #52B788; font-weight: 700; }
+  .k4-section .section-header p { color: rgba(255,255,255,0.65); }
+  .k4-section .section-tag { background: rgba(79,110,247,0.15); border: 1px solid rgba(79,110,247,0.3); color: #A5B4FC; }
+  .k4-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    max-width: 1040px; margin: 0 auto; position: relative; z-index: 2;
+  }
+  .k4-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px; padding: 32px 28px;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    position: relative; overflow: hidden;
+  }
+  .k4-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  }
+  .k4-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(79,110,247,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(79,110,247,0.16);
+  }
+  .k4-card-icon {
+    font-size: 44px; line-height: 1; margin-bottom: 16px; display: inline-block;
+    filter: drop-shadow(0 4px 14px rgba(255,209,102,0.35));
+  }
+  .k4-card h4 {
+    font-size: 1.25rem; font-weight: 800; color: #FFD166;
+    margin-bottom: 10px; letter-spacing: -0.01em;
+  }
+  .k4-card p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 18px; }
+  .k4-features { display: flex; flex-wrap: wrap; gap: 8px; }
+  .k4-feature-pill {
+    font-size: 12.5px; color: rgba(255,255,255,0.9); font-weight: 500; white-space: nowrap;
+    padding: 6px 14px; border-radius: 100px;
+    background: rgba(79,110,247,0.15); border: 1px solid rgba(79,110,247,0.25);
+  }
 
   /* ========= Responsive for new sections ========= */
   @media (max-width: 1024px) {
     .scene-grid { grid-template-columns: repeat(3, 1fr); }
+    .tool-card-with-img { flex: 0 1 calc((100% - 20px) / 2); }
   }
   @media (max-width: 768px) {
     .scene-grid { grid-template-columns: repeat(2, 1fr); }
     .k4-grid { grid-template-columns: 1fr; }
+    .tool-card-with-img { flex: 0 1 calc((100% - 20px) / 2); }
   }
   @media (max-width: 480px) {
     .scene-grid { grid-template-columns: 1fr; }
-    .k4-card { padding: 22px 18px; }
+    .k4-card { padding: 24px 20px; }
+    .k4-card-icon { font-size: 36px; }
+    .tool-card-with-img { flex: 0 1 100%; }
+    .scene-img-wrap { height: 140px; }
+    .scene-category-label { font-size: 15px; }
   }
 
   /* ========= Enterprise ========= */
@@ -1041,52 +1148,77 @@
     <div class="scene-grid">
       <div class="scene-card">
         <div class="scene-img-wrap">
-          <img src="images/scenes/qiantie.png" alt="前贴生成" loading="lazy">
+          <img src="images/scenes/qiantie.png" alt="前贴生成" loading="lazy" onerror="this.style.display='none'">
+          <div class="scene-img-overlay"></div>
+          <span class="scene-category-label">前贴生成</span>
         </div>
         <div class="scene-info">
-          <h4>前贴生成</h4>
-          <p class="scene-tags">利益开头 · 玩法爽点 · 黄金3秒</p>
-          <span class="scene-tag-more">+3 个细分场景</span>
+          <div class="scene-pills">
+            <span class="scene-pill">利益开头</span>
+            <span class="scene-pill">玩法爽点</span>
+            <span class="scene-pill">黄金3秒</span>
+          </div>
+          <span class="scene-badge">+3 个细分场景</span>
         </div>
       </div>
       <div class="scene-card">
         <div class="scene-img-wrap">
-          <img src="images/scenes/product.png" alt="商品特写" loading="lazy">
+          <img src="images/scenes/product.png" alt="商品特写" loading="lazy" onerror="this.style.display='none'">
+          <div class="scene-img-overlay"></div>
+          <span class="scene-category-label">商品特写</span>
         </div>
         <div class="scene-info">
-          <h4>商品特写</h4>
-          <p class="scene-tags">包装特写 · 面料细节 · 质感呈现</p>
-          <span class="scene-tag-more">+3 个细分场景</span>
+          <div class="scene-pills">
+            <span class="scene-pill">包装特写</span>
+            <span class="scene-pill">面料细节</span>
+            <span class="scene-pill">质感呈现</span>
+          </div>
+          <span class="scene-badge">+3 个细分场景</span>
         </div>
       </div>
       <div class="scene-card">
         <div class="scene-img-wrap">
-          <img src="images/scenes/selling.png" alt="卖点展示" loading="lazy">
+          <img src="images/scenes/selling.png" alt="卖点展示" loading="lazy" onerror="this.style.display='none'">
+          <div class="scene-img-overlay"></div>
+          <span class="scene-category-label">卖点展示</span>
         </div>
         <div class="scene-info">
-          <h4>卖点展示</h4>
-          <p class="scene-tags">前后对比 · 卖点证明 · 效果可视化</p>
-          <span class="scene-tag-more">+3 个细分场景</span>
+          <div class="scene-pills">
+            <span class="scene-pill">前后对比</span>
+            <span class="scene-pill">卖点证明</span>
+            <span class="scene-pill">效果可视化</span>
+          </div>
+          <span class="scene-badge">+3 个细分场景</span>
         </div>
       </div>
       <div class="scene-card">
         <div class="scene-img-wrap">
-          <img src="images/scenes/img2video.png" alt="图生视频" loading="lazy">
+          <img src="images/scenes/img2video.png" alt="图生视频" loading="lazy" onerror="this.style.display='none'">
+          <div class="scene-img-overlay"></div>
+          <span class="scene-category-label">图生视频</span>
         </div>
         <div class="scene-info">
-          <h4>图生视频</h4>
-          <p class="scene-tags">产品替换 · 场景生图 · 角色替换</p>
-          <span class="scene-tag-more">+6 个细分场景</span>
+          <div class="scene-pills">
+            <span class="scene-pill">产品替换</span>
+            <span class="scene-pill">场景生图</span>
+            <span class="scene-pill">角色替换</span>
+          </div>
+          <span class="scene-badge">+6 个细分场景</span>
         </div>
       </div>
       <div class="scene-card">
         <div class="scene-img-wrap">
-          <img src="images/scenes/others.png" alt="其他场景" loading="lazy">
+          <img src="images/scenes/others.png" alt="品牌/口播/包装" loading="lazy" onerror="this.style.display='none'">
+          <div class="scene-img-overlay"></div>
+          <span class="scene-category-label">品牌/口播/包装</span>
         </div>
         <div class="scene-info">
-          <h4>品牌/口播/包装</h4>
-          <p class="scene-tags">数字人口播 · 品牌落版 · 应用录屏</p>
-          <span class="scene-tag-more">+6 个细分场景</span>
+          <div class="scene-pills">
+            <span class="scene-pill">数字人口播</span>
+            <span class="scene-pill">品牌落版</span>
+            <span class="scene-pill">应用录屏</span>
+          </div>
+          <span class="scene-badge">+6 个细分场景</span>
         </div>
       </div>
     </div>
@@ -1097,39 +1229,74 @@
     <h3 class="toolbox-block-title">&#128736; 7大核心工具，素材加工全链路</h3>
     <div class="toolbox-grid">
       <div class="tool-card-with-img">
-        <img src="images/tools/digital-human.png" alt="数字人生成" loading="lazy">
-        <h4>数字人生成</h4>
-        <p>人像+音频一键生成口播视频</p>
+        <div class="tool-card-bar tool-bar-blue"></div>
+        <div class="tool-card-img-wrap">
+          <img src="images/tools/digital-human.png" alt="数字人生成" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="tool-card-body">
+          <h4><span class="tool-emoji">&#129489;&#8205;&#128188;</span> 数字人生成</h4>
+          <p>人像+音频一键生成口播视频</p>
+        </div>
       </div>
       <div class="tool-card-with-img">
-        <img src="images/tools/scene-replace.png" alt="视频真人场景替换" loading="lazy">
-        <h4>视频真人场景替换</h4>
-        <p>真人视频背景一键换景</p>
+        <div class="tool-card-bar tool-bar-purple"></div>
+        <div class="tool-card-img-wrap">
+          <img src="images/tools/scene-replace.png" alt="视频真人场景替换" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="tool-card-body">
+          <h4><span class="tool-emoji">&#127916;</span> 视频真人场景替换</h4>
+          <p>真人视频背景一键换景</p>
+        </div>
       </div>
       <div class="tool-card-with-img">
-        <img src="images/tools/remove-subtitle.png" alt="视频去字幕" loading="lazy">
-        <h4>视频去字幕</h4>
-        <p>智能擦除硬字幕，画面无痕</p>
+        <div class="tool-card-bar tool-bar-cyan"></div>
+        <div class="tool-card-img-wrap">
+          <img src="images/tools/remove-subtitle.png" alt="视频去字幕" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="tool-card-body">
+          <h4><span class="tool-emoji">&#128288;</span> 视频去字幕</h4>
+          <p>智能擦除硬字幕，画面无痕</p>
+        </div>
       </div>
       <div class="tool-card-with-img">
-        <img src="images/tools/product-motion.png" alt="产品微动" loading="lazy">
-        <h4>产品微动</h4>
-        <p>静态商品图动起来</p>
+        <div class="tool-card-bar tool-bar-orange"></div>
+        <div class="tool-card-img-wrap">
+          <img src="images/tools/product-motion.png" alt="产品微动" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="tool-card-body">
+          <h4><span class="tool-emoji">&#10024;</span> 产品微动</h4>
+          <p>静态商品图动起来</p>
+        </div>
       </div>
       <div class="tool-card-with-img">
-        <img src="images/tools/frame-interpolation.png" alt="视频补帧" loading="lazy">
-        <h4>视频补帧</h4>
-        <p>提升至 60fps，动作更流畅</p>
+        <div class="tool-card-bar tool-bar-green"></div>
+        <div class="tool-card-img-wrap">
+          <img src="images/tools/frame-interpolation.png" alt="视频补帧" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="tool-card-body">
+          <h4><span class="tool-emoji">&#127909;</span> 视频补帧</h4>
+          <p>提升至 60fps，动作更流畅</p>
+        </div>
       </div>
       <div class="tool-card-with-img">
-        <img src="images/tools/quality-enhance.png" alt="画质增强" loading="lazy">
-        <h4>画质增强</h4>
-        <p>老旧/低清素材一键修复</p>
+        <div class="tool-card-bar tool-bar-pink"></div>
+        <div class="tool-card-img-wrap">
+          <img src="images/tools/quality-enhance.png" alt="画质增强" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="tool-card-body">
+          <h4><span class="tool-emoji">&#128142;</span> 画质增强</h4>
+          <p>老旧/低清素材一键修复</p>
+        </div>
       </div>
       <div class="tool-card-with-img">
-        <img src="images/tools/script-gen.png" alt="脚本生成" loading="lazy">
-        <h4>脚本生成</h4>
-        <p>创意一键生成专业脚本</p>
+        <div class="tool-card-bar tool-bar-yellow"></div>
+        <div class="tool-card-img-wrap">
+          <img src="images/tools/script-gen.png" alt="脚本生成" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="tool-card-body">
+          <h4><span class="tool-emoji">&#9999;&#65039;</span> 脚本生成</h4>
+          <p>创意一键生成专业脚本</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1148,40 +1315,44 @@
   </div>
   <div class="k4-grid">
     <div class="k4-card">
-      <h4>&#127910; 影视级 4K 画质</h4>
+      <div class="k4-card-icon">&#127916;</div>
+      <h4>影视级 4K 画质</h4>
       <p>原生 4K 分辨率输出，画面细节、色彩层次、动态表现均达商业广告标准，直接可用于品牌投放。</p>
-      <ul>
-        <li>4K 超高清分辨率</li>
-        <li>细腻光影与质感还原</li>
-        <li>适配大屏/TV/信息流多场景</li>
-      </ul>
+      <div class="k4-features">
+        <span class="k4-feature-pill">4K 超高清分辨率</span>
+        <span class="k4-feature-pill">细腻光影与质感还原</span>
+        <span class="k4-feature-pill">适配大屏/TV/信息流多场景</span>
+      </div>
     </div>
     <div class="k4-card">
-      <h4>&#9201; 5分钟长视频直出</h4>
+      <div class="k4-card-icon">&#9201;</div>
+      <h4>5分钟长视频直出</h4>
       <p>突破短视频限制，最长支持 5 分钟持续生成，完整叙事、产品讲解、品牌故事一镜到底。</p>
-      <ul>
-        <li>最长 5 分钟持续生成</li>
-        <li>镜头连贯不跳帧</li>
-        <li>适合 TVC、宣传片、课程</li>
-      </ul>
+      <div class="k4-features">
+        <span class="k4-feature-pill">最长 5 分钟持续生成</span>
+        <span class="k4-feature-pill">镜头连贯不跳帧</span>
+        <span class="k4-feature-pill">适合 TVC、宣传片、课程</span>
+      </div>
     </div>
     <div class="k4-card">
-      <h4>&#9881; 从脚本到成片一站式</h4>
+      <div class="k4-card-icon">&#9881;</div>
+      <h4>从脚本到成片一站式</h4>
       <p>AI 自动生成脚本、分镜、画面、配音、字幕，传统团队一周的工作量，现在几小时交付。</p>
-      <ul>
-        <li>脚本/分镜/画面全链路</li>
-        <li>省去外包剪辑成本</li>
-        <li>多版本快速迭代</li>
-      </ul>
+      <div class="k4-features">
+        <span class="k4-feature-pill">脚本/分镜/画面全链路</span>
+        <span class="k4-feature-pill">省去外包剪辑成本</span>
+        <span class="k4-feature-pill">多版本快速迭代</span>
+      </div>
     </div>
     <div class="k4-card">
-      <h4>&#128293; 适配全广告场景</h4>
+      <div class="k4-card-icon">&#128293;</div>
+      <h4>适配全广告场景</h4>
       <p>无论是前贴广告、电商主图视频、品牌 TVC 还是社交媒体内容，一次生成多尺寸多版本。</p>
-      <ul>
-        <li>品牌 TVC/宣传片</li>
-        <li>电商/信息流广告</li>
-        <li>社交媒体/口播/种草</li>
-      </ul>
+      <div class="k4-features">
+        <span class="k4-feature-pill">品牌 TVC/宣传片</span>
+        <span class="k4-feature-pill">电商/信息流广告</span>
+        <span class="k4-feature-pill">社交媒体/口播/种草</span>
+      </div>
     </div>
   </div>
 </section>
