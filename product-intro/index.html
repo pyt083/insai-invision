@@ -508,6 +508,111 @@
   .tool-card p { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
   .tool-card .tool-scene { font-size: 11.5px; color: var(--accent-blue); margin-top: 6px; font-weight: 500; }
 
+  /* ========= Sub-section titles ========= */
+  .subsec-title { font-size: 20px; font-weight: 800; color: var(--text-primary); text-align: center; margin-bottom: 10px; }
+  .subsec-desc { text-align: center; font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; }
+
+  /* ========= 4K Highlight ========= */
+  .k4-section { background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFF 100%); }
+  .k4-hero-card {
+    max-width: 1040px; margin: 0 auto;
+    padding: 52px 44px; border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, #4F6EF7 0%, #7C4DF6 55%, #8B5CF6 100%);
+    color: white; position: relative; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(79,110,247,0.25);
+  }
+  .k4-hero-card::before {
+    content: ''; position: absolute; top: -40%; right: -10%;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+    filter: blur(30px);
+  }
+  .k4-hero-card::after {
+    content: ''; position: absolute; bottom: -30%; left: -10%;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,183,245,0.18) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+  .k4-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 18px; border-radius: 100px;
+    background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.25);
+    color: white; font-size: 13px; font-weight: 600;
+    margin-bottom: 20px; position: relative; z-index: 2; letter-spacing: 0.5px;
+  }
+  .k4-hero-card h3 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900;
+    margin-bottom: 12px; position: relative; z-index: 2; letter-spacing: -0.02em; line-height: 1.25;
+  }
+  .k4-subtitle { font-size: 16px; color: rgba(255,255,255,0.88); margin-bottom: 32px; position: relative; z-index: 2; line-height: 1.6; }
+  .k4-points { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; position: relative; z-index: 2; }
+  .k4-point {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 16px 20px; border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  }
+  .k4-point-num {
+    width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+    background: rgba(255,255,255,0.22);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800;
+  }
+  .k4-point-text { font-size: 14.5px; line-height: 1.55; font-weight: 500; }
+  .k4-point-text strong { font-weight: 800; }
+
+  /* ========= Scene Category Cards ========= */
+  .scenes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1160px; margin: 0 auto 52px; }
+  .scene-cat-card {
+    border-radius: var(--radius-lg); overflow: hidden; background: white;
+    border: 1px solid var(--border-light); transition: all 0.35s ease;
+  }
+  .scene-cat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); border-color: transparent; }
+  .scene-cat-img-wrap { width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #0F172A; }
+  .scene-cat-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .scene-cat-card:hover .scene-cat-img-wrap img { transform: scale(1.05); }
+  .scene-cat-body { padding: 20px 22px; }
+  .scene-cat-title { font-size: 17px; font-weight: 800; color: var(--text-primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .scene-cat-title .sct-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 8px;
+    background: var(--gradient-primary); color: white; font-size: 12px; font-weight: 800;
+  }
+  .scene-cat-card:nth-child(4) .sct-num { background: var(--gradient-accent-2); }
+  .scene-cat-card:nth-child(5) .sct-num { background: var(--gradient-accent-4); }
+  .scene-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .scene-tag { font-size: 12.5px; padding: 5px 13px; border-radius: 100px; background: rgba(79,110,247,0.07); color: var(--primary); font-weight: 500; }
+
+  /* ========= Tool Image Cards ========= */
+  .tools-img-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1160px; margin: 0 auto; }
+  .tool-img-card {
+    border-radius: var(--radius-md); overflow: hidden; background: white;
+    border: 1px solid var(--border-light); transition: all 0.3s ease;
+  }
+  .tool-img-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+  .tool-img-wrap { width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #0F172A; }
+  .tool-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .tool-img-card:hover .tool-img-wrap img { transform: scale(1.05); }
+  .tool-img-body { padding: 14px 16px; }
+  .tool-img-body h4 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 5px; }
+  .tool-img-body p { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ========= Responsive for new sections ========= */
+  @media (max-width: 1024px) {
+    .k4-points { grid-template-columns: 1fr; }
+    .scenes-grid { grid-template-columns: repeat(2, 1fr); }
+    .tools-img-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .k4-hero-card { padding: 36px 24px; }
+    .scenes-grid { grid-template-columns: 1fr; }
+    .tools-img-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .k4-hero-card { padding: 28px 18px; }
+    .k4-point { padding: 14px 16px; }
+    .tools-img-grid { grid-template-columns: 1fr; }
+  }
+
   /* ========= Enterprise ========= */
   .enterprise-section { background: linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%); }
   .enterprise-grid {
@@ -712,6 +817,8 @@
     .cases-grid { grid-template-columns: repeat(2, 1fr); }
     .industries-grid { grid-template-columns: repeat(2, 1fr); }
     .toolbox-grid { grid-template-columns: repeat(2, 1fr); }
+    .scene-grid { grid-template-columns: repeat(3, 1fr); }
+    .k4-grid { grid-template-columns: repeat(2, 1fr); }
     .compare-table-wrap { max-width: 100%; }
   }
 
@@ -739,6 +846,8 @@
     .model-detail-side h3 { font-size: 17px; }
     .model-highlights li { font-size: 13px; }
     .toolbox-grid { grid-template-columns: repeat(2, 1fr); }
+    .scene-grid { grid-template-columns: repeat(2, 1fr); }
+    .k4-grid { grid-template-columns: 1fr; }
     .compare-table { font-size: 13px; }
     .compare-table thead th, .compare-table tbody td { padding: 10px 12px; }
     .float-card { display: none; }
@@ -776,6 +885,7 @@
     .model-aggregate-block { padding: 14px 12px; }
     .model-detail-side h3 { font-size: 15px; }
     .toolbox-grid { grid-template-columns: 1fr; }
+    .scene-grid { grid-template-columns: 1fr; }
     .cases-grid { grid-template-columns: 1fr; }
     .flow-card { padding: 20px 16px; }
     .feature-card { padding: 18px 14px; }
@@ -831,7 +941,7 @@
         营赛 智影，一站式 AI 生成脚本、图片、视频<br>让每个广告主拥有自己的 AI 创意团队
       </p>
       <p class="hero-sub">
-        开户即送 <strong>1,000 星火币</strong> &mdash;&mdash; 零成本体验 AI 原生创意力
+        开户即送 <strong>价值50000元积分</strong> &mdash;&mdash; 零成本体验 AI 原生创意力
       </p>
       <div class="hero-btns">
         <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-hero-primary">
@@ -959,78 +1069,158 @@
 <section class="section toolbox-section" id="toolbox">
   <div class="section-header">
     <div class="section-tag">&#128295; 工具箱</div>
-    <h2>15+ 实用工具，覆盖素材全生命周期</h2>
-    <p>从生成到加工，从创意到复刻，一站式搞定</p>
+    <h2>21大场景 + 7大工具，覆盖素材全生命周期</h2>
+    <p>从广告前贴到商品特写，从数字人到视频补帧，全链路 AI 生产能力</p>
   </div>
-  <div class="toolbox-grid">
-    <div class="tool-card">
-      <h4>&#127909; 视频超分</h4>
-      <p>提升视频清晰度，支持 2x/3x/4x 缩放，长视频自动切片并发处理</p>
-      <div class="tool-scene">旧素材翻新、画质升级</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#128161; 图片提示词裂变</h4>
-      <p>从图片或核心创意生成多组风格相似提示词，1-12 张</p>
-      <div class="tool-scene">批量创意测试、风格探索</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#127916; 产品微动</h4>
-      <p>让静态产品图/真人图产生轻微运动，支持自定义指令</p>
-      <div class="tool-scene">电商展示、短视频开头动效</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#128444; 视频真人场景替换</h4>
-      <p>将真人视频背景替换为新场景，支持图片或提示词</p>
-      <div class="tool-scene">口播视频、剧情短片场景化</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#10060; 视频去字幕</h4>
-      <p>擦除硬字幕，保持背景自然</p>
-      <div class="tool-scene">旧素材复用、去除画面文字干扰</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#128270; 反推提示词</h4>
-      <p>分析图片/视频，反推适合主流视频生成模型的中文提示词</p>
-      <div class="tool-scene">拿到参考素材快速提炼</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#128221; 脚本生成</h4>
-      <p>将粗略创意改写为有镜头感的脚本或提示词</p>
-      <div class="tool-scene">创意初稿、爆款脚本优化</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#9986; 视频切片</h4>
-      <p>识别高光时刻和关键剧情，完成素材切片与分类</p>
-      <div class="tool-scene">素材剪辑、二次创作</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#129302; 数字人生成</h4>
-      <p>上传人像+音频，生成口播类数字人视频</p>
-      <div class="tool-scene">品牌口播、产品讲解</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#128260; 爆款复刻</h4>
-      <p>自动分析爆款视频的爆点原因，生成新视频</p>
-      <div class="tool-scene">竞品分析、爆款快速复刻</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#127916; 首尾帧生视频</h4>
-      <p>根据首帧+尾帧图，AI 自动补全中间过渡</p>
-      <div class="tool-scene">产品演示、转场效果</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#9201; 视频补帧</h4>
-      <p>提升视频流畅度</p>
-      <div class="tool-scene">动作类素材优化</div>
-    </div>
-    <div class="tool-card">
-      <h4>&#10024; 画质增强</h4>
-      <p>整体提升素材观感</p>
-      <div class="tool-scene">老旧素材修复</div>
+
+  <!-- 21大核心场景 -->
+  <div class="toolbox-block">
+    <h3 class="toolbox-block-title">&#127909; 21大核心场景，覆盖主流广告素材</h3>
+    <div class="scene-grid">
+      <div class="scene-card">
+        <div class="scene-img-wrap">
+          <img src="images/scenes/qiantie-zhu.png" alt="前贴生成" loading="lazy">
+        </div>
+        <div class="scene-info">
+          <h4>前贴生成</h4>
+          <p class="scene-tags">利益开头 · 玩法爽点 · 黄金3秒</p>
+          <span class="scene-tag-more">+3 个细分场景</span>
+        </div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-img-wrap">
+          <img src="images/scenes/shop-te.png" alt="商品特写" loading="lazy">
+        </div>
+        <div class="scene-info">
+          <h4>商品特写</h4>
+          <p class="scene-tags">包装特写 · 面料细节 · 质感呈现</p>
+          <span class="scene-tag-more">+3 个细分场景</span>
+        </div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-img-wrap">
+          <img src="images/scenes/maidian-zhu.png" alt="卖点展示" loading="lazy">
+        </div>
+        <div class="scene-info">
+          <h4>卖点展示</h4>
+          <p class="scene-tags">前后对比 · 卖点证明 · 效果可视化</p>
+          <span class="scene-tag-more">+3 个细分场景</span>
+        </div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-img-wrap">
+          <img src="images/scenes/tusheng-zhu.png" alt="图生视频" loading="lazy">
+        </div>
+        <div class="scene-info">
+          <h4>图生视频</h4>
+          <p class="scene-tags">产品替换 · 场景生图 · 角色替换</p>
+          <span class="scene-tag-more">+6 个细分场景</span>
+        </div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-img-wrap">
+          <img src="images/scenes/qita-zhu.png" alt="其他场景" loading="lazy">
+        </div>
+        <div class="scene-info">
+          <h4>品牌/口播/包装</h4>
+          <p class="scene-tags">数字人口播 · 品牌落版 · 应用录屏</p>
+          <span class="scene-tag-more">+6 个细分场景</span>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- 7大工具 -->
+  <div class="toolbox-block">
+    <h3 class="toolbox-block-title">&#128736; 7大核心工具，素材加工全链路</h3>
+    <div class="toolbox-grid">
+      <div class="tool-card-with-img">
+        <img src="images/tools/tool-shuziren.png" alt="数字人生成" loading="lazy">
+        <h4>数字人生成</h4>
+        <p>人像+音频一键生成口播视频</p>
+      </div>
+      <div class="tool-card-with-img">
+        <img src="images/tools/tool-scene-replace.png" alt="视频真人场景替换" loading="lazy">
+        <h4>视频真人场景替换</h4>
+        <p>真人视频背景一键换景</p>
+      </div>
+      <div class="tool-card-with-img">
+        <img src="images/tools/tool-subtitle.png" alt="视频去字幕" loading="lazy">
+        <h4>视频去字幕</h4>
+        <p>智能擦除硬字幕，画面无痕</p>
+      </div>
+      <div class="tool-card-with-img">
+        <img src="images/tools/tool-weidong.png" alt="产品微动" loading="lazy">
+        <h4>产品微动</h4>
+        <p>静态商品图动起来</p>
+      </div>
+      <div class="tool-card-with-img">
+        <img src="images/tools/tool-buzhen.png" alt="视频补帧" loading="lazy">
+        <h4>视频补帧</h4>
+        <p>提升至 60fps，动作更流畅</p>
+      </div>
+      <div class="tool-card-with-img">
+        <img src="images/tools/tool-huaizhi.png" alt="画质增强" loading="lazy">
+        <h4>画质增强</h4>
+        <p>老旧/低清素材一键修复</p>
+      </div>
+      <div class="tool-card-with-img">
+        <img src="images/tools/tool-fantui.png" alt="反推提示词" loading="lazy">
+        <h4>反推提示词</h4>
+        <p>参考素材一键提炼提示词</p>
+      </div>
+    </div>
+  </div>
+
   <div class="model-summary" style="margin-top:36px;">
-    <p>一句话总结：从生成到加工，从创意到复刻，营赛 智影工具箱覆盖广告素材<strong>全生命周期</strong>。</p>
+    <p>一句话总结：从生成到加工，从创意到复刻，营赛 智影<strong>21大场景 + 7大工具</strong>覆盖广告素材全生命周期。</p>
+  </div>
+</section>
+
+<!-- ==================== 4K 影视级画质 ==================== -->
+<section class="section k4-section">
+  <div class="section-header">
+    <div class="section-tag">&#127909; 画质升级</div>
+    <h2>4K 影视级画质，5分钟视频直出</h2>
+    <p>无需复杂后期，一条指令直出可用广告片</p>
+  </div>
+  <div class="k4-grid">
+    <div class="k4-card">
+      <h4>&#127910; 影视级 4K 画质</h4>
+      <p>原生 4K 分辨率输出，画面细节、色彩层次、动态表现均达商业广告标准，直接可用于品牌投放。</p>
+      <ul>
+        <li>4K 超高清分辨率</li>
+        <li>细腻光影与质感还原</li>
+        <li>适配大屏/TV/信息流多场景</li>
+      </ul>
+    </div>
+    <div class="k4-card">
+      <h4>&#9201; 5分钟长视频直出</h4>
+      <p>突破短视频限制，最长支持 5 分钟持续生成，完整叙事、产品讲解、品牌故事一镜到底。</p>
+      <ul>
+        <li>最长 5 分钟持续生成</li>
+        <li>镜头连贯不跳帧</li>
+        <li>适合 TVC、宣传片、课程</li>
+      </ul>
+    </div>
+    <div class="k4-card">
+      <h4>&#9881; 从脚本到成片一站式</h4>
+      <p>AI 自动生成脚本、分镜、画面、配音、字幕，传统团队一周的工作量，现在几小时交付。</p>
+      <ul>
+        <li>脚本/分镜/画面全链路</li>
+        <li>省去外包剪辑成本</li>
+        <li>多版本快速迭代</li>
+      </ul>
+    </div>
+    <div class="k4-card">
+      <h4>&#128293; 适配全广告场景</h4>
+      <p>无论是前贴广告、电商主图视频、品牌 TVC 还是社交媒体内容，一次生成多尺寸多版本。</p>
+      <ul>
+        <li>品牌 TVC/宣传片</li>
+        <li>电商/信息流广告</li>
+        <li>社交媒体/口播/种草</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -1043,7 +1233,7 @@
   </div>
   <div class="stats-grid">
     <div class="stat-item stat-1"><h3>1,800+</h3><p>覆盖全公司员工</p></div>
-    <div class="stat-item stat-2"><h3>14万+</h3><p>累计任务数</p></div>
+    <div class="stat-item stat-2"><h3>21万+</h3><p>累计任务数</p></div>
     <div class="stat-item stat-3"><h3>95%+</h3><p>任务成功率</p></div>
     <div class="stat-item stat-4"><h3>3万+</h3><p>周素材产出</p></div>
   </div>
@@ -1150,7 +1340,7 @@
       <div class="industry-icon" style="background:rgba(79,110,247,0.12);">&#128170;</div>
       <h4>内部实战验证 &#10003;</h4>
       <div class="ind-scene" style="color:var(--primary);">公司大规模使用 · 成果卓著</div>
-      <p>1,800+ 员工日常使用，14万+ 任务累计，95%+ 成功率，周产出 3万+ 素材——数据证明，AI 创意生产力已成标配</p>
+      <p>1,800+ 员工日常使用，21万+ 任务累计，95%+ 成功率，周产出 3万+ 素材——数据证明，AI 创意生产力已成标配</p>
     </div>
   </div>
 </section>
@@ -1216,7 +1406,7 @@
 <section class="cta-section" id="about">
   <div class="cta-content">
     <h2>现在开始，让 AI 替你干活</h2>
-    <p>开户即送 1,000 星火币，零成本体验 AI 原生创意力<br>让 AI 帮你把创意变成素材，把广告消耗变成免费生产力</p>
+    <p>开户即送价值50000元积分，零成本体验 AI 原生创意力<br>让 AI 帮你把创意变成素材，把广告消耗变成免费生产力</p>
     <div class="hero-btns" style="justify-content:center;">
       <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-hero-primary">
         立即免费体验 &rarr;
