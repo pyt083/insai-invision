@@ -523,60 +523,59 @@
   .scene-category-group:last-child { margin-bottom: 0; }
   .scene-category-title {
     font-size: 17px; font-weight: 700; color: var(--text-primary);
-    margin-bottom: 18px; padding-left: 14px;
-    border-left: 3px solid var(--primary);
-    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 24px; text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    position: relative;
+  }
+  .scene-category-title::after {
+    content: ''; position: absolute; bottom: -9px; left: 50%; transform: translateX(-50%);
+    width: 44px; height: 3px; border-radius: 100px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
   }
   .scene-category-title .scene-count {
-    font-size: 12.5px; color: var(--text-muted); font-weight: 500;
-    background: var(--bg-primary); padding: 2px 10px; border-radius: 100px;
-    border: 1px solid var(--border-subtle);
+    font-size: 12.5px; color: var(--primary-dark); font-weight: 600;
+    background: rgba(79,110,247,0.08); padding: 2px 10px; border-radius: 100px;
+    border: 1px solid rgba(79,110,247,0.15);
   }
-  .scene-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+  .scene-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+    max-width: 1120px; margin: 0 auto; grid-auto-rows: 1fr;
+  }
   .scene-card {
-    border-radius: 14px; overflow: hidden; background: white;
+    border-radius: 14px; background: white;
     border: 1px solid var(--border-light);
     box-shadow: 0 2px 8px rgba(15,23,42,0.04);
     transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
-    display: flex; flex-direction: column;
+    padding: 20px 18px; display: flex; flex-direction: column;
+    align-items: center; text-align: center;
   }
   .scene-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 16px 40px rgba(79,110,247,0.15);
-    border-color: rgba(79,110,247,0.2);
+    border-color: rgba(79,110,247,0.3);
   }
-  .scene-img-wrap {
-    width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative;
-    background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+  .scene-icon {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 21px; margin-bottom: 12px; flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(79,110,247,0.1) 0%, rgba(107,138,255,0.16) 100%);
+    border: 1px solid rgba(79,110,247,0.12);
   }
-  .scene-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s ease; display: block;
+  .scene-name {
+    font-size: 15.5px; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3;
   }
-  .scene-card:hover .scene-img-wrap img { transform: scale(1.08); }
-  .scene-img-overlay {
-    position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.12) 40%, transparent 100%);
+  .scene-points {
+    list-style: none; padding: 0; margin: 0; width: 100%;
+    display: flex; flex-direction: column; gap: 8px; text-align: left;
   }
-  .scene-img-wrap img.broken { display: none; }
-  .scene-img-fallback {
-    position: absolute; inset: 0; display: none;
-    align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500;
-    background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+  .scene-points li {
+    font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;
+    display: flex; align-items: flex-start; gap: 6px;
   }
-  .scene-img-wrap img.broken ~ .scene-img-fallback { display: flex; }
-  .scene-category-label {
-    position: absolute; left: 12px; bottom: 10px; z-index: 2;
-    color: #fff; font-size: 14.5px; font-weight: 700;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.7); letter-spacing: 0.02em;
-  }
-  .scene-info { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-  .scene-pills { display: flex; flex-wrap: wrap; gap: 5px; }
-  .scene-pill {
-    font-size: 11.5px; color: var(--primary-dark); font-weight: 500;
-    background: rgba(79,110,247,0.07); border: 1px solid rgba(79,110,247,0.12);
-    padding: 3px 9px; border-radius: 100px; white-space: nowrap;
+  .scene-points li::before {
+    content: '✓'; color: var(--primary); font-weight: 700; font-size: 12px;
+    flex-shrink: 0; margin-top: 1px;
   }
 
   /* ========= Tool Image Cards ========= */
@@ -705,7 +704,6 @@
     .k4-card { padding: 24px 20px; }
     .k4-card-icon { font-size: 36px; }
     .toolbox-grid { grid-template-columns: 1fr; }
-    .scene-category-label { font-size: 14px; }
   }
 
   /* ========= Enterprise ========= */
@@ -1177,49 +1175,31 @@
       <h4 class="scene-category-title">前贴生成 <span class="scene-count">3 个场景</span></h4>
       <div class="scene-grid">
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/qiantie-liyi.png?v=202607031835" alt="利益开头" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">利益开头</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">利益开头</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">黄金3秒</span>
-              <span class="scene-pill">利益前置</span>
-              <span class="scene-pill">强吸引力</span>
-            </div>
-          </div>
+          <div class="scene-icon">🎯</div>
+          <h4 class="scene-name">利益开头</h4>
+          <ul class="scene-points">
+            <li>黄金3秒抓眼球</li>
+            <li>利益前置提升完播</li>
+            <li>强吸引力促点击</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/qiantie-main.png?v=202607031835" alt="前贴生成" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">前贴生成</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">前贴生成</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">开场钩子</span>
-              <span class="scene-pill">品牌曝光</span>
-              <span class="scene-pill">信息流</span>
-            </div>
-          </div>
+          <div class="scene-icon">🎬</div>
+          <h4 class="scene-name">前贴生成</h4>
+          <ul class="scene-points">
+            <li>开场钩子留住用户</li>
+            <li>品牌曝光抢先机</li>
+            <li>信息流前贴优选</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/qiantie-wanfa.png?v=202607031835" alt="玩法爽点" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">玩法爽点</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">玩法爽点</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">玩法演示</span>
-              <span class="scene-pill">爽点前置</span>
-              <span class="scene-pill">互动感</span>
-            </div>
-          </div>
+          <div class="scene-icon">⚡</div>
+          <h4 class="scene-name">玩法爽点</h4>
+          <ul class="scene-points">
+            <li>玩法演示直观化</li>
+            <li>爽点前置激兴趣</li>
+            <li>互动感强留存高</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1229,49 +1209,31 @@
       <h4 class="scene-category-title">商品特写 <span class="scene-count">3 个场景</span></h4>
       <div class="scene-grid">
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/product-packaging.png?v=202607031835" alt="包装特写" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">包装特写</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">包装特写</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">包装细节</span>
-              <span class="scene-pill">质感呈现</span>
-              <span class="scene-pill">品牌识别</span>
-            </div>
-          </div>
+          <div class="scene-icon">📦</div>
+          <h4 class="scene-name">包装特写</h4>
+          <ul class="scene-points">
+            <li>包装细节高清呈现</li>
+            <li>质感突出品牌调性</li>
+            <li>品牌识别一眼记住</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/product-main.png?v=202607031835" alt="商品特写" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">商品特写</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">商品特写</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">产品聚焦</span>
-              <span class="scene-pill">细节放大</span>
-              <span class="scene-pill">视觉冲击</span>
-            </div>
-          </div>
+          <div class="scene-icon">🔍</div>
+          <h4 class="scene-name">商品特写</h4>
+          <ul class="scene-points">
+            <li>产品聚焦主视觉</li>
+            <li>细节放大卖点击穿</li>
+            <li>视觉冲击强转化</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/product-fabric.png?v=202607031835" alt="面料细节" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">面料细节</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">面料细节</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">材质呈现</span>
-              <span class="scene-pill">微距特写</span>
-              <span class="scene-pill">品质感</span>
-            </div>
-          </div>
+          <div class="scene-icon">🧵</div>
+          <h4 class="scene-name">面料细节</h4>
+          <ul class="scene-points">
+            <li>材质呈现真实感</li>
+            <li>微距特写显工艺</li>
+            <li>品质感拉升调性</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1281,49 +1243,31 @@
       <h4 class="scene-category-title">卖点展示 <span class="scene-count">3 个场景</span></h4>
       <div class="scene-grid">
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/selling-compare.png?v=202607031835" alt="前后对比" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">前后对比</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">前后对比</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">效果对比</span>
-              <span class="scene-pill">痛点解决</span>
-              <span class="scene-pill">转化利器</span>
-            </div>
-          </div>
+          <div class="scene-icon">📊</div>
+          <h4 class="scene-name">前后对比</h4>
+          <ul class="scene-points">
+            <li>效果对比直观化</li>
+            <li>痛点解决看得见</li>
+            <li>转化利器强说服</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/selling-main.png?v=202607031835" alt="卖点展示" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">卖点展示</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">卖点展示</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">核心卖点</span>
-              <span class="scene-pill">功能亮点</span>
-              <span class="scene-pill">信息清晰</span>
-            </div>
-          </div>
+          <div class="scene-icon">💡</div>
+          <h4 class="scene-name">卖点展示</h4>
+          <ul class="scene-points">
+            <li>核心卖点聚焦化</li>
+            <li>功能亮点一目了然</li>
+            <li>信息清晰降决策</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/selling-proof.png?v=202607031835" alt="卖点证明" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">卖点证明</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">卖点证明</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">效果证明</span>
-              <span class="scene-pill">场景验证</span>
-              <span class="scene-pill">信任建立</span>
-            </div>
-          </div>
+          <div class="scene-icon">✅</div>
+          <h4 class="scene-name">卖点证明</h4>
+          <ul class="scene-points">
+            <li>效果证明建信任</li>
+            <li>场景验证真实可感</li>
+            <li>信任建立促下单</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1333,88 +1277,58 @@
       <h4 class="scene-category-title">图生视频 <span class="scene-count">6 个场景</span></h4>
       <div class="scene-grid">
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/img2video-product-replace.png?v=202607031835" alt="产品替换" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">产品替换</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">产品替换</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">一键换品</span>
-              <span class="scene-pill">批量生成</span>
-            </div>
-          </div>
+          <div class="scene-icon">🔄</div>
+          <h4 class="scene-name">产品替换</h4>
+          <ul class="scene-points">
+            <li>一键换品省成本</li>
+            <li>批量生成提效率</li>
+            <li>多版本快速测款</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/img2video-person.png?v=202607031835" alt="人物图生视频" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">人物图生视频</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">人物图生视频</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">人像驱动</span>
-              <span class="scene-pill">动作生成</span>
-            </div>
-          </div>
+          <div class="scene-icon">🧑‍🎤</div>
+          <h4 class="scene-name">人物图生视频</h4>
+          <ul class="scene-points">
+            <li>人像驱动自然流畅</li>
+            <li>动作生成免拍摄</li>
+            <li>虚拟模特零成本</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/img2video-product.png?v=202607031835" alt="商品图生视频" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">商品图生视频</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">商品图生视频</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">静图转视频</span>
-              <span class="scene-pill">主图视频</span>
-            </div>
-          </div>
+          <div class="scene-icon">🎞️</div>
+          <h4 class="scene-name">商品图生视频</h4>
+          <ul class="scene-points">
+            <li>静图转视频增动效</li>
+            <li>主图视频提转化</li>
+            <li>动态展示更吸睛</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/img2video-main.png?v=202607031835" alt="图生视频" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">图生视频</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">图生视频</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">图片活化</span>
-              <span class="scene-pill">镜头运动</span>
-            </div>
-          </div>
+          <div class="scene-icon">✨</div>
+          <h4 class="scene-name">图生视频</h4>
+          <ul class="scene-points">
+            <li>图片活化增表现</li>
+            <li>镜头运动专业感</li>
+            <li>静态素材动起来</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/img2video-scene.png?v=202607031835" alt="场景生图" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">场景生图</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">场景生图</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">场景生成</span>
-              <span class="scene-pill">氛围营造</span>
-            </div>
-          </div>
+          <div class="scene-icon">🏞️</div>
+          <h4 class="scene-name">场景生图</h4>
+          <ul class="scene-points">
+            <li>场景生成免外景</li>
+            <li>氛围营造随心控</li>
+            <li>多场景快速产出</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/img2video-role.png?v=202607031835" alt="角色替换" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">角色替换</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">角色替换</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">角色换脸</span>
-              <span class="scene-pill">多版本输出</span>
-            </div>
-          </div>
+          <div class="scene-icon">🎭</div>
+          <h4 class="scene-name">角色替换</h4>
+          <ul class="scene-points">
+            <li>角色换脸灵活用</li>
+            <li>多版本输出快测</li>
+            <li>人物适配多品类</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1424,89 +1338,58 @@
       <h4 class="scene-category-title">其他场景 <span class="scene-count">6 个场景</span></h4>
       <div class="scene-grid">
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/other-digital-human.png?v=202607031835" alt="数字人口播" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">数字人口播</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">数字人口播</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">数字人</span>
-              <span class="scene-pill">口播视频</span>
-              <span class="scene-pill">多语言</span>
-            </div>
-          </div>
+          <div class="scene-icon">🤖</div>
+          <h4 class="scene-name">数字人口播</h4>
+          <ul class="scene-points">
+            <li>数字人免拍摄</li>
+            <li>口播视频批量产</li>
+            <li>多语言拓全球市场</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/other-brand.png?v=202607031835" alt="品牌落版" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">品牌落版</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">品牌落版</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">品牌结尾</span>
-              <span class="scene-pill">Logo展示</span>
-            </div>
-          </div>
+          <div class="scene-icon">🏷️</div>
+          <h4 class="scene-name">品牌落版</h4>
+          <ul class="scene-points">
+            <li>品牌结尾统一调</li>
+            <li>Logo展示强记忆</li>
+            <li>专业收尾提升调性</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/other-app.png?v=202607031835" alt="应用录屏" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">应用录屏</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">应用录屏</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">App演示</span>
-              <span class="scene-pill">功能展示</span>
-            </div>
-          </div>
+          <div class="scene-icon">📱</div>
+          <h4 class="scene-name">应用录屏</h4>
+          <ul class="scene-points">
+            <li>App演示直观化</li>
+            <li>功能展示步步清</li>
+            <li>操作引导降门槛</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/other-game.png?v=202607031835" alt="游戏录屏包装" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">游戏录屏包装</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">游戏录屏包装</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">游戏素材</span>
-              <span class="scene-pill">高光时刻</span>
-            </div>
-          </div>
+          <div class="scene-icon">🎮</div>
+          <h4 class="scene-name">游戏录屏包装</h4>
+          <ul class="scene-points">
+            <li>游戏素材高光剪辑</li>
+            <li>精彩时刻抓眼球</li>
+            <li>包装升级专业感</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/other-supplement.png?v=202607031835" alt="补充镜头" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">补充镜头</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">补充镜头</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">B-roll</span>
-              <span class="scene-pill">过渡镜头</span>
-            </div>
-          </div>
+          <div class="scene-icon">🎥</div>
+          <h4 class="scene-name">补充镜头</h4>
+          <ul class="scene-points">
+            <li>B-roll补充丰画面</li>
+            <li>过渡镜头更流畅</li>
+            <li>素材不足快速补</li>
+          </ul>
         </div>
         <div class="scene-card">
-          <div class="scene-img-wrap">
-            <img src="images/scenes/other-fission.png?v=202607031835" alt="卖点裂变" loading="lazy" onerror="this.classList.add('broken')">
-            <div class="scene-img-fallback">卖点裂变</div>
-            <div class="scene-img-overlay"></div>
-            <span class="scene-category-label">卖点裂变</span>
-          </div>
-          <div class="scene-info">
-            <div class="scene-pills">
-              <span class="scene-pill">卖点裂变</span>
-              <span class="scene-pill">A/B测试</span>
-            </div>
-          </div>
+          <div class="scene-icon">🔬</div>
+          <h4 class="scene-name">卖点裂变</h4>
+          <ul class="scene-points">
+            <li>卖点裂变多维测</li>
+            <li>A/B测试选最优</li>
+            <li>一键多版本产出</li>
+          </ul>
         </div>
       </div>
     </div>
