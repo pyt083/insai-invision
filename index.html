@@ -840,7 +840,7 @@
 
 /* ========== 21场景+7工具板块 ========== */
 .scenes-tools-section {
-  background: linear-gradient(180deg, #FAFBFF 0%, #F0F3FF 100%);
+  background: linear-gradient(180deg, #FAFBFF 0%, #F5F7FF 100%);
   padding: 100px 24px 90px;
   position: relative;
 }
@@ -848,19 +848,8 @@
   text-align: center;
   margin-bottom: 56px;
 }
-.scenes-tools-section .section-tag {
-  display: inline-block;
-  background: linear-gradient(135deg, rgba(79,110,247,0.08), rgba(79,110,247,0.14));
-  border: 1px solid rgba(79,110,247,0.18);
-  color: #4F6EF7;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 5px 16px;
-  border-radius: 20px;
-  margin-bottom: 16px;
-}
 .scenes-tools-section .section-header h2 {
-  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  font-size: clamp(1.7rem, 3.2vw, 2.3rem);
   font-weight: 800;
   color: #1B2563;
   margin-bottom: 12px;
@@ -875,16 +864,13 @@
 }
 .st-category {
   max-width: 1120px;
-  margin: 0 auto 44px;
+  margin: 0 auto 40px;
 }
-.st-category:last-of-type { margin-bottom: 56px; }
 .st-category-title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 18px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid rgba(79,110,247,0.1);
 }
 .st-category-title h3 {
   font-size: 16px;
@@ -896,180 +882,102 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #4F6EF7, #7B93FF);
+  background: linear-gradient(135deg, #4F6EF7, #8B5CF6);
   color: white;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   padding: 2px 10px;
   border-radius: 12px;
-  flex-shrink: 0;
 }
 .st-scene-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 @media (max-width: 1024px) { .st-scene-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 768px) { .st-scene-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .st-scene-grid { grid-template-columns: 1fr; } }
-.st-scene-card {
-  background: white;
-  border: 1px solid rgba(79,110,247,0.1);
-  border-radius: 14px;
-  padding: 20px 18px 18px;
+.st-card {
+  background: #FFFFFF;
+  border: 1px solid #F1F4FF;
+  border-radius: 16px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(79,110,247,0.06);
 }
-.st-scene-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #4F6EF7, #7B93FF);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-.st-scene-card:hover {
+.st-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(79,110,247,0.12);
-  border-color: rgba(79,110,247,0.25);
+  border-color: rgba(79,110,247,0.2);
 }
-.st-scene-card:hover::before { opacity: 1; }
-.st-scene-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(79,110,247,0.08), rgba(79,110,247,0.14));
+.st-card-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 18px;
+  gap: 10px;
+}
+.st-card-icon {
+  font-size: 20px;
+  line-height: 1;
   flex-shrink: 0;
 }
-.st-scene-name {
+.st-card-name {
   font-size: 15px;
   font-weight: 700;
   color: #1B2563;
-  line-height: 1.3;
 }
-.st-scene-points {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.st-card-desc {
+  font-size: 13px;
+  color: #6B7A99;
+  line-height: 1.6;
   flex: 1;
+  min-height: 40px;
 }
-.st-scene-points li {
-  font-size: 12.5px;
-  color: #4A5568;
-  line-height: 1.5;
-  padding-left: 16px;
-  position: relative;
+.st-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
 }
-.st-scene-points li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #4F6EF7;
-  font-weight: 700;
-  font-size: 11px;
+.st-card-tag {
+  display: inline-block;
+  background: rgba(139,92,246,0.08);
+  color: #8B5CF6;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(139,92,246,0.15);
 }
-/* 7大工具 */
 .st-tools-block {
   max-width: 1120px;
-  margin: 0 auto;
+  margin: 60px auto 0;
   padding-top: 48px;
   border-top: 1px solid rgba(79,110,247,0.1);
 }
-.st-tools-block .st-tools-title { text-align: center; margin-bottom: 32px; }
-.st-tools-block .st-tools-title h3 {
+.st-tools-title {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.st-tools-title h3 {
   font-size: 20px;
   font-weight: 800;
   color: #1B2563;
   margin-bottom: 8px;
 }
-.st-tools-block .st-tools-title p { font-size: 14px; color: #6B7A99; }
+.st-tools-title p {
+  font-size: 14px;
+  color: #6B7A99;
+}
 .st-tool-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 @media (max-width: 1024px) { .st-tool-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .st-tool-grid { grid-template-columns: 1fr; } }
-.st-tool-card {
-  background: white;
-  border: 1px solid rgba(79,110,247,0.1);
-  border-radius: 14px;
-  padding: 22px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
-}
-.st-tool-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #4F6EF7, #7B93FF);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-.st-tool-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(79,110,247,0.12);
-  border-color: rgba(79,110,247,0.25);
-}
-.st-tool-card:hover::before { opacity: 1; }
-.st-tool-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(79,110,247,0.08), rgba(79,110,247,0.14));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-.st-tool-name {
-  font-size: 15px;
-  font-weight: 700;
-  color: #1B2563;
-  line-height: 1.3;
-}
-.st-tool-points {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  flex: 1;
-}
-.st-tool-points li {
-  font-size: 12.5px;
-  color: #4A5568;
-  line-height: 1.5;
-  padding-left: 16px;
-  position: relative;
-}
-.st-tool-points li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #4F6EF7;
-  font-weight: 700;
-  font-size: 11px;
-}
 
   </style>
 <link rel="icon" href="./assets/frameyu-logo.png" type="image/png">
@@ -1298,246 +1206,287 @@
 <!-- ==================== 21场景+7工具 ==================== -->
 <section class="section scenes-tools-section" id="scenes-tools">
   <div class="section-header">
-    <div class="section-tag">&#10024; 核心亮点</div>
-    <h2>21 个核心场景 + 7 大工具，覆盖全行业创意需求</h2>
-    <p>从电商到游戏，从口播到 TVC — 每个场景都有对应的 AI 能力，让创意团队效率倍增</p>
+    <h2>21 大核心场景，覆盖主流广告素材</h2>
+    <p>从电商到游戏，从口播到 TVC，每个场景都能直接产出可投放的素材</p>
   </div>
 
-  <!-- 前贴生成（3） -->
+  <!-- 前贴生成 -->
   <div class="st-category">
     <div class="st-category-title">
-      <h3>&#127916; 前贴生成</h3>
+      <h3>前贴生成</h3>
       <span class="st-category-count">3 场景</span>
     </div>
     <div class="st-scene-grid">
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128293;</div>
-        <div class="st-scene-name">利益开头</div>
-        <ul class="st-scene-points">
-          <li>黄金 3 秒抓眼球</li>
-          <li>利益前置提升完播</li>
-          <li>强吸引力促点击</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#9889;</span>
+          <span class="st-card-name">利益开头</span>
+        </div>
+        <p class="st-card-desc">黄金 3 秒前置利益点，强抓注意力提升完播率</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">黄金3秒</span>
+          <span class="st-card-tag">利益前置</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#127908;</div>
-        <div class="st-scene-name">前贴生成</div>
-        <ul class="st-scene-points">
-          <li>一键生成前贴素材</li>
-          <li>适配多平台尺寸</li>
-          <li>批量输出不费劲</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127912;</span>
+          <span class="st-card-name">前贴生成</span>
+        </div>
+        <p class="st-card-desc">一键生成广告前贴素材，快速适配多平台尺寸</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">一键生成</span>
+          <span class="st-card-tag">多平台适配</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#127881;</div>
-        <div class="st-scene-name">玩法爽点</div>
-        <ul class="st-scene-points">
-          <li>游戏爽点视觉化</li>
-          <li>激发下载欲</li>
-          <li>高光时刻自动剪辑</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127918;</span>
+          <span class="st-card-name">玩法爽点</span>
+        </div>
+        <p class="st-card-desc">把游戏核心玩法和高光时刻视觉化呈现</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">玩法演示</span>
+          <span class="st-card-tag">爽点前置</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 商品特写（3） -->
+  <!-- 商品特写 -->
   <div class="st-category">
     <div class="st-category-title">
-      <h3>&#128717; 商品特写</h3>
+      <h3>商品特写</h3>
       <span class="st-category-count">3 场景</span>
     </div>
     <div class="st-scene-grid">
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128247;</div>
-        <div class="st-scene-name">商品特写</div>
-        <ul class="st-scene-points">
-          <li>产品细节高清呈现</li>
-          <li>质感光线自动调优</li>
-          <li>电商主图秒出</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128247;</span>
+          <span class="st-card-name">商品特写</span>
+        </div>
+        <p class="st-card-desc">高清呈现产品细节，自动优化质感与光线</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">细节高清</span>
+          <span class="st-card-tag">质感调优</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#127871;</div>
-        <div class="st-scene-name">包装特写</div>
-        <ul class="st-scene-points">
-          <li>包装设计视觉化</li>
-          <li>品牌调性精准传递</li>
-          <li>开箱感提前体验</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127873;</span>
+          <span class="st-card-name">包装特写</span>
+        </div>
+        <p class="st-card-desc">包装设计视觉化，提前传递开箱体验</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">包装展示</span>
+          <span class="st-card-tag">开箱体验</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128171;</div>
-        <div class="st-scene-name">面料细节</div>
-        <ul class="st-scene-points">
-          <li>材质纹理真实还原</li>
-          <li>触感可视化表达</li>
-          <li>品质感溢价支撑</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128171;</span>
+          <span class="st-card-name">面料细节</span>
+        </div>
+        <p class="st-card-desc">真实还原材质纹理，把触感变成视觉说服力</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">材质纹理</span>
+          <span class="st-card-tag">品质溢价</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 卖点展示（3） -->
+  <!-- 卖点展示 -->
   <div class="st-category">
     <div class="st-category-title">
-      <h3>&#128178; 卖点展示</h3>
+      <h3>卖点展示</h3>
       <span class="st-category-count">3 场景</span>
     </div>
     <div class="st-scene-grid">
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128202;</div>
-        <div class="st-scene-name">卖点展示主页</div>
-        <ul class="st-scene-points">
-          <li>核心卖点视觉化</li>
-          <li>信息层级清晰有序</li>
-          <li>一眼记住产品优势</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128200;</span>
+          <span class="st-card-name">卖点展示主页</span>
+        </div>
+        <p class="st-card-desc">核心卖点一页可视化，信息层级清晰有序</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">卖点聚合</span>
+          <span class="st-card-tag">信息清晰</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#9876;</div>
-        <div class="st-scene-name">前后对比</div>
-        <ul class="st-scene-points">
-          <li>使用前后强烈对比</li>
-          <li>效果说话更有说服力</li>
-          <li>转化利器</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#9876;</span>
+          <span class="st-card-name">前后对比</span>
+        </div>
+        <p class="st-card-desc">使用前后强烈对比，用效果说话打消疑虑</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">效果对比</span>
+          <span class="st-card-tag">转化利器</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128274;</div>
-        <div class="st-scene-name">卖点证明</div>
-        <ul class="st-scene-points">
-          <li>权威背书+数据佐证</li>
-          <li>信任感快速建立</li>
-          <li>打消购买顾虑</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128170;</span>
+          <span class="st-card-name">卖点证明</span>
+        </div>
+        <p class="st-card-desc">数据+权威背书双重佐证，快速建立信任感</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">权威背书</span>
+          <span class="st-card-tag">数据佐证</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 图生视频（6） -->
+  <!-- 图生视频 -->
   <div class="st-category">
     <div class="st-category-title">
-      <h3>&#128444; 图生视频</h3>
+      <h3>图生视频</h3>
       <span class="st-category-count">6 场景</span>
     </div>
     <div class="st-scene-grid">
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#9654;</div>
-        <div class="st-scene-name">图生视频</div>
-        <ul class="st-scene-points">
-          <li>静止图片秒变动画</li>
-          <li>低成本获得视频素材</li>
-          <li>老素材焕发新生</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#9654;</span>
+          <span class="st-card-name">图生视频</span>
+        </div>
+        <p class="st-card-desc">静态图片一键生成动态视频，老素材焕发新生</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">静图转视频</span>
+          <span class="st-card-tag">老素材复用</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128260;</div>
-        <div class="st-scene-name">产品替换</div>
-        <ul class="st-scene-points">
-          <li>无需重拍替换产品</li>
-          <li>同一模板多 SKU 复用</li>
-          <li>降本 80%</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128260;</span>
+          <span class="st-card-name">产品替换</span>
+        </div>
+        <p class="st-card-desc">无需重拍即可替换产品，多 SKU 快速复用</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">无需重拍</span>
+          <span class="st-card-tag">多 SKU 复用</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#127748;</div>
-        <div class="st-scene-name">场景生图</div>
-        <ul class="st-scene-points">
-          <li>一句话生成使用场景</li>
-          <li>不受拍摄场地限制</li>
-          <li>创意无限拓展</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127748;</span>
+          <span class="st-card-name">场景生图</span>
+        </div>
+        <p class="st-card-desc">一句话生成产品使用场景，不受拍摄场地限制</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">场景生成</span>
+          <span class="st-card-tag">场地无限</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128101;</div>
-        <div class="st-scene-name">角色替换</div>
-        <ul class="st-scene-points">
-          <li>数字人/真人角色互换</li>
-          <li>不用重拍换主角</li>
-          <li>迭代成本趋近于零</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128101;</span>
+          <span class="st-card-name">角色替换</span>
+        </div>
+        <p class="st-card-desc">数字人/真人互换主角，不用重拍就能迭代</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">角色替换</span>
+          <span class="st-card-tag">零成本迭代</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128722;</div>
-        <div class="st-scene-name">商品图生成视频</div>
-        <ul class="st-scene-points">
-          <li>电商商品图直出视频</li>
-          <li>缩短素材生产链路</li>
-          <li>上架即投放</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128722;</span>
+          <span class="st-card-name">商品图生成视频</span>
+        </div>
+        <p class="st-card-desc">电商商品图直接生成视频，上架即投放</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">商品转视频</span>
+          <span class="st-card-tag">上架即投</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128100;</div>
-        <div class="st-scene-name">人物图生成视频</div>
-        <ul class="st-scene-points">
-          <li>人像照片生成口播视频</li>
-          <li>不用真人拍摄</li>
-          <li>批量个人 IP 打造</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128100;</span>
+          <span class="st-card-name">人物图生成视频</span>
+        </div>
+        <p class="st-card-desc">人像照片生成口播视频，批量打造个人 IP</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">人像口播</span>
+          <span class="st-card-tag">批量 IP</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 其他（6） -->
+  <!-- 其他场景 -->
   <div class="st-category">
     <div class="st-category-title">
-      <h3>&#128221; 其他场景</h3>
+      <h3>其他场景</h3>
       <span class="st-category-count">6 场景</span>
     </div>
     <div class="st-scene-grid">
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#129489;</div>
-        <div class="st-scene-name">数字人口播</div>
-        <ul class="st-scene-points">
-          <li>不用真人出镜</li>
-          <li>1 人声样多语言</li>
-          <li>批量日更不是梦</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#129489;</span>
+          <span class="st-card-name">数字人口播</span>
+        </div>
+        <p class="st-card-desc">一张照片生成数字人，多语言口播批量产出</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">数字人出镜</span>
+          <span class="st-card-tag">多语言</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128256;</div>
-        <div class="st-scene-name">卖点裂变</div>
-        <ul class="st-scene-points">
-          <li>1 条爆款裂变为 N 条</li>
-          <li>测试更多投放方向</li>
-          <li>爆款概率倍增</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128256;</span>
+          <span class="st-card-name">卖点裂变</span>
+        </div>
+        <p class="st-card-desc">1 条爆款裂变为 N 条，测试更多投放方向</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">爆款裂变</span>
+          <span class="st-card-tag">多版本测试</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#127380;</div>
-        <div class="st-scene-name">品牌落版</div>
-        <ul class="st-scene-points">
-          <li>品牌 Logo 动画一键生成</li>
-          <li>统一视觉识别</li>
-          <li>专业感即刻拉满</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127380;</span>
+          <span class="st-card-name">品牌落版</span>
+        </div>
+        <p class="st-card-desc">品牌 Logo 一键动画化，统一视觉落版</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">Logo 动画</span>
+          <span class="st-card-tag">品牌落版</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128187;</div>
-        <div class="st-scene-name">应用录屏</div>
-        <ul class="st-scene-points">
-          <li>产品功能可视化演示</li>
-          <li>教程/介绍视频速成</li>
-          <li>降低客服成本</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128187;</span>
+          <span class="st-card-name">应用录屏</span>
+        </div>
+        <p class="st-card-desc">产品功能可视化演示，教程/介绍视频速成</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">功能演示</span>
+          <span class="st-card-tag">教程速成</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#127918;</div>
-        <div class="st-scene-name">游戏录屏包装</div>
-        <ul class="st-scene-points">
-          <li>游戏高光时刻自动剪辑</li>
-          <li>配乐/特效一键加持</li>
-          <li>社区传播素材</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127939;</span>
+          <span class="st-card-name">游戏录屏包装</span>
+        </div>
+        <p class="st-card-desc">游戏高光自动剪辑，快速产出社区传播素材</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">高光剪辑</span>
+          <span class="st-card-tag">社区传播</span>
+        </div>
       </div>
-      <div class="st-scene-card">
-        <div class="st-scene-icon">&#128214;</div>
-        <div class="st-scene-name">补充镜头</div>
-        <ul class="st-scene-points">
-          <li>拍摄素材不足 AI 补全</li>
-          <li>省去补拍成本</li>
-          <li>成片更完整</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128214;</span>
+          <span class="st-card-name">补充镜头</span>
+        </div>
+        <p class="st-card-desc">拍摄素材不足 AI 补全，省去补拍成本</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">AI 补镜头</span>
+          <span class="st-card-tag">省去补拍</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1545,72 +1494,86 @@
   <!-- 7 大工具 -->
   <div class="st-tools-block">
     <div class="st-tools-title">
-      <h3>&#128295; 7 大核心工具</h3>
+      <h3>7 大核心工具</h3>
       <p>AI 加持的专业工具链，让后期效率提升 10 倍</p>
     </div>
     <div class="st-tool-grid">
-      <div class="st-tool-card">
-        <div class="st-tool-icon">&#129489;</div>
-        <div class="st-tool-name">数字人生成</div>
-        <ul class="st-tool-points">
-          <li>照片生成数字分身</li>
-          <li>多语言口播一键切换</li>
-          <li>真人拍摄成本归零</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#129489;</span>
+          <span class="st-card-name">数字人生成</span>
+        </div>
+        <p class="st-card-desc">照片生成数字分身，多语言口播一键切换</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">数字分身</span>
+          <span class="st-card-tag">多语言</span>
+        </div>
       </div>
-      <div class="st-tool-card">
-        <div class="st-tool-icon">&#127748;</div>
-        <div class="st-tool-name">真人场景替换</div>
-        <ul class="st-tool-points">
-          <li>不改脚本换背景</li>
-          <li>季节/地域一键切换</li>
-          <li>素材复用率提升 5 倍</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127748;</span>
+          <span class="st-card-name">真人场景替换</span>
+        </div>
+        <p class="st-card-desc">不改脚本换背景，季节/地域一键切换</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">场景替换</span>
+          <span class="st-card-tag">季节切换</span>
+        </div>
       </div>
-      <div class="st-tool-card">
-        <div class="st-tool-icon">&#128172;</div>
-        <div class="st-tool-name">视频去字幕</div>
-        <ul class="st-tool-points">
-          <li>AI 识别并擦除字幕</li>
-          <li>无需逐帧手动处理</li>
-          <li>清理素材效率提升 20 倍</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128172;</span>
+          <span class="st-card-name">视频去字幕</span>
+        </div>
+        <p class="st-card-desc">AI 识别并擦除字幕，无需逐帧手动处理</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">自动擦除</span>
+          <span class="st-card-tag">逐帧处理</span>
+        </div>
       </div>
-      <div class="st-tool-card">
-        <div class="st-tool-icon">&#128247;</div>
-        <div class="st-tool-name">产品微动</div>
-        <ul class="st-tool-points">
-          <li>静止产品图添加动态</li>
-          <li>无需 3D 建模</li>
-          <li>电商主图视频秒出</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127909;</span>
+          <span class="st-card-name">产品微动</span>
+        </div>
+        <p class="st-card-desc">静态产品图添加微动效，无需 3D 建模</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">产品微动</span>
+          <span class="st-card-tag">无需建模</span>
+        </div>
       </div>
-      <div class="st-tool-card">
-        <div class="st-tool-icon">&#127904;</div>
-        <div class="st-tool-name">视频补帧</div>
-        <ul class="st-tool-points">
-          <li>低帧率素材补至 60 帧</li>
-          <li>画面丝滑如电影级</li>
-          <li>老旧素材焕发新生</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#127904;</span>
+          <span class="st-card-name">视频补帧</span>
+        </div>
+        <p class="st-card-desc">低帧率补至 60 帧，画面丝滑如电影级</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">60 帧补帧</span>
+          <span class="st-card-tag">丝滑画面</span>
+        </div>
       </div>
-      <div class="st-tool-card">
-        <div class="st-tool-icon">&#128169;</div>
-        <div class="st-tool-name">画质增强</div>
-        <ul class="st-tool-points">
-          <li>720P 秒升 4K</li>
-          <li>模糊素材高清修复</li>
-          <li>老旧素材二次利用</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#128269;</span>
+          <span class="st-card-name">画质增强</span>
+        </div>
+        <p class="st-card-desc">720P 秒升 4K，模糊素材高清修复</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">720P 升 4K</span>
+          <span class="st-card-tag">高清修复</span>
+        </div>
       </div>
-      <div class="st-tool-card">
-        <div class="st-tool-icon">&#9654;</div>
-        <div class="st-tool-name">首尾帧生视频</div>
-        <ul class="st-tool-points">
-          <li>指定起止画面精确控制</li>
-          <li>创意意图精准落地</li>
-          <li>告别随机性</li>
-        </ul>
+      <div class="st-card">
+        <div class="st-card-header">
+          <span class="st-card-icon">&#9199;</span>
+          <span class="st-card-name">首尾帧生视频</span>
+        </div>
+        <p class="st-card-desc">指定首帧+尾帧，AI 自动补全中间过渡</p>
+        <div class="st-card-tags">
+          <span class="st-card-tag">精确控制</span>
+          <span class="st-card-tag">自动过渡</span>
+        </div>
       </div>
     </div>
   </div>
