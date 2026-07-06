@@ -6,31 +6,42 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>营赛 智影 - 案例作品展示</title>
+<title>智影 inVision - 案例作品展示</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --primary: #4F6EF7;
-    --primary-dark: #3B54D4;
-    --primary-light: #6B8AFF;
-    --accent-blue: #2DB7F5;
-    --accent-purple: #8B5CF6;
-    --bg-primary: #F8FAFF;
+    --primary: #2563EB;
+    --primary-dark: #0F172A;
+    --primary-light: #3B82F6;
+    --primary-blue: #2563EB;
+    --primary-blue-hover: #1D4ED8;
+    --primary-blue-light: #EFF6FF;
+    --accent-blue: #2563EB;
+    --accent-purple: #3B82F6;
+    --accent-green: #10B981;
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8FAFC;
     --bg-white: #FFFFFF;
+    --bg-card: #FFFFFF;
     --text-primary: #0F172A;
     --text-secondary: #475569;
     --text-muted: #94A3B8;
+    --border: #E2E8F0;
     --border-light: #E2E8F0;
-    --shadow-sm: 0 1px 3px rgba(79,110,247,0.06);
-    --shadow-md: 0 4px 20px rgba(79,110,247,0.08);
-    --shadow-lg: 0 12px 40px rgba(79,110,247,0.12);
-    --shadow-xl: 0 20px 60px rgba(79,110,247,0.15);
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-    --gradient-primary: linear-gradient(135deg, #4F6EF7 0%, #8B5CF6 100%);
+    --border-subtle: #F1F5F9;
+    --border-hover: #CBD5E1;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.10);
+    --shadow-xl: 0 12px 32px rgba(0,0,0,0.12);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --gradient-primary: #2563EB;
+    --gradient-hero: #F8FAFC;
   }
 
   body {
@@ -47,9 +58,8 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 48px; height: 72px;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(226,232,240,0.6);
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid rgba(226,232,240,0.8);
   }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
@@ -77,48 +87,39 @@
     border: 1px solid var(--border-light); background: transparent;
     transition: all 0.2s ease;
   }
-  .btn-nav-login:hover { border-color: var(--primary); background: rgba(79,110,247,0.04); }
+  .btn-nav-login:hover { border-color: var(--primary); background: rgba(37,99,235,0.04); }
   .btn-nav-cta {
     padding: 8px 22px; border-radius: var(--radius-sm);
     font-size: 14px; font-weight: 600; cursor: pointer;
     text-decoration: none; color: white;
     background: var(--gradient-primary); border: none;
-    box-shadow: 0 2px 12px rgba(79,110,247,0.3);
+    box-shadow: 0 2px 12px rgba(37,99,235,0.3);
     transition: all 0.25s ease;
   }
-  .btn-nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(79,110,247,0.4); }
+  .btn-nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37,99,235,0.4); }
 
   /* ========= Hero ========= */
   .cases-hero {
     position: relative; padding: 140px 48px 60px;
-    background: linear-gradient(135deg, #1a1050 0%, #2d1b69 30%, #4F6EF7 100%);
+    background: #F8FAFC;
     overflow: hidden; text-align: center;
-  }
-  .cases-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
   }
   .cases-hero-content { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
   .cases-hero .section-tag {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 5px 16px; border-radius: 100px;
-    background: rgba(255,255,255,0.15);
-    color: #E0E7FF; font-size: 13px; font-weight: 600;
+    background: rgba(37,99,235,0.08);
+    color: var(--primary); font-size: 13px; font-weight: 600;
     margin-bottom: 18px; letter-spacing: 0.5px;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(37,99,235,0.15);
   }
   .cases-hero h1 {
     font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 900; color: #FFFFFF;
+    font-weight: 800; color: var(--text-primary);
     margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.2;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
   }
   .cases-hero p {
-    font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.7;
+    font-size: 16px; color: var(--text-secondary); line-height: 1.7;
   }
 
   /* ========= Filter ========= */
@@ -126,9 +127,8 @@
     position: sticky; top: 72px; z-index: 100;
     display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
     padding: 16px 48px;
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-light);
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid var(--border);
   }
   .filter-btn {
     padding: 7px 18px; border-radius: 100px;
@@ -138,9 +138,9 @@
   }
   .filter-btn:hover { border-color: var(--primary-light); color: var(--primary); }
   .filter-btn.active {
-    background: var(--gradient-primary); color: white;
+    background: var(--primary); color: white;
     border-color: transparent;
-    box-shadow: 0 4px 16px rgba(79,110,247,0.25);
+    box-shadow: 0 2px 8px rgba(37,99,235,0.2);
   }
 
   /* ========= Masonry Grid (CSS columns) ========= */
@@ -173,7 +173,7 @@
   /* Thumbnail — shows video's native aspect ratio, no cropping */
   .case-thumb-wrap {
     position: relative; width: 100%;
-    background: #0a0a1a;
+    background: #0F172A;
     overflow: hidden;
   }
   .case-thumb-wrap img {
@@ -190,7 +190,7 @@
   }
   .case-card:hover .case-play-btn {
     background: var(--primary); color: white;
-    box-shadow: 0 6px 24px rgba(79,110,247,0.4);
+    box-shadow: 0 6px 24px rgba(37,99,235,0.4);
     transform: translate(-50%,-50%) scale(1.1);
   }
   /* Duration badge */
@@ -216,12 +216,12 @@
   }
   .case-card-tags span {
     font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
-    background: rgba(79,110,247,0.07); color: var(--primary);
+    background: rgba(37,99,235,0.07); color: var(--primary);
   }
 
   /* ========= Footer ========= */
   .footer {
-    background: #0C1222; padding: 40px 48px;
+    background: #0F172A; padding: 40px 48px;
     text-align: center;
     border-top: 1px solid rgba(255,255,255,0.05);
   }
@@ -234,14 +234,14 @@
   .back-top {
     position: fixed; bottom: 32px; right: 32px; z-index: 999;
     width: 48px; height: 48px; border-radius: 50%;
-    background: var(--gradient-primary); color: white;
+    background: var(--primary); color: white;
     border: none; cursor: pointer; font-size: 20px;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 28px rgba(79,110,247,0.3);
+    box-shadow: 0 8px 28px rgba(37,99,235,0.3);
     opacity: 0; transform: translateY(20px); transition: all 0.3s ease;
   }
   .back-top.show { opacity: 1; transform: translateY(0); }
-  .back-top:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(79,110,247,0.4); }
+  .back-top:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(37,99,235,0.4); }
 
   /* ========= Video Modal ========= */
   .video-modal-overlay {
@@ -250,7 +250,6 @@
     display: flex; align-items: center; justify-content: center;
     opacity: 0; visibility: hidden;
     transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
   }
   .video-modal-overlay.active {
     opacity: 1; visibility: visible;
@@ -295,9 +294,9 @@
     .filter-bar { padding: 12px 20px; top: 66px; }
   }
 </style>
-<link rel="icon" href="../assets/frameyu-logo.png" type="image/png">
-<link rel="apple-touch-icon" href="../assets/frameyu-logo.png">
-<link rel="stylesheet" href="../assets/frameyu-theme.css">
+<link rel="icon" href="../assets/insai-invision-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/insai-invision-logo.png">
+<link rel="stylesheet" href="../assets/frameyu-theme.css?v=20260706-v3">
 </head>
 <body>
 
@@ -306,8 +305,8 @@
   <a href="../product-intro/index.html" class="nav-logo">
     <div class="nav-logo-icon" aria-hidden="true"></div>
     <span class="nav-brand-text">
-      <span class="nav-brand-cn">营赛 智影</span>
-      <span class="nav-brand-en">Insai InVision</span>
+      <span class="nav-brand-cn">智影</span>
+      <span class="nav-brand-en">inVision</span>
     </span>
   </a>
   <div class="nav-links">
@@ -326,9 +325,9 @@
 <!-- ==================== Hero ==================== -->
 <section class="cases-hero">
   <div class="cases-hero-content">
-    <div class="section-tag">&#127912; 案例作品</div>
+    <div class="section-tag section-tag-case">案例作品</div>
     <h1>AI 实战案例作品展示</h1>
-    <p>精选来自各行各业的一线创作者 AI 案例，从电商到游戏，从美妆到金融<br>看他们如何用营赛 智影打造爆款素材，点击率提升 10 倍+</p>
+    <p>精选来自各行各业的一线创作者 AI 案例，从电商到游戏，从美妆到金融<br>看他们如何用智影打造爆款素材，点击率提升 10 倍+</p>
   </div>
 </section>
 
@@ -345,13 +344,13 @@
 <!-- ==================== Footer ==================== -->
 <footer class="footer">
   <div class="footer-inner">
-    <p>&copy; 2025 深圳东信时代信息技术有限公司 &middot; 营赛 智影</p>
+    <p>&copy; 2025 深圳东信时代信息技术有限公司 &middot; 智影</p>
     <p style="margin-top: 8px;">
       <a href="../product-intro/index.html">产品主页</a>
       &nbsp;&middot;&nbsp;
       <a href="https://donsontech.feishu.cn/wiki/EaeCw3CjPiTItgksBY4cmEAfnue?fromScene=spaceOverview" target="_blank">使用手册</a>
       &nbsp;&middot;&nbsp;
-      <span style="color:rgba(255,255,255,0.2)">营赛 智影 V1.0</span>
+      <span style="color:rgba(255,255,255,0.2)">智影 inVision V1.0</span>
     </p>
   </div>
 </footer>
@@ -443,7 +442,7 @@ function renderCases(filter) {
     var durStr = c.duration ? formatDuration(c.duration) : '';
     var thumbHtml = c.thumb
       ? '<img src="' + c.thumb + '?t=20260625162200" alt="' + c.title + '" loading="lazy">'
-      : '<div style="width:100%;aspect-ratio:' + c.w + '/' + c.h + ';background:#0a0a1a"></div>';
+      : '<div style="width:100%;aspect-ratio:' + c.w + '/' + c.h + ';background:#0F172A"></div>';
     var html = '<div class="case-card" data-video="' + c.video + '" data-title="' + c.title.replace(/"/g, '&quot;') + '">' +
       '<div class="case-thumb-wrap">' +
         thumbHtml +

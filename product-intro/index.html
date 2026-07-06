@@ -6,49 +6,58 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>营赛 智影 - 让每条创意，都自带爆款基因</title>
+<title>智影 inVision - 让每条创意，都自带爆款基因</title>
+<link rel="icon" href="../assets/insai-invision-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/insai-invision-logo.png">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --primary: #4F6EF7;
-    --primary-dark: #3B54D4;
-    --primary-light: #6B8AFF;
-    --accent-blue: #2DB7F5;
-    --accent-purple: #8B5CF6;
-    --accent-green: #10B981;
-    --accent-orange: #F59E0B;
-    --accent-pink: #EC4899;
-    --bg-primary: #F8FAFF;
-    --bg-white: #FFFFFF;
-    --bg-card: #FFFFFF;
-    --text-primary: #0F172A;
+    --brand: #2B7FFF;
+    --brand-600: #1E6AD4;
+    --brand-700: #0A3A8C;
+    --brand-light: #E8F2FF;
+    --brand-soft: rgba(43,127,255,0.08);
+    --brand-border: rgba(43,127,255,0.12);
+    --brand-border-strong: rgba(43,127,255,0.25);
+    --purple: #7C5CFF;
+    --purple-light: rgba(124,92,255,0.08);
+    --pink: #F472B6;
+    --cyan: #38BDF8;
+    --green: #22C55E;
+    --orange: #F59E0B;
+    --bg: #FFFFFF;
+    --bg-hero: linear-gradient(180deg, #F0F7FF 0%, #FFFFFF 40%, #F8FBFF 100%);
+    --bg-soft: #F4F9FF;
+    --bg-section: linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 100%);
+    --bg-brand: linear-gradient(135deg, #E8F2FF 0%, #F0F7FF 100%);
+    --bg-dark: linear-gradient(135deg, #0A3A8C 0%, #0F172A 100%);
+    --text: #0F172A;
     --text-secondary: #475569;
     --text-muted: #94A3B8;
-    --border-light: #E2E8F0;
-    --border-subtle: #F1F5F9;
-    --shadow-sm: 0 1px 3px rgba(79,110,247,0.06);
-    --shadow-md: 0 4px 20px rgba(79,110,247,0.08);
-    --shadow-lg: 0 12px 40px rgba(79,110,247,0.12);
-    --shadow-xl: 0 20px 60px rgba(79,110,247,0.15);
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-    --radius-xl: 32px;
-    --gradient-hero: linear-gradient(135deg, #EEF2FF 0%, #F0E8FF 40%, #EFF8FF 100%);
-    --gradient-primary: linear-gradient(135deg, #4F6EF7 0%, #8B5CF6 100%);
-    --gradient-blue: linear-gradient(135deg, #4F6EF7 0%, #2DB7F5 100%);
-    --gradient-accent-1: linear-gradient(135deg, #4F6EF7 0%, #06B6D4 100%);
-    --gradient-accent-2: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
-    --gradient-accent-3: linear-gradient(135deg, #10B981 0%, #34D399 100%);
-    --gradient-accent-4: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+    --text-inverse: #FFFFFF;
+    --text-inverse-muted: rgba(255,255,255,0.7);
+    --shadow-sm: 0 2px 8px rgba(43,127,255,0.06);
+    --shadow-md: 0 8px 24px rgba(43,127,255,0.10);
+    --shadow-lg: 0 16px 48px rgba(43,127,255,0.14);
+    --shadow-xl: 0 24px 64px rgba(43,127,255,0.18);
+    --shadow-btn: 0 4px 16px rgba(43,127,255,0.35);
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    --gradient-title: linear-gradient(135deg, #2B7FFF 0%, #7C5CFF 50%, #F472B6 100%);
+    --gradient-btn: linear-gradient(135deg, #2B7FFF 0%, #5B8AFF 100%);
+    --gradient-glow-blue: radial-gradient(circle, rgba(43,127,255,0.18) 0%, transparent 70%);
+    --gradient-glow-purple: radial-gradient(circle, rgba(124,92,255,0.15) 0%, transparent 70%);
   }
 
   body {
-    font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: var(--text-primary);
-    background: var(--bg-primary);
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--bg);
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -60,112 +69,110 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 48px; height: 72px;
     background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(226,232,240,0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--brand-border);
     transition: all 0.3s ease;
   }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
-    font-size: 20px; font-weight: 800; color: var(--text-primary);
+    font-size: 20px; font-weight: 800; color: var(--text);
     text-decoration: none;
   }
   .nav-logo-icon {
     width: 36px; height: 36px; border-radius: 10px;
-    background: var(--gradient-primary);
+    background: var(--gradient-btn);
     display: flex; align-items: center; justify-content: center;
     color: white; font-size: 18px; font-weight: 900;
+    box-shadow: 0 4px 12px rgba(43,127,255,0.3);
   }
+  .nav-brand-cn { font-weight: 800; }
+  .nav-brand-en { font-weight: 600; color: var(--brand); margin-left: 2px; }
   .nav-links { display: flex; gap: 32px; }
   .nav-links a {
     text-decoration: none; color: var(--text-secondary); font-size: 15px; font-weight: 500;
     transition: color 0.2s; position: relative;
   }
-  .nav-links a:hover { color: var(--primary); }
-  .nav-links a.active { color: var(--primary); }
+  .nav-links a:hover { color: var(--brand); }
+  .nav-links a.active { color: var(--brand); }
   .nav-actions { display: flex; gap: 12px; align-items: center; }
   .btn-nav-login {
-    padding: 8px 20px; border-radius: var(--radius-sm);
+    padding: 9px 20px; border-radius: var(--radius-sm);
     font-size: 14px; font-weight: 600; cursor: pointer;
-    text-decoration: none; color: var(--primary);
-    border: 1px solid var(--border-light); background: transparent;
+    text-decoration: none; color: var(--brand);
+    border: 1px solid var(--brand-border); background: transparent;
     transition: all 0.2s ease;
   }
-  .btn-nav-login:hover { border-color: var(--primary); background: rgba(79,110,247,0.04); }
+  .btn-nav-login:hover { border-color: var(--brand); background: var(--brand-light); }
   .btn-nav-cta {
-    padding: 8px 22px; border-radius: var(--radius-sm);
+    padding: 9px 22px; border-radius: var(--radius-sm);
     font-size: 14px; font-weight: 600; cursor: pointer;
     text-decoration: none; color: white;
-    background: var(--gradient-primary); border: none;
-    box-shadow: 0 2px 12px rgba(79,110,247,0.3);
+    background: var(--gradient-btn); border: none;
+    box-shadow: var(--shadow-btn);
     transition: all 0.25s ease;
   }
-  .btn-nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(79,110,247,0.4); }
+  .btn-nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(43,127,255,0.45); }
 
   /* ========= Hero ========= */
   .hero {
     position: relative; min-height: 100vh;
     display: flex; align-items: center;
-    padding: 120px 48px 80px;
-    background: var(--gradient-hero);
+    padding: 140px 48px 100px;
+    background: var(--bg-hero);
     overflow: hidden;
   }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(79,110,247,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(79,110,247,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+  .hero-glow {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none;
   }
-  .hero-orb-1 {
-    position: absolute; top: 10%; right: 15%;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(79,110,247,0.12) 0%, transparent 70%);
-    filter: blur(60px);
-    animation: orbFloat 15s ease-in-out infinite;
+  .hero-glow-1 {
+    top: 10%; right: 10%; width: 560px; height: 560px;
+    background: var(--gradient-glow-blue);
+    animation: glowFloat 18s ease-in-out infinite;
   }
-  .hero-orb-2 {
-    position: absolute; bottom: 5%; left: 10%;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
-    filter: blur(50px);
-    animation: orbFloat 18s ease-in-out infinite reverse;
+  .hero-glow-2 {
+    bottom: 15%; left: 5%; width: 420px; height: 420px;
+    background: var(--gradient-glow-purple);
+    animation: glowFloat 22s ease-in-out infinite reverse;
   }
-  @keyframes orbFloat {
-    0%,100%{transform:translate(0,0)} 33%{transform:translate(30px,-20px)} 66%{transform:translate(-20px,30px)}
+  .hero-glow-3 {
+    top: 40%; right: 35%; width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(244,114,182,0.12) 0%, transparent 70%);
+    filter: blur(70px);
+    animation: glowFloat 20s ease-in-out infinite;
+  }
+  @keyframes glowFloat {
+    0%,100%{transform:translate(0,0)} 33%{transform:translate(30px,-25px)} 66%{transform:translate(-25px,30px)}
   }
 
   .hero-container {
     position: relative; z-index: 2;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-    max-width: 1280px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px;
+    max-width: 1200px; margin: 0 auto; width: 100%;
     align-items: center;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 16px; border-radius: 100px;
-    background: rgba(79,110,247,0.08);
-    border: 1px solid rgba(79,110,247,0.15);
-    color: var(--primary); font-size: 13px; font-weight: 600;
+    padding: 7px 18px; border-radius: var(--radius-full);
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-border);
+    color: var(--brand); font-size: 13px; font-weight: 600;
     margin-bottom: 28px; letter-spacing: 0.5px;
   }
   .hero-badge-dot {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--primary);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--brand);
     animation: pulse 2s ease-in-out infinite;
   }
-  @keyframes pulse {
-    0%,100%{opacity:1} 50%{opacity:0.4}
-  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
   .hero h1 {
-    font-size: clamp(2.6rem, 5vw, 3.8rem);
-    font-weight: 900; color: var(--text-primary);
+    font-size: clamp(2.6rem, 5vw, 3.4rem);
+    font-weight: 800; color: var(--text);
     line-height: 1.15; margin-bottom: 24px; letter-spacing: -0.02em;
   }
   .hero h1 .line-block { display: block; }
   .hero h1 .highlight-text {
-    background: var(--gradient-primary);
+    background: var(--gradient-title);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
   }
@@ -178,497 +185,472 @@
     font-size: 14px; color: var(--text-muted);
     margin-bottom: 36px; line-height: 1.7;
   }
-  .hero-sub strong { color: var(--accent-orange); font-weight: 700; }
+  .hero-sub strong { color: var(--brand); font-weight: 700; }
   .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
   .btn-hero-primary {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 15px 34px; border-radius: 12px;
+    padding: 15px 34px; border-radius: var(--radius-md);
     font-size: 16px; font-weight: 600;
     text-decoration: none; color: white;
-    background: var(--gradient-primary); border: none;
-    box-shadow: 0 4px 24px rgba(79,110,247,0.35);
+    background: var(--gradient-btn); border: none;
+    box-shadow: var(--shadow-btn);
     transition: all 0.3s ease;
   }
-  .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(79,110,247,0.45); }
+  .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,127,255,0.45); }
   .btn-hero-secondary {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 15px 34px; border-radius: 12px;
+    padding: 15px 34px; border-radius: var(--radius-md);
     font-size: 16px; font-weight: 600;
     text-decoration: none; color: var(--text-secondary);
-    background: white; border: 1px solid var(--border-light);
+    background: white; border: 1px solid var(--brand-border);
     box-shadow: var(--shadow-sm);
     transition: all 0.25s ease;
   }
-  .btn-hero-secondary:hover { border-color: var(--primary-light); color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .btn-hero-secondary:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-light); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
-  .hero-right {
-    position: relative; display: flex; justify-content: center; align-items: center;
-  }
+  .hero-right { position: relative; display: flex; justify-content: center; align-items: center; }
   .hero-visual {
-    position: relative; width: 100%; max-width: 520px; aspect-ratio: 1;
+    position: relative; width: 100%; max-width: 580px; aspect-ratio: 1;
   }
   .hero-visual-bg {
-    position: absolute; inset: 10%;
+    position: absolute; inset: 5%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(79,110,247,0.06) 0%, transparent 70%);
-    filter: blur(30px);
+    background: var(--gradient-glow-blue);
+    filter: blur(40px);
   }
-  .float-card {
-    position: absolute; padding: 14px 20px;
-    border-radius: var(--radius-md);
-    background: white; box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border-subtle);
-    font-size: 13px; font-weight: 600; color: var(--text-primary);
-    display: flex; align-items: center; gap: 10px;
-    animation: floatCard 6s ease-in-out infinite;
+  .iso-scene {
+    position: absolute; inset: 0;
+    transform-style: preserve-3d;
+    perspective: 1200px;
   }
-  .float-card .fc-dot {
-    width: 8px; height: 8px; border-radius: 50%;
+  .iso-block {
+    position: absolute;
+    border-radius: var(--radius-lg);
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: var(--shadow-lg);
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 16px;
   }
-  .fc-1 { top: 15%; left: 5%; animation-delay: 0s; }
-  .fc-1 .fc-dot { background: var(--accent-green); }
-  .fc-2 { top: 30%; right: 5%; animation-delay: -2s; }
-  .fc-2 .fc-dot { background: var(--accent-blue); }
-  .fc-3 { bottom: 25%; left: 10%; animation-delay: -4s; }
-  .fc-3 .fc-dot { background: var(--accent-orange); }
-  .fc-4 { bottom: 30%; right: 8%; animation-delay: -1s; }
-  .fc-4 .fc-dot { background: var(--accent-purple); }
-  @keyframes floatCard {
-    0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}
+  .iso-block::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(43,127,255,0.06) 0%, rgba(124,92,255,0.06) 100%);
+    pointer-events: none;
+  }
+  .iso-1 { top: 12%; left: 5%; width: 170px; height: 110px; animation: floatIso 7s ease-in-out infinite; }
+  .iso-2 { top: 25%; right: 0%; width: 150px; height: 140px; animation: floatIso 8s ease-in-out infinite -2s; }
+  .iso-3 { bottom: 18%; left: 10%; width: 190px; height: 120px; animation: floatIso 7.5s ease-in-out infinite -4s; }
+  .iso-4 { bottom: 22%; right: 8%; width: 160px; height: 100px; animation: floatIso 8.5s ease-in-out infinite -1s; }
+  .iso-bar { height: 8px; border-radius: var(--radius-full); background: linear-gradient(90deg, var(--brand), var(--purple)); opacity: 0.8; }
+  .iso-bar-2 { background: linear-gradient(90deg, var(--cyan), var(--green)); }
+  .iso-bar-3 { background: linear-gradient(90deg, var(--purple), var(--pink)); }
+  .iso-dot-row { display: flex; gap: 6px; margin-bottom: 4px; }
+  .iso-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .iso-dot.blue { background: var(--brand); }
+  .iso-dot.purple { background: var(--purple); }
+  .iso-dot.pink { background: var(--pink); }
+  .iso-text { font-size: 11px; color: var(--text-secondary); font-weight: 600; }
+  .iso-text-light { font-size: 10px; color: var(--text-muted); }
+  @keyframes floatIso {
+    0%,100%{transform:translateY(0) rotateX(0deg)} 50%{transform:translateY(-12px) rotateX(2deg)}
   }
 
   /* ========= Section Common ========= */
-  .section { padding: 90px 48px; }
+  .section { padding: 100px 48px; position: relative; }
   .section-header {
     text-align: center; margin-bottom: 56px;
-    max-width: 680px; margin-left: auto; margin-right: auto;
+    max-width: 640px; margin-left: auto; margin-right: auto;
   }
   .section-tag {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 5px 16px; border-radius: 100px;
-    background: rgba(79,110,247,0.07);
-    color: var(--primary); font-size: 13px; font-weight: 600;
+    padding: 6px 16px; border-radius: var(--radius-full);
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-border);
+    color: var(--brand); font-size: 13px; font-weight: 600;
     margin-bottom: 18px; letter-spacing: 0.5px;
   }
   .section-header h2 {
-    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
-    font-weight: 800; color: var(--text-primary);
-    margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.2;
+    font-size: clamp(1.8rem, 3.2vw, 2.2rem);
+    font-weight: 700; color: var(--text);
+    margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.25;
   }
   .section-header p {
     font-size: 16px; color: var(--text-secondary); line-height: 1.7;
   }
 
   /* ========= Flow Section ========= */
-  .flow-section { background: white; }
+  .flow-section { background: var(--bg-section); }
   .flow-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 28px; max-width: 1080px; margin: 0 auto;
+    gap: 24px; max-width: 1080px; margin: 0 auto;
   }
   .flow-card {
-    padding: 36px 32px; border-radius: var(--radius-lg);
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
+    padding: 32px 28px; border-radius: var(--radius-lg);
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--brand-border);
     position: relative; transition: all 0.35s ease;
-    text-align: center;
+    text-align: center; box-shadow: var(--shadow-sm);
   }
   .flow-card:hover {
-    transform: translateY(-6px); box-shadow: var(--shadow-xl);
-    border-color: transparent;
+    transform: translateY(-6px); box-shadow: var(--shadow-lg);
+    border-color: var(--brand-border-strong);
   }
   .flow-num {
     display: inline-flex; align-items: center; justify-content: center;
     width: 52px; height: 52px; border-radius: 16px;
-    background: var(--gradient-primary);
+    background: var(--gradient-btn);
     color: white; font-size: 20px; font-weight: 800;
-    margin-bottom: 22px;
+    margin-bottom: 22px; box-shadow: 0 6px 18px rgba(43,127,255,0.25);
   }
-  .flow-card h3 {
-    font-size: 19px; font-weight: 700; color: var(--text-primary);
-    margin-bottom: 12px;
-  }
-  .flow-card p {
-    font-size: 14.5px; color: var(--text-secondary); line-height: 1.75;
-  }
+  .flow-card h3 { font-size: 19px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .flow-card p { font-size: 14.5px; color: var(--text-secondary); line-height: 1.75; }
 
-  /* ========= Core Features ========= */
-  .features-section { background: linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%); }
-  .features-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 24px; max-width: 1160px; margin: 0 auto;
-  }
-  .feature-card {
-    padding: 32px 28px; border-radius: var(--radius-lg);
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
-    transition: all 0.35s ease; position: relative; overflow: hidden;
-  }
-  .feature-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 3px; opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-  .feature-card:nth-child(1)::before { background: var(--gradient-primary); }
-  .feature-card:nth-child(2)::before { background: var(--gradient-accent-1); }
-  .feature-card:nth-child(3)::before { background: var(--gradient-accent-2); }
-  .feature-card:nth-child(4)::before { background: var(--gradient-accent-3); }
-  .feature-card:nth-child(5)::before { background: var(--gradient-accent-4); }
-  .feature-card:nth-child(6)::before { background: linear-gradient(135deg, #EC4899, #8B5CF6); }
-  .feature-card:hover {
-    transform: translateY(-5px); box-shadow: var(--shadow-xl);
-    border-color: transparent;
-  }
-  .feature-card:hover::before { opacity: 1; }
-  .feat-icon-wrap {
-    width: 52px; height: 52px; border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 26px; margin-bottom: 20px;
-  }
-  .feat-icon-1 { background: rgba(79,110,247,0.09); }
-  .feat-icon-2 { background: rgba(139,92,246,0.09); }
-  .feat-icon-3 { background: rgba(45,183,245,0.09); }
-  .feat-icon-4 { background: rgba(16,185,129,0.09); }
-  .feat-icon-5 { background: rgba(245,158,11,0.09); }
-  .feat-icon-6 { background: rgba(236,72,153,0.09); }
-  .feature-card h3 {
-    font-size: 17px; font-weight: 700; color: var(--text-primary);
-    margin-bottom: 10px;
-  }
-  .feature-card p {
-    font-size: 14px; color: var(--text-secondary); line-height: 1.7;
-  }
-  .badge-core {
-    display: inline-block; padding: 2px 10px; border-radius: 100px;
-    background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(245,158,11,0.08));
-    color: #D97706; font-size: 11px; font-weight: 700;
-    margin-left: 6px; vertical-align: middle; letter-spacing: 0.3px;
-  }
-
-  /* ========= Comparison Table ========= */
+  /* ========= Core Value / Compare ========= */
   .compare-section { background: white; }
   .compare-table-wrap {
-    max-width: 960px; margin: 0 auto;
+    max-width: 1000px; margin: 0 auto;
     border-radius: var(--radius-lg); overflow: hidden;
-    border: 1px solid var(--border-light);
-    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--brand-border);
+    box-shadow: var(--shadow-md);
+    background: rgba(255,255,255,0.95);
   }
-  .compare-table {
-    width: 100%; border-collapse: collapse;
-    font-size: 14.5px;
-  }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
   .compare-table thead th {
-    padding: 16px 22px; text-align: left;
+    padding: 18px 24px; text-align: left;
     font-weight: 700; font-size: 14px; letter-spacing: 0.01em;
   }
-  .compare-table thead th:first-child { background: #F8FAFC; color: var(--text-secondary); }
-  .compare-table thead th:nth-child(2) { background: rgba(79,110,247,0.05); color: var(--primary); }
-  .compare-table thead th:nth-child(3) { background: #F8FAFC; color: var(--text-secondary); }
+  .compare-table thead th:first-child { background: var(--bg-soft); color: var(--text-secondary); }
+  .compare-table thead th:nth-child(2) { background: var(--brand-light); color: var(--brand); }
+  .compare-table thead th:nth-child(3) { background: var(--bg-soft); color: var(--text-secondary); }
   .compare-table tbody td {
-    padding: 13px 22px; border-top: 1px solid var(--border-subtle);
+    padding: 15px 24px; border-top: 1px solid var(--brand-border);
     vertical-align: middle; color: var(--text-secondary);
   }
-  .compare-table tbody td:first-child { font-weight: 600; color: var(--text-primary); }
-  .compare-table tbody td:nth-child(2) { background: rgba(79,110,247,0.02); }
-  .compare-table tbody tr:hover td { background: rgba(79,110,247,0.04); }
-  .check-yes { color: var(--accent-green); font-weight: 700; }
+  .compare-table tbody td:first-child { font-weight: 600; color: var(--text); }
+  .compare-table tbody td:nth-child(2) { background: rgba(232,242,255,0.4); }
+  .compare-table tbody tr:hover td { background: rgba(232,242,255,0.6); }
+  .check-yes { color: var(--green); font-weight: 700; }
   .check-no { color: #CBD5E1; }
 
-  /* ========= Stats ========= */
-  .stats-section {
-    padding: 70px 48px;
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
-    position: relative; overflow: hidden;
+  /* ========= Models ========= */
+  .model-section { background: var(--bg-soft); position: relative; overflow: hidden; }
+  .model-section::before {
+    content: ''; position: absolute; top: -10%; right: -10%; width: 400px; height: 400px;
+    background: var(--gradient-glow-blue); filter: blur(80px); opacity: 0.6;
   }
-  .stats-section::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle at 20% 50%, rgba(79,110,247,0.12) 0%, transparent 50%),
-      radial-gradient(circle at 80% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
-  }
-  .stats-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 32px; max-width: 1060px; margin: 0 auto;
-    position: relative; z-index: 2;
-  }
-  .stat-item { text-align: center; }
-  .stat-item h3 {
-    font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900;
-    margin-bottom: 6px; letter-spacing: -0.02em;
-  }
-  .stat-item p { color: rgba(255,255,255,0.55); font-size: 14px; font-weight: 500; }
-  .stat-1 h3 { color: #60A5FA; }
-  .stat-2 h3 { color: #34D399; }
-  .stat-3 h3 { color: #FBBF24; }
-  .stat-4 h3 { color: #C084FC; }
-
-  /* ========= Model Cards ========= */
-  .model-section { background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFF 100%); }
-  .model-category {
-    margin-bottom: 48px;
-  }
-  .model-category-title {
-    font-size: 20px; font-weight: 700; color: var(--text-primary);
-    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
-  }
-  .model-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 18px; max-width: 1160px; margin: 0 auto;
-  }
-  .model-card {
-    padding: 22px 20px; border-radius: var(--radius-md);
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
-    transition: all 0.3s ease;
-  }
-  .model-card:hover {
-    transform: translateY(-3px); box-shadow: var(--shadow-lg);
-    border-color: transparent;
-  }
-  .model-card h4 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
-  .model-card .model-tag { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
-  .model-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-  .model-summary {
-    text-align: center; margin-top: 36px; padding: 24px 32px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, rgba(79,110,247,0.06), rgba(139,92,246,0.06));
-    border: 1px solid rgba(79,110,247,0.1);
-    max-width: 900px; margin-left: auto; margin-right: auto;
-  }
-  .model-summary p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
-  .model-summary strong { color: var(--primary); }
-
-  /* ========= Model Aggregate (New) ========= */
   .model-aggregate-block {
     display: flex; align-items: flex-start; gap: 40px;
     padding: 32px 36px; border-radius: var(--radius-lg);
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
-    margin-bottom: 28px; max-width: 1160px; margin-left: auto; margin-right: auto;
-    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--brand-border);
+    margin-bottom: 24px; max-width: 1120px; margin-left: auto; margin-right: auto;
+    transition: all 0.3s ease; position: relative; z-index: 1;
+    box-shadow: var(--shadow-sm);
   }
   .model-aggregate-block:hover {
-    transform: translateY(-4px); box-shadow: var(--shadow-xl);
-    border-color: transparent;
+    transform: translateY(-4px); box-shadow: var(--shadow-lg);
+    border-color: var(--brand-border-strong);
   }
-  .model-count-side {
-    min-width: 140px; text-align: center; flex-shrink: 0;
-    padding: 20px 0;
+  .model-icon-side {
+    min-width: 72px; height: 72px; border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; color: white; flex-shrink: 0;
+    box-shadow: var(--shadow-md);
   }
-  .model-count {
-    font-size: 3.2rem; font-weight: 900; line-height: 1;
-    letter-spacing: -0.02em; margin-bottom: 6px;
-  }
-  .model-count-label {
-    font-size: 14px; font-weight: 600; line-height: 1.4;
-  }
-  .mc-blue .model-count { color: var(--primary); }
-  .mc-purple .model-count { color: var(--accent-purple); }
-  .mc-green .model-count { color: var(--accent-green); }
-  .mc-blue .model-count-label { color: var(--primary-dark); }
-  .mc-purple .model-count-label { color: #6D28D9; }
-  .mc-green .model-count-label { color: #047857; }
+  .mc-blue .model-icon-side { background: linear-gradient(135deg, #2B7FFF 0%, #5B8AFF 100%); }
+  .mc-purple .model-icon-side { background: linear-gradient(135deg, #7C5CFF 0%, #A855F7 100%); }
+  .mc-green .model-icon-side { background: linear-gradient(135deg, #22C55E 0%, #34D399 100%); }
   .model-detail-side { flex: 1; }
   .model-detail-side h3 {
-    font-size: 20px; font-weight: 700; color: var(--text-primary);
-    margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 14px;
   }
   .model-highlights { list-style: none; padding: 0; margin: 0; }
   .model-highlights li {
     font-size: 14.5px; color: var(--text-secondary); line-height: 1.75;
-    padding: 8px 0 8px 24px; position: relative;
+    padding: 7px 0 7px 24px; position: relative;
   }
   .model-highlights li::before {
     content: ''; position: absolute; left: 4px; top: 14px;
-    width: 6px; height: 6px; border-radius: 50%;
+    width: 7px; height: 7px; border-radius: 50%;
   }
-  .mc-blue .model-highlights li::before { background: var(--primary); }
-  .mc-purple .model-highlights li::before { background: var(--accent-purple); }
-  .mc-green .model-highlights li::before { background: var(--accent-green); }
+  .mc-blue .model-highlights li::before { background: var(--brand); }
+  .mc-purple .model-highlights li::before { background: var(--purple); }
+  .mc-green .model-highlights li::before { background: var(--green); }
+  .model-summary {
+    text-align: center; margin-top: 40px; padding: 24px 32px;
+    border-radius: var(--radius-lg);
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--brand-border);
+    max-width: 900px; margin-left: auto; margin-right: auto;
+    box-shadow: var(--shadow-sm);
+  }
+  .model-summary p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+  .model-summary strong { color: var(--brand); }
 
-  /* ========= 4K Highlight (Cinematic Glassmorphism) ========= */
-  .k4-section {
-    background: linear-gradient(135deg, #0A0E1A 0%, #0D1633 40%, #0F1B3D 70%, #0A0E1A 100%);
-    color: white; position: relative; overflow: hidden;
-  }
+  /* ========= 4K / Feature Highlight ========= */
+  .k4-section { background: var(--bg-brand); position: relative; overflow: hidden; }
   .k4-section::before {
-    content: ''; position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle at 15% 25%, rgba(79,110,247,0.28) 0%, transparent 45%),
-      radial-gradient(circle at 85% 75%, rgba(45,183,245,0.18) 0%, transparent 45%),
-      radial-gradient(circle at 50% 50%, rgba(79,110,247,0.06) 0%, transparent 60%);
+    content: ''; position: absolute; bottom: -20%; left: -10%; width: 500px; height: 500px;
+    background: var(--gradient-glow-blue); filter: blur(90px); opacity: 0.5;
   }
   .k4-section::after {
-    content: ''; position: absolute; top: -15%; right: -8%;
-    width: 520px; height: 520px; pointer-events: none;
-    background: radial-gradient(circle, rgba(45,183,245,0.12) 0%, transparent 70%);
-    filter: blur(50px);
+    content: ''; position: absolute; top: -10%; right: -5%; width: 350px; height: 350px;
+    background: var(--gradient-glow-purple); filter: blur(70px); opacity: 0.4;
   }
   .k4-section .section-header { position: relative; z-index: 2; }
-  .k4-section .section-header h2 {
-    color: white;
-    text-shadow: 0 0 32px rgba(79,110,247,0.35);
-  }
-  .k4-section .section-header p { color: rgba(255,255,255,0.65); }
-  .k4-section .section-tag { background: rgba(79,110,247,0.15); border: 1px solid rgba(79,110,247,0.3); color: #A5B4FC; }
+  .k4-section .section-header h2 { color: var(--text); }
+  .k4-section .section-header p { color: var(--text-secondary); }
   .k4-grid {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
     max-width: 1040px; margin: 0 auto; position: relative; z-index: 2;
   }
   .k4-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.14);
-    backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border-radius: 20px; padding: 32px 28px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--brand-border);
+    border-radius: var(--radius-xl); padding: 32px 28px;
     transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
     position: relative; overflow: hidden;
-  }
-  .k4-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(165,180,252,0.4), transparent);
+    box-shadow: var(--shadow-sm);
   }
   .k4-card:hover {
-    background: rgba(255,255,255,0.11);
-    border-color: rgba(79,110,247,0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(79,110,247,0.2);
+    background: rgba(255,255,255,0.98);
+    border-color: var(--brand-border-strong);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
   }
   .k4-card-icon {
-    font-size: 40px; line-height: 1; margin-bottom: 16px; display: inline-block;
-    filter: drop-shadow(0 4px 14px rgba(125,211,252,0.3));
+    width: 52px; height: 52px; border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin-bottom: 18px; color: white;
+    box-shadow: var(--shadow-md);
   }
-  .k4-card h4 {
-    font-size: 1.25rem; font-weight: 800; color: #93C5FD;
-    margin-bottom: 10px; letter-spacing: -0.01em;
-  }
-  .k4-card p { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.75; margin-bottom: 18px; }
+  .k4-card:nth-child(1) .k4-card-icon { background: linear-gradient(135deg, #2B7FFF 0%, #5B8AFF 100%); }
+  .k4-card:nth-child(2) .k4-card-icon { background: linear-gradient(135deg, #7C5CFF 0%, #A855F7 100%); }
+  .k4-card:nth-child(3) .k4-card-icon { background: linear-gradient(135deg, #22C55E 0%, #34D399 100%); }
+  .k4-card:nth-child(4) .k4-card-icon { background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%); }
+  .k4-card h4 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .k4-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 18px; }
   .k4-features { display: flex; flex-wrap: wrap; gap: 8px; }
   .k4-feature-pill {
-    font-size: 12.5px; color: rgba(255,255,255,0.9); font-weight: 500; white-space: nowrap;
-    padding: 6px 14px; border-radius: 100px;
-    background: rgba(79,110,247,0.18); border: 1px solid rgba(79,110,247,0.28);
+    font-size: 12px; color: var(--brand); font-weight: 600; white-space: nowrap;
+    padding: 5px 12px; border-radius: var(--radius-full);
+    background: var(--brand-soft); border: 1px solid var(--brand-border);
   }
 
-  /* ========= Responsive for new sections ========= */
-  @media (max-width: 1024px) {
-    .k4-grid { grid-template-columns: repeat(2, 1fr); }
+  /* ========= Scenes & Tools ========= */
+  .scenes-tools-section { background: var(--bg-section); padding: 100px 24px 90px; }
+  .st-category { max-width: 1120px; margin: 0 auto 40px; }
+  .st-category-title { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .st-category-title h3 { font-size: 17px; font-weight: 700; color: var(--text); margin: 0; }
+  .st-category-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--brand); color: white; font-size: 12px; font-weight: 600;
+    padding: 3px 10px; border-radius: 6px;
   }
-  @media (max-width: 768px) {
-    .k4-grid { grid-template-columns: 1fr; }
+  .st-scene-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .st-card {
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--brand-border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-sm);
   }
-  @media (max-width: 480px) {
-    .k4-card { padding: 24px 20px; }
-    .k4-card-icon { font-size: 36px; }
+  .st-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--brand-border-strong);
   }
+  .st-card-header { display: flex; align-items: center; gap: 10px; }
+  .st-card-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: white; flex-shrink: 0;
+  }
+  .st-card:nth-child(6n+1) .st-card-icon { background: linear-gradient(135deg, #2B7FFF 0%, #5B8AFF 100%); }
+  .st-card:nth-child(6n+2) .st-card-icon { background: linear-gradient(135deg, #7C5CFF 0%, #A855F7 100%); }
+  .st-card:nth-child(6n+3) .st-card-icon { background: linear-gradient(135deg, #22C55E 0%, #34D399 100%); }
+  .st-card:nth-child(6n+4) .st-card-icon { background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%); }
+  .st-card:nth-child(6n+5) .st-card-icon { background: linear-gradient(135deg, #F472B6 0%, #FB7185 100%); }
+  .st-card:nth-child(6n+6) .st-card-icon { background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%); }
+  .st-card-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .st-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; flex: 1; min-height: 40px; }
+  .st-card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .st-card-tag {
+    display: inline-block; background: var(--brand-soft); color: var(--brand);
+    font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: var(--radius-full);
+    border: 1px solid var(--brand-border);
+  }
+  .st-tools-block { max-width: 1120px; margin: 60px auto 0; padding-top: 48px; border-top: 1px solid var(--brand-border); }
+  .st-tools-title { text-align: center; margin-bottom: 32px; }
+  .st-tools-title h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .st-tools-title p { font-size: 14px; color: var(--text-secondary); }
+  .st-tool-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* ========= Stats ========= */
+  .stats-section {
+    padding: 80px 48px; position: relative; overflow: hidden;
+    background: var(--bg-brand);
+  }
+  .stats-section::before {
+    content: ''; position: absolute; top: -30%; left: -10%; width: 500px; height: 500px;
+    background: var(--gradient-glow-blue); filter: blur(90px); opacity: 0.5;
+  }
+  .stats-section::after {
+    content: ''; position: absolute; bottom: -20%; right: -5%; width: 400px; height: 400px;
+    background: var(--gradient-glow-purple); filter: blur(80px); opacity: 0.35;
+  }
+  .stats-section .section-header { position: relative; z-index: 2; }
+  .stats-section .section-header h2 { color: var(--text); }
+  .stats-section .section-header p { color: var(--text-secondary); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px; max-width: 1000px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--brand-border);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px; text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+  }
+  .stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .stat-card h3 {
+    font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 800;
+    margin-bottom: 6px; letter-spacing: -0.02em;
+    background: var(--gradient-title);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .stat-card p { color: var(--text-secondary); font-size: 14px; font-weight: 500; }
 
   /* ========= Enterprise ========= */
-  .enterprise-section { background: linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%); }
+  .enterprise-section { background: white; position: relative; }
   .enterprise-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 20px; max-width: 1080px; margin: 0 auto;
   }
   .enterprise-card {
-    padding: 28px 24px; border-radius: var(--radius-md);
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
+    padding: 28px 24px; border-radius: var(--radius-lg);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--brand-border);
     transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
   }
   .enterprise-card:hover {
-    transform: translateY(-3px); box-shadow: var(--shadow-lg);
-    border-color: transparent;
+    transform: translateY(-4px); box-shadow: var(--shadow-md);
+    border-color: var(--brand-border-strong);
   }
-  .enterprise-card h4 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+  .enterprise-card h4 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
   .enterprise-card p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; }
-  .enterprise-card .ec-value { font-size: 12px; color: var(--accent-green); font-weight: 600; margin-top: 6px; }
+  .enterprise-card .ec-value { font-size: 12px; color: var(--green); font-weight: 600; margin-top: 10px; }
+  .ec-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; background: var(--gradient-btn); }
 
   /* ========= Industries ========= */
-  .industries-section { background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFF 100%); }
+  .industries-section { background: var(--bg-soft); position: relative; overflow: hidden; }
+  .industries-section::before {
+    content: ''; position: absolute; top: -15%; right: -10%; width: 400px; height: 400px;
+    background: var(--gradient-glow-purple); filter: blur(80px); opacity: 0.35;
+  }
   .industries-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 20px; max-width: 1080px; margin: 0 auto;
+    gap: 20px; max-width: 1080px; margin: 0 auto; position: relative; z-index: 1;
   }
   .industry-card {
-    padding: 28px 24px; border-radius: var(--radius-md);
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
+    padding: 28px 24px; border-radius: var(--radius-lg);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--brand-border);
     text-align: left; transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
   }
   .industry-card:hover {
-    transform: translateY(-4px); box-shadow: var(--shadow-lg);
-    border-color: transparent;
+    transform: translateY(-4px); box-shadow: var(--shadow-md);
+    border-color: var(--brand-border-strong);
   }
   .industry-icon {
     width: 48px; height: 48px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 24px; margin-bottom: 14px;
+    font-size: 24px; margin-bottom: 14px; color: white;
   }
-  .ind-icon-1 { background: rgba(79,110,247,0.08); }
-  .ind-icon-2 { background: rgba(139,92,246,0.08); }
-  .ind-icon-3 { background: rgba(45,183,245,0.08); }
-  .ind-icon-4 { background: rgba(16,185,129,0.08); }
-  .ind-icon-5 { background: rgba(245,158,11,0.08); }
-  .ind-icon-6 { background: rgba(236,72,153,0.08); }
-  .industry-card h4 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+  .industry-card:nth-child(6n+1) .industry-icon { background: linear-gradient(135deg, #2B7FFF 0%, #5B8AFF 100%); }
+  .industry-card:nth-child(6n+2) .industry-icon { background: linear-gradient(135deg, #7C5CFF 0%, #A855F7 100%); }
+  .industry-card:nth-child(6n+3) .industry-icon { background: linear-gradient(135deg, #22C55E 0%, #34D399 100%); }
+  .industry-card:nth-child(6n+4) .industry-icon { background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%); }
+  .industry-card:nth-child(6n+5) .industry-icon { background: linear-gradient(135deg, #F472B6 0%, #FB7185 100%); }
+  .industry-card:nth-child(6n+6) .industry-icon { background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%); }
+  .industry-card h4 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .industry-card .ind-scene { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
   .industry-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .industry-card.highlight {
+    background: linear-gradient(135deg, rgba(43,127,255,0.06) 0%, rgba(124,92,255,0.06) 100%);
+    border: 1px solid var(--brand-border-strong);
+  }
+  .industry-card.highlight .industry-icon { background: var(--gradient-btn); }
 
   /* ========= Quick Start ========= */
   .quickstart-section { background: white; }
   .quickstart-steps {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 28px; max-width: 960px; margin: 0 auto;
+    gap: 24px; max-width: 960px; margin: 0 auto;
   }
   .qs-step {
     padding: 32px 28px; border-radius: var(--radius-lg);
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--brand-border);
     text-align: center; transition: all 0.3s ease;
+    background: rgba(255,255,255,0.95);
+    box-shadow: var(--shadow-sm);
   }
   .qs-step:hover {
-    transform: translateY(-4px); box-shadow: var(--shadow-lg);
-    border-color: transparent;
+    transform: translateY(-4px); box-shadow: var(--shadow-md);
+    border-color: var(--brand-border-strong);
   }
   .qs-num {
     display: inline-flex; align-items: center; justify-content: center;
     width: 44px; height: 44px; border-radius: 50%;
-    background: var(--gradient-primary);
+    background: var(--gradient-btn);
     color: white; font-size: 18px; font-weight: 800;
-    margin-bottom: 16px;
+    margin-bottom: 16px; box-shadow: 0 4px 14px rgba(43,127,255,0.25);
   }
-  .qs-step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+  .qs-step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
   .qs-step p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; }
   .qs-tip {
     text-align: center; margin-top: 28px; padding: 16px 24px;
-    border-radius: var(--radius-sm);
-    background: rgba(245,158,11,0.06);
-    border: 1px solid rgba(245,158,11,0.12);
+    border-radius: var(--radius-md);
+    background: var(--brand-light); border: 1px solid var(--brand-border);
     max-width: 700px; margin-left: auto; margin-right: auto;
-    font-size: 13.5px; color: #92400E; line-height: 1.6;
+    font-size: 13.5px; color: var(--brand-600); line-height: 1.6;
   }
 
-  /* ========= Case Showcase ========= */
-  .cases-section { background: white; }
+  /* ========= Cases ========= */
+  .cases-section { background: var(--bg-section); position: relative; overflow: hidden; }
+  .cases-section::before {
+    content: ''; position: absolute; top: -10%; left: -10%; width: 400px; height: 400px;
+    background: var(--gradient-glow-blue); filter: blur(80px); opacity: 0.4;
+  }
   .cases-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 24px; max-width: 1160px; margin: 0 auto;
+    gap: 24px; max-width: 1160px; margin: 0 auto; position: relative; z-index: 1;
   }
   .case-card {
     border-radius: var(--radius-lg);
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--brand-border);
     overflow: hidden; transition: all 0.35s ease;
-    cursor: pointer;
+    cursor: pointer; box-shadow: var(--shadow-sm);
   }
   .case-card:hover {
-    transform: translateY(-5px); box-shadow: var(--shadow-xl);
-    border-color: transparent;
+    transform: translateY(-5px); box-shadow: var(--shadow-lg);
+    border-color: var(--brand-border-strong);
   }
   .case-card-video-wrap {
     position: relative; width: 100%; padding-top: 56.25%; overflow: hidden;
     background: #0F172A;
   }
-  .case-card-video-wrap video,
   .case-card-video-wrap img {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
@@ -677,326 +659,172 @@
     width: 52px; height: 52px; border-radius: 50%;
     background: rgba(255,255,255,0.92); border: none;
     display: flex; align-items: center; justify-content: center;
-    font-size: 20px; color: var(--primary); cursor: pointer;
+    font-size: 20px; color: var(--brand); cursor: pointer;
     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     transition: all 0.25s ease; z-index: 3;
   }
-  .case-card:hover .case-play-btn {
-    background: var(--primary); color: white;
-    box-shadow: 0 6px 24px rgba(79,110,247,0.4);
-  }
-  .case-card-info {
-    padding: 20px;
-  }
+  .case-card:hover .case-play-btn { background: var(--brand); color: white; }
+  .case-card-info { padding: 20px; }
   .case-card-info h4 {
-    font-size: 15px; font-weight: 700; color: var(--text-primary);
+    font-size: 15px; font-weight: 700; color: var(--text);
     margin-bottom: 8px; line-height: 1.4;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
-  .case-card-tags {
-    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;
-  }
+  .case-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
   .case-card-tags span {
-    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
-    background: rgba(79,110,247,0.07); color: var(--primary);
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: var(--radius-full);
+    background: var(--brand-soft); color: var(--brand);
   }
-  .case-card-stats {
-    display: flex; gap: 16px; font-size: 12px; color: var(--text-muted);
-  }
+  .case-card-stats { display: flex; gap: 16px; font-size: 12px; color: var(--text-muted); }
   .case-card-stats i { font-style: normal; margin-right: 3px; }
 
   /* ========= CTA ========= */
   .cta-section {
-    padding: 90px 48px;
-    background: linear-gradient(135deg, #EEF2FF 0%, #FAF5FF 40%, #FFF7ED 100%);
-    text-align: center; position: relative; overflow: hidden;
+    padding: 100px 48px; text-align: center; position: relative; overflow: hidden;
+    background: var(--bg-dark);
   }
   .cta-section::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle at 30% 60%, rgba(79,110,247,0.08) 0%, transparent 50%),
-      radial-gradient(circle at 70% 40%, rgba(139,92,246,0.06) 0%, transparent 50%);
+    content: ''; position: absolute; top: -20%; right: -10%; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(43,127,255,0.25) 0%, transparent 70%);
+    filter: blur(80px);
   }
   .cta-content { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
   .cta-section h2 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 900; color: var(--text-primary);
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 800; color: white;
     margin-bottom: 16px; letter-spacing: -0.02em;
   }
-  .cta-section > .cta-content > p {
-    font-size: 16px; color: var(--text-secondary); margin-bottom: 36px; line-height: 1.7;
+  .cta-section .cta-content > p {
+    font-size: 16px; color: var(--text-inverse-muted); margin-bottom: 36px; line-height: 1.7;
   }
+  .btn-cta-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 15px 40px; border-radius: var(--radius-md);
+    font-size: 16px; font-weight: 600; text-decoration: none; color: var(--brand);
+    background: white; border: none;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+  .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+  .btn-cta-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 15px 34px; border-radius: var(--radius-md);
+    font-size: 16px; font-weight: 600; text-decoration: none; color: white;
+    background: transparent; border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.25s ease;
+  }
+  .btn-cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
 
   /* ========= Footer ========= */
   .footer {
-    background: #0C1222; padding: 40px 48px;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    background: #0B1220; padding: 48px 48px;
+    text-align: center; border-top: 1px solid rgba(255,255,255,0.06);
   }
   .footer-inner { max-width: 1080px; margin: 0 auto; }
-  .footer p { color: rgba(255,255,255,0.35); font-size: 13px; line-height: 1.8; }
-  .footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-  .footer a:hover { color: var(--primary-light); }
+  .footer p { color: rgba(255,255,255,0.4); font-size: 13px; line-height: 1.8; }
+  .footer a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer a:hover { color: var(--brand); }
 
   /* ========= Responsive ========= */
-  /* ---- Large screens (1440px+) ---- */
   @media (min-width: 1440px) {
-    .hero { padding: 120px 80px 80px; }
-    .section { padding: 100px 80px; }
-    .stats-section { padding: 80px 80px; }
-    .cta-section { padding: 100px 80px; }
+    .hero { padding: 140px 80px 100px; }
+    .section { padding: 110px 80px; }
+    .stats-section { padding: 90px 80px; }
+    .cta-section { padding: 110px 80px; }
     .nav { padding: 0 80px; }
-    .hero-container { max-width: 1400px; }
+    .hero-container { max-width: 1280px; }
   }
 
-  /* ---- Tablet (1024px) ---- */
   @media (max-width: 1024px) {
     .nav { padding: 0 28px; }
-    .hero { padding: 100px 28px 60px; }
-    .section { padding: 70px 28px; }
-    .stats-section { padding: 60px 28px; }
-    .cta-section { padding: 70px 28px; }
-    .hero-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hero { padding: 120px 28px 80px; }
+    .section { padding: 80px 28px; }
+    .stats-section { padding: 70px 28px; }
+    .cta-section { padding: 80px 28px; }
+    .hero-container { grid-template-columns: 1fr; gap: 48px; text-align: center; }
     .hero-left { order: 1; }
-    .hero-right { order: 0; max-width: 420px; margin: 0 auto; }
+    .hero-right { order: 0; max-width: 480px; margin: 0 auto; }
     .hero-desc, .hero-sub { margin-left: auto; margin-right: auto; }
     .hero-btns { justify-content: center; }
-    .features-grid, .model-grid, .enterprise-grid { grid-template-columns: repeat(2, 1fr); }
-    .model-aggregate-block { padding: 24px 28px; }
-    .cases-grid { grid-template-columns: repeat(2, 1fr); }
-    .industries-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-visual { max-width: 440px; }
+    .flow-grid, .features-grid, .model-grid, .enterprise-grid, .industries-grid, .quickstart-steps, .cases-grid { grid-template-columns: repeat(2, 1fr); }
+    .st-scene-grid, .st-tool-grid { grid-template-columns: repeat(2, 1fr); }
     .k4-grid { grid-template-columns: repeat(2, 1fr); }
-    .compare-table-wrap { max-width: 100%; }
+    .model-aggregate-block { padding: 26px 28px; gap: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* ---- Mobile (768px) ---- */
   @media (max-width: 768px) {
     .nav { padding: 0 16px; height: 60px; }
     .nav-logo { font-size: 17px; }
     .nav-logo-icon { width: 30px; height: 30px; font-size: 15px; }
     .nav-links { display: none; }
     .hero, .section, .stats-section, .cta-section, .footer { padding-left: 16px; padding-right: 16px; }
-    .hero { padding-top: 80px; min-height: auto; padding-bottom: 40px; }
-    .section { padding: 56px 16px; }
-    .stats-section { padding: 48px 16px; }
-    .cta-section { padding: 56px 16px; }
+    .hero { padding-top: 90px; min-height: auto; padding-bottom: 50px; }
+    .section { padding: 60px 16px; }
+    .stats-section { padding: 50px 16px; }
+    .cta-section { padding: 60px 16px; }
     .section-header { margin-bottom: 36px; }
     .section-header h2 { font-size: 1.6rem; }
     .hero h1 { font-size: 2rem; }
     .hero-desc { font-size: 15px; }
+    .hero-visual { max-width: 340px; }
+    .iso-block { display: none; }
+    .hero-visual-bg { inset: 0; }
     .btn-hero-primary, .btn-hero-secondary { padding: 12px 24px; font-size: 14px; }
-    .flow-grid { grid-template-columns: 1fr; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .stat-item h3 { font-size: 1.8rem; }
-    .features-grid, .model-grid, .enterprise-grid, .industries-grid, .quickstart-steps, .cases-grid { grid-template-columns: 1fr; }
-    .model-aggregate-block { padding: 18px 16px; }
-    .model-detail-side h3 { font-size: 17px; }
-    .model-highlights li { font-size: 13px; }
-    .k4-grid { grid-template-columns: 1fr; }
+    .flow-grid, .features-grid, .model-grid, .enterprise-grid, .industries-grid, .quickstart-steps, .cases-grid, .st-scene-grid, .st-tool-grid, .k4-grid, .stats-grid { grid-template-columns: 1fr; }
+    .model-aggregate-block { flex-direction: column; padding: 22px 20px; }
+    .model-icon-side { margin-bottom: 8px; }
     .compare-table { font-size: 13px; }
-    .compare-table thead th, .compare-table tbody td { padding: 10px 12px; }
-    .float-card { display: none; }
-    .hero-orb-1 { width: 280px; height: 280px; }
-    .hero-orb-2 { width: 220px; height: 220px; }
-    .flow-card { padding: 28px 24px; }
-    .feature-card { padding: 24px 20px; }
-    .footer { padding: 30px 16px; }
+    .compare-table thead th, .compare-table tbody td { padding: 12px; }
+    .footer { padding: 36px 16px; }
+    .cta-section .hero-btns { flex-direction: column; }
+    .btn-cta-primary, .btn-cta-secondary { width: 100%; justify-content: center; }
   }
 
-  /* ---- Small phone (480px) ---- */
   @media (max-width: 480px) {
-    .nav { height: 52px; }
+    .nav { height: 54px; }
     .nav-logo { font-size: 15px; gap: 6px; }
     .nav-logo-icon { width: 26px; height: 26px; font-size: 13px; border-radius: 8px; }
     .nav-actions .btn-nav-login { padding: 6px 12px; font-size: 12px; }
     .nav-actions .btn-nav-cta { padding: 6px 14px; font-size: 12px; }
-    .hero { padding-top: 60px; padding-bottom: 30px; }
-    .hero h1 { font-size: 1.5rem; line-height: 1.25; }
+    .hero { padding-top: 70px; padding-bottom: 40px; }
+    .hero h1 { font-size: 1.6rem; line-height: 1.25; }
     .hero-desc { font-size: 13px; }
     .hero-sub { font-size: 12px; }
-    .hero-badge { font-size: 11px; padding: 4px 12px; }
+    .hero-badge { font-size: 11px; padding: 5px 12px; }
     .hero-btns { flex-direction: column; width: 100%; }
     .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; padding: 12px 20px; }
-    .section { padding: 40px 12px; }
-    .section-header h2 { font-size: 1.3rem; }
+    .section { padding: 48px 12px; }
+    .section-header h2 { font-size: 1.4rem; }
     .section-header p { font-size: 13px; }
     .section-tag { font-size: 11px; }
-    .stats-section { padding: 36px 12px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .stat-item h3 { font-size: 1.4rem; }
-    .stat-item p { font-size: 12px; }
-    .cta-section { padding: 40px 12px; }
-    .cta-section h2 { font-size: 1.4rem; }
-    .model-aggregate-block { padding: 14px 12px; }
-    .model-detail-side h3 { font-size: 15px; }
-    .cases-grid { grid-template-columns: 1fr; }
-    .flow-card { padding: 20px 16px; }
-    .feature-card { padding: 18px 14px; }
+    .stats-section { padding: 40px 12px; }
+    .stat-card h3 { font-size: 1.6rem; }
+    .cta-section { padding: 48px 12px; }
+    .cta-section h2 { font-size: 1.5rem; }
+    .flow-card, .feature-card, .enterprise-card, .industry-card, .qs-step, .case-card-info { padding: 20px 16px; }
+    .k4-card { padding: 24px 20px; }
     .compare-table-wrap { overflow-x: auto; }
     .compare-table { min-width: 540px; }
-    .footer { padding: 24px 12px; }
+    .footer { padding: 28px 12px; }
   }
-
-/* ========== 21场景+7工具板块 ========== */
-.scenes-tools-section {
-  background: linear-gradient(180deg, #FAFBFF 0%, #F5F7FF 100%);
-  padding: 100px 24px 90px;
-  position: relative;
-}
-.scenes-tools-section .section-header {
-  text-align: center;
-  margin-bottom: 56px;
-}
-.scenes-tools-section .section-header h2 {
-  font-size: clamp(1.7rem, 3.2vw, 2.3rem);
-  font-weight: 800;
-  color: #1B2563;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
-}
-.scenes-tools-section .section-header p {
-  font-size: 15px;
-  color: #6B7A99;
-  max-width: 560px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-.st-category {
-  max-width: 1120px;
-  margin: 0 auto 40px;
-}
-.st-category-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-.st-category-title h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1B2563;
-  margin: 0;
-}
-.st-category-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #4F6EF7, #8B5CF6);
-  color: white;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 2px 10px;
-  border-radius: 12px;
-}
-.st-scene-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-@media (max-width: 1024px) { .st-scene-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 768px) { .st-scene-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .st-scene-grid { grid-template-columns: 1fr; } }
-.st-card {
-  background: #FFFFFF;
-  border: 1px solid #F1F4FF;
-  border-radius: 16px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 12px rgba(79,110,247,0.06);
-}
-.st-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(79,110,247,0.12);
-  border-color: rgba(79,110,247,0.2);
-}
-.st-card-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.st-card-icon {
-  font-size: 20px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-.st-card-name {
-  font-size: 15px;
-  font-weight: 700;
-  color: #1B2563;
-}
-.st-card-desc {
-  font-size: 13px;
-  color: #6B7A99;
-  line-height: 1.6;
-  flex: 1;
-  min-height: 40px;
-}
-.st-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
-.st-card-tag {
-  display: inline-block;
-  background: rgba(139,92,246,0.08);
-  color: #8B5CF6;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 20px;
-  border: 1px solid rgba(139,92,246,0.15);
-}
-.st-tools-block {
-  max-width: 1120px;
-  margin: 60px auto 0;
-  padding-top: 48px;
-  border-top: 1px solid rgba(79,110,247,0.1);
-}
-.st-tools-title {
-  text-align: center;
-  margin-bottom: 32px;
-}
-.st-tools-title h3 {
-  font-size: 20px;
-  font-weight: 800;
-  color: #1B2563;
-  margin-bottom: 8px;
-}
-.st-tools-title p {
-  font-size: 14px;
-  color: #6B7A99;
-}
-.st-tool-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-@media (max-width: 1024px) { .st-tool-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .st-tool-grid { grid-template-columns: 1fr; } }
-
-  </style>
-<link rel="icon" href="../assets/frameyu-logo.png" type="image/png">
-<link rel="apple-touch-icon" href="../assets/frameyu-logo.png">
-<link rel="stylesheet" href="../assets/frameyu-theme.css?v=20260703">
+</style>
+<link rel="stylesheet" href="../assets/frameyu-theme.css?v=20260706-v3">
 </head>
 <body>
 
 <!-- ==================== Nav ==================== -->
 <nav class="nav">
   <a href="./index.html" class="nav-logo">
-    <div class="nav-logo-icon" aria-hidden="true"></div>
+    <div class="nav-logo-icon" aria-hidden="true">影</div>
     <span class="nav-brand-text">
-      <span class="nav-brand-cn">营赛 智影</span>
-      <span class="nav-brand-en">Insai InVision</span>
+      <span class="nav-brand-cn">智影</span>
+      <span class="nav-brand-en">inVision</span>
     </span>
   </a>
   <div class="nav-links">
-    <a href="#core-value" >核心能力</a>
+    <a href="#core-value">核心能力</a>
     <a href="#models">功能亮点</a>
     <a href="../cases/index.html">案例作品</a>
     <a href="#industries">行业方案</a>
@@ -1010,39 +838,54 @@
 
 <!-- ==================== Hero ==================== -->
 <section class="hero">
-  <div class="hero-orb-1"></div>
-  <div class="hero-orb-2"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-glow hero-glow-3"></div>
 
   <div class="hero-container">
     <div class="hero-left">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        AI 原生 &middot; 行业级 &middot; 智能创意平台
+        AI 原生 · 行业级 · 智能创意平台
       </div>
       <h1>
         <span class="line-block">让每条创意，</span>
         <span class="line-block">都自带<span class="highlight-text">爆款基因</span></span>
       </h1>
       <p class="hero-desc">
-        营赛 智影，一站式 AI 生成脚本、图片、视频<br>让每个广告主拥有自己的 AI 创意团队
+        智影，一站式 AI 生成脚本、图片、视频<br>让每个广告主拥有自己的 AI 创意团队
       </p>
       <p class="hero-sub">
-        开户即送 <strong>价值50000元积分</strong> &mdash;&mdash; 零成本体验 AI 原生创意力
+        开户即送 <strong>价值50000元积分</strong> —— 零成本体验 AI 原生创意力
       </p>
       <div class="hero-btns">
         <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-hero-primary">
-          免费开始使用 &rarr;
+          免费开始使用 →
         </a>
         <a href="#core-value" class="btn-hero-secondary">了解更多</a>
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-visual">
-        <div class="hero-visual-bg"></div>
-        <div class="float-card fc-1"><span class="fc-dot"></span>AI 脚本生成</div>
-        <div class="float-card fc-2"><span class="fc-dot"></span>多模型聚合</div>
-        <div class="float-card fc-3"><span class="fc-dot"></span>批量混剪</div>
-        <div class="float-card fc-4"><span class="fc-dot"></span>数字人口播</div>
+      <div class="hero-visual hero-agent-visual">
+        <div class="agent-platform" aria-hidden="true"></div>
+        <div class="agent-toolbar" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="agent-panel agent-script">
+          <strong>AI 脚本生成</strong>
+          <span></span><span></span>
+        </div>
+        <div class="agent-panel agent-batch">
+          <strong>批量混剪</strong>
+          <div class="agent-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="agent-phone">
+          <div class="agent-phone-title">AI Agent</div>
+          <div class="agent-avatar" aria-hidden="true"></div>
+          <div class="agent-wave" aria-hidden="true"></div>
+        </div>
+        <div class="agent-chip agent-model"><span></span>多模型聚合</div>
+        <div class="agent-chip agent-digital"><span></span>数字人口播</div>
       </div>
     </div>
   </div>
@@ -1051,8 +894,8 @@
 <!-- ==================== 核心价值 ==================== -->
 <section class="section compare-section" id="core-value">
   <div class="section-header">
-    <div class="section-tag">&#127919; 核心价值</div>
-    <h2>为什么必须用营赛 智影？</h2>
+    <div class="section-tag section-tag-core">核心价值</div>
+    <h2>为什么必须用智影？</h2>
     <p>直击行业痛点，让广告创意不再是难题</p>
   </div>
   <div class="compare-table-wrap">
@@ -1060,17 +903,17 @@
       <thead>
         <tr>
           <th style="width:30%">痛点</th>
-          <th style="width:38%">&#10024; 营赛 智影解决方案</th>
+          <th style="width:38%">智影解决方案</th>
           <th style="width:32%">核心收益</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>创意成本高：人力成本高，外部采购费用不菲</td><td class="check-yes">&#10004; 全流程 AI 生产，从脚本到视频一站式完成</td><td>创意成本大幅降低，资源投入更高效</td></tr>
-        <tr><td>素材产出慢：一条视频数天甚至数周</td><td class="check-yes">&#10004; 10 秒生成一条视频，批量并发，定时运行</td><td>产出效率提升 10-20 倍，快速响应投放需求</td></tr>
-        <tr><td>模型选择难：选错模型浪费钱和时间</td><td class="check-yes">&#10004; 聚合 20+ 主流视频/图文模型，按场景自主选择</td><td>花一份钱选最合适的模型，避免试错成本</td></tr>
-        <tr><td>投放与素材脱节：素材跟不上，ROI 低</td><td class="check-yes">&#10004; 广告消耗联动星火币，投越多送越多</td><td>投放反哺创意，素材成本随投放递减</td></tr>
-        <tr><td>缺乏爆款方法论：靠运气，无法复刻</td><td class="check-yes">&#10004; 爆款复刻 Agent，自动分析并生成新视频</td><td>爆款可复制，持续输出高转化素材</td></tr>
-        <tr><td>企业级管理缺失：协作混乱，版权风险高</td><td class="check-yes">&#10004; 多账户管理、资产库、人像库、权限管控</td><td>安全合规，适合企业团队协作</td></tr>
+        <tr><td>创意成本高：人力成本高，外部采购费用不菲</td><td class="check-yes">全流程 AI 生产，从脚本到视频一站式完成</td><td>创意成本大幅降低，资源投入更高效</td></tr>
+        <tr><td>素材产出慢：一条视频数天甚至数周</td><td class="check-yes">10 秒生成一条视频，批量并发，定时运行</td><td>产出效率提升 10-20 倍，快速响应投放需求</td></tr>
+        <tr><td>模型选择难：选错模型浪费钱和时间</td><td class="check-yes">聚合 20+ 主流视频/图文模型，按场景自主选择</td><td>花一份钱选最合适的模型，避免试错成本</td></tr>
+        <tr><td>投放与素材脱节：素材跟不上，ROI 低</td><td class="check-yes">广告消耗联动星火币，投越多送越多</td><td>投放反哺创意，素材成本随投放递减</td></tr>
+        <tr><td>缺乏爆款方法论：靠运气，无法复刻</td><td class="check-yes">爆款复刻 Agent，自动分析并生成新视频</td><td>爆款可复制，持续输出高转化素材</td></tr>
+        <tr><td>企业级管理缺失：协作混乱，版权风险高</td><td class="check-yes">多账户管理、资产库、人像库、权限管控</td><td>安全合规，适合企业团队协作</td></tr>
       </tbody>
     </table>
   </div>
@@ -1079,7 +922,7 @@
 <!-- ==================== 三步流程 ==================== -->
 <section class="section flow-section" id="flow">
   <div class="section-header">
-    <div class="section-tag">&#9883; 工作流程</div>
+    <div class="section-tag section-tag-flow">工作流程</div>
     <h2>三步出素材，AI 全程代劳</h2>
     <p>从一句话创意到可投放的广告素材，最快 5 分钟搞定</p>
   </div>
@@ -1096,7 +939,7 @@
     </div>
     <div class="flow-card">
       <div class="flow-num">03</div>
-      <h3>投放 &amp; 迭代</h3>
+      <h3>投放 & 迭代</h3>
       <p>爆款复刻裂变、批量混剪多版本、数据回传效果分析，持续迭代让素材越投越准。</p>
     </div>
   </div>
@@ -1105,15 +948,15 @@
 <!-- ==================== 核心亮点：三大类模型聚合 ==================== -->
 <section class="section model-section" id="models">
   <div class="section-header">
-    <div class="section-tag">&#10024; 核心亮点</div>
+    <div class="section-tag section-tag-model">核心亮点</div>
     <h2>聚合 15+ 主流热门大模型，一站调用全场景创意</h2>
     <p>视频、图片、文本全覆盖，无需来回切换多平台大模型，一个平台搞定所有创意生产需求</p>
   </div>
 
-  <!-- 视频生成模型 -->
   <div class="model-aggregate-block mc-blue">
+    <div class="model-icon-side">🎬</div>
     <div class="model-detail-side">
-      <h3>&#127916; 视频生成模型聚合</h3>
+      <h3>视频生成模型聚合</h3>
       <ul class="model-highlights">
         <li>原生 4K 画质、高速推理、文生/图生/视频编辑全覆盖</li>
         <li>从商业级短片到产品微动，全场景视频生产能力</li>
@@ -1122,10 +965,10 @@
     </div>
   </div>
 
-  <!-- 图片生成模型 -->
   <div class="model-aggregate-block mc-purple">
+    <div class="model-icon-side">🖼️</div>
     <div class="model-detail-side">
-      <h3>&#128444; 图片生成模型聚合</h3>
+      <h3>图片生成模型聚合</h3>
       <ul class="model-highlights">
         <li>文生图、图编辑、风格探索一站式完成</li>
         <li>电商主图、品牌海报、创意素材快速生成</li>
@@ -1134,10 +977,10 @@
     </div>
   </div>
 
-  <!-- 文本生成模型 -->
   <div class="model-aggregate-block mc-green">
+    <div class="model-icon-side">📝</div>
     <div class="model-detail-side">
-      <h3>&#128221; 文本生成模型聚合</h3>
+      <h3>文本生成模型聚合</h3>
       <ul class="model-highlights">
         <li>深度理解产品卖点，一键生成脚本、分镜、文案</li>
         <li>多轮对话持续优化，越聊越精准</li>
@@ -1154,13 +997,13 @@
 <!-- ==================== 4K 影视级画质 ==================== -->
 <section class="section k4-section">
   <div class="section-header">
-    <div class="section-tag">&#127909; 画质升级</div>
+    <div class="section-tag section-tag-video">画质升级</div>
     <h2>4K 影视级画质，5分钟视频直出</h2>
     <p>无需复杂后期，一条指令直出可用广告片</p>
   </div>
   <div class="k4-grid">
     <div class="k4-card">
-      <div class="k4-card-icon">&#127916;</div>
+      <div class="k4-card-icon">🎬</div>
       <h4>影视级 4K 画质</h4>
       <p>原生 4K 分辨率输出，画面细节、色彩层次、动态表现均达商业广告标准，直接可用于品牌投放。</p>
       <div class="k4-features">
@@ -1170,7 +1013,7 @@
       </div>
     </div>
     <div class="k4-card">
-      <div class="k4-card-icon">&#9201;</div>
+      <div class="k4-card-icon">⏱️</div>
       <h4>5分钟长视频直出</h4>
       <p>突破短视频限制，最长支持 5 分钟持续生成，完整叙事、产品讲解、品牌故事一镜到底。</p>
       <div class="k4-features">
@@ -1180,7 +1023,7 @@
       </div>
     </div>
     <div class="k4-card">
-      <div class="k4-card-icon">&#9881;</div>
+      <div class="k4-card-icon">⚙️</div>
       <h4>从脚本到成片一站式</h4>
       <p>AI 自动生成脚本、分镜、画面、配音、字幕，传统团队一周的工作量，现在几小时交付。</p>
       <div class="k4-features">
@@ -1190,7 +1033,7 @@
       </div>
     </div>
     <div class="k4-card">
-      <div class="k4-card-icon">&#127919;</div>
+      <div class="k4-card-icon">🎯</div>
       <h4>适配全广告场景</h4>
       <p>无论是前贴广告、电商主图视频、品牌 TVC 还是社交媒体内容，一次生成多尺寸多版本。</p>
       <div class="k4-features">
@@ -1202,10 +1045,10 @@
   </div>
 </section>
 
-
 <!-- ==================== 21场景+7工具 ==================== -->
 <section class="section scenes-tools-section" id="scenes-tools">
   <div class="section-header">
+    <div class="section-tag section-tag-tool">场景工具</div>
     <h2>21 大核心场景，覆盖主流广告素材</h2>
     <p>从电商到游戏，从口播到 TVC，每个场景都能直接产出可投放的素材</p>
   </div>
@@ -1219,34 +1062,34 @@
     <div class="st-scene-grid">
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#9889;</span>
+          <span class="st-card-icon">⚡</span>
           <span class="st-card-name">利益开头</span>
         </div>
-        <p class="st-card-desc">黄金 3 秒前置利益点，强抓注意力提升完播率</p>
+        <p class="st-card-desc">用户前3秒就划走？利益点前置，开播即锁定注意力，完播率飙升。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">黄金3秒</span>
-          <span class="st-card-tag">利益前置</span>
+          <span class="st-card-tag">完播率+50%</span>
+          <span class="st-card-tag">3秒留人</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127912;</span>
+          <span class="st-card-icon">🎨</span>
           <span class="st-card-name">前贴生成</span>
         </div>
-        <p class="st-card-desc">一键生成广告前贴素材，快速适配多平台尺寸</p>
+        <p class="st-card-desc">多平台尺寸前贴要逐个做？AI一次生成全尺寸，省90%制作时间。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">一键生成</span>
-          <span class="st-card-tag">多平台适配</span>
+          <span class="st-card-tag">省90%制作时间</span>
+          <span class="st-card-tag">1条顶10条</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127918;</span>
+          <span class="st-card-icon">🎮</span>
           <span class="st-card-name">玩法爽点</span>
         </div>
-        <p class="st-card-desc">把游戏核心玩法和高光时刻视觉化呈现</p>
+        <p class="st-card-desc">玩法亮点藏太深？把核心爽点前置到前3秒，让玩家秒懂、秒下载。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">玩法演示</span>
+          <span class="st-card-tag">下载率+40%</span>
           <span class="st-card-tag">爽点前置</span>
         </div>
       </div>
@@ -1262,35 +1105,35 @@
     <div class="st-scene-grid">
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128247;</span>
+          <span class="st-card-icon">📷</span>
           <span class="st-card-name">商品特写</span>
         </div>
-        <p class="st-card-desc">高清呈现产品细节，自动优化质感与光线</p>
+        <p class="st-card-desc">产品拍出来灰暗廉价？AI自动补光调色，把平价货拍出大牌质感。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">细节高清</span>
-          <span class="st-card-tag">质感调优</span>
+          <span class="st-card-tag">质感直逼大牌</span>
+          <span class="st-card-tag">省拍摄费</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127873;</span>
+          <span class="st-card-icon">🎁</span>
           <span class="st-card-name">包装特写</span>
         </div>
-        <p class="st-card-desc">包装设计视觉化，提前传递开箱体验</p>
+        <p class="st-card-desc">包装实物还没出？AI提前生成开箱视觉，种草转化无需等量产。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">包装展示</span>
-          <span class="st-card-tag">开箱体验</span>
+          <span class="st-card-tag">提前种草</span>
+          <span class="st-card-tag">省量产等待</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128171;</span>
+          <span class="st-card-icon">💫</span>
           <span class="st-card-name">面料细节</span>
         </div>
-        <p class="st-card-desc">真实还原材质纹理，把触感变成视觉说服力</p>
+        <p class="st-card-desc">材质光看图摸不到？AI还原纹理与光泽，让屏幕也能传递触感说服力。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">材质纹理</span>
-          <span class="st-card-tag">品质溢价</span>
+          <span class="st-card-tag">转化率+30%</span>
+          <span class="st-card-tag">品质可见</span>
         </div>
       </div>
     </div>
@@ -1305,35 +1148,35 @@
     <div class="st-scene-grid">
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128200;</span>
+          <span class="st-card-icon">📈</span>
           <span class="st-card-name">卖点展示主页</span>
         </div>
-        <p class="st-card-desc">核心卖点一页可视化，信息层级清晰有序</p>
+        <p class="st-card-desc">卖点堆一屏用户记不住？AI智能排序，核心卖点一眼抓住，提升停留时长。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">卖点聚合</span>
-          <span class="st-card-tag">信息清晰</span>
+          <span class="st-card-tag">停留时长+60%</span>
+          <span class="st-card-tag">卖点突出</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#9876;</span>
+          <span class="st-card-icon">⚔️</span>
           <span class="st-card-name">前后对比</span>
         </div>
-        <p class="st-card-desc">使用前后强烈对比，用效果说话打消疑虑</p>
+        <p class="st-card-desc">用户半信半疑不敢下单？前后对比直击痛点，用看得见的效果打消疑虑。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">效果对比</span>
-          <span class="st-card-tag">转化利器</span>
+          <span class="st-card-tag">转化率翻倍</span>
+          <span class="st-card-tag">效果可证</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128170;</span>
+          <span class="st-card-icon">💪</span>
           <span class="st-card-name">卖点证明</span>
         </div>
-        <p class="st-card-desc">数据+权威背书双重佐证，快速建立信任感</p>
+        <p class="st-card-desc">新品牌缺信任背书？数据与权威认证自动植入，3秒建立购买信任。</p>
         <div class="st-card-tags">
+          <span class="st-card-tag">信任建立快3倍</span>
           <span class="st-card-tag">权威背书</span>
-          <span class="st-card-tag">数据佐证</span>
         </div>
       </div>
     </div>
@@ -1348,68 +1191,68 @@
     <div class="st-scene-grid">
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#9654;</span>
+          <span class="st-card-icon">▶️</span>
           <span class="st-card-name">图生视频</span>
         </div>
-        <p class="st-card-desc">静态图片一键生成动态视频，老素材焕发新生</p>
+        <p class="st-card-desc">历史素材躺在硬盘吃灰？一键让静图动起来，老图库直接变视频库。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">静图转视频</span>
-          <span class="st-card-tag">老素材复用</span>
+          <span class="st-card-tag">素材利用率+5倍</span>
+          <span class="st-card-tag">省重拍费</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128260;</span>
+          <span class="st-card-icon">🔄</span>
           <span class="st-card-name">产品替换</span>
         </div>
-        <p class="st-card-desc">无需重拍即可替换产品，多 SKU 快速复用</p>
+        <p class="st-card-desc">每个SKU都要单独拍视频？一条成片替换全部产品，省80%拍摄成本。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">无需重拍</span>
-          <span class="st-card-tag">多 SKU 复用</span>
+          <span class="st-card-tag">省80%拍摄费</span>
+          <span class="st-card-tag">1片顶N款</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127748;</span>
+          <span class="st-card-icon">🌅</span>
           <span class="st-card-name">场景生图</span>
         </div>
-        <p class="st-card-desc">一句话生成产品使用场景，不受拍摄场地限制</p>
+        <p class="st-card-desc">找影棚跑外景成本高？一句话生成任意使用场景，0场地费出大片。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">场景生成</span>
-          <span class="st-card-tag">场地无限</span>
+          <span class="st-card-tag">0场地费</span>
+          <span class="st-card-tag">场景无限</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128101;</span>
+          <span class="st-card-icon">👥</span>
           <span class="st-card-name">角色替换</span>
         </div>
-        <p class="st-card-desc">数字人/真人互换主角，不用重拍就能迭代</p>
+        <p class="st-card-desc">换主角就要整片重拍？数字人/真人一键替换，零重拍成本快速迭代。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">角色替换</span>
-          <span class="st-card-tag">零成本迭代</span>
+          <span class="st-card-tag">零重拍成本</span>
+          <span class="st-card-tag">迭代快10倍</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128722;</span>
+          <span class="st-card-icon">🛒</span>
           <span class="st-card-name">商品图生成视频</span>
         </div>
-        <p class="st-card-desc">电商商品图直接生成视频，上架即投放</p>
+        <p class="st-card-desc">详情页静态图转化低？商品图秒变动态视频，上架即投放抢占流量。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">商品转视频</span>
+          <span class="st-card-tag">转化率+45%</span>
           <span class="st-card-tag">上架即投</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128100;</span>
+          <span class="st-card-icon">👤</span>
           <span class="st-card-name">人物图生成视频</span>
         </div>
-        <p class="st-card-desc">人像照片生成口播视频，批量打造个人 IP</p>
+        <p class="st-card-desc">请真人出镜成本高？一张照片生成口播视频，日更不累批量造IP。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">人像口播</span>
-          <span class="st-card-tag">批量 IP</span>
+          <span class="st-card-tag">省出镜费</span>
+          <span class="st-card-tag">日更不断更</span>
         </div>
       </div>
     </div>
@@ -1424,68 +1267,68 @@
     <div class="st-scene-grid">
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#129489;</span>
+          <span class="st-card-icon">🧑‍💼</span>
           <span class="st-card-name">数字人口播</span>
         </div>
-        <p class="st-card-desc">一张照片生成数字人，多语言口播批量产出</p>
+        <p class="st-card-desc">跨国投放要请各国主播？一张照片生成多语言数字人，1人产出N国版本。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">数字人出镜</span>
-          <span class="st-card-tag">多语言</span>
+          <span class="st-card-tag">省90%出镜费</span>
+          <span class="st-card-tag">1人顶N团队</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128256;</span>
+          <span class="st-card-icon">🔀</span>
           <span class="st-card-name">卖点裂变</span>
         </div>
-        <p class="st-card-desc">1 条爆款裂变为 N 条，测试更多投放方向</p>
+        <p class="st-card-desc">找到爆款却不会复制？1条裂变N条同款，快速测试最佳投放方向。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">爆款裂变</span>
-          <span class="st-card-tag">多版本测试</span>
+          <span class="st-card-tag">爆款复制10倍</span>
+          <span class="st-card-tag">测投更准</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127380;</span>
+          <span class="st-card-icon">🔤</span>
           <span class="st-card-name">品牌落版</span>
         </div>
-        <p class="st-card-desc">品牌 Logo 一键动画化，统一视觉落版</p>
+        <p class="st-card-desc">品牌Logo落版每次都外包？一键动画化，统一视觉，每条片都专业收尾。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">Logo 动画</span>
-          <span class="st-card-tag">品牌落版</span>
+          <span class="st-card-tag">省外包费</span>
+          <span class="st-card-tag">品牌统一</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128187;</span>
+          <span class="st-card-icon">💻</span>
           <span class="st-card-name">应用录屏</span>
         </div>
-        <p class="st-card-desc">产品功能可视化演示，教程/介绍视频速成</p>
+        <p class="st-card-desc">用户看不懂图文教程？录屏自动包装成演示视频，降低客服成本。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">功能演示</span>
+          <span class="st-card-tag">客服成本-50%</span>
           <span class="st-card-tag">教程速成</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127939;</span>
+          <span class="st-card-icon">🏃</span>
           <span class="st-card-name">游戏录屏包装</span>
         </div>
-        <p class="st-card-desc">游戏高光自动剪辑，快速产出社区传播素材</p>
+        <p class="st-card-desc">高光片段埋在几小时录像里？AI自动提取剪辑，快速产出社区传播素材。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">高光剪辑</span>
-          <span class="st-card-tag">社区传播</span>
+          <span class="st-card-tag">省80%剪辑时间</span>
+          <span class="st-card-tag">传播裂变</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128214;</span>
+          <span class="st-card-icon">📖</span>
           <span class="st-card-name">补充镜头</span>
         </div>
-        <p class="st-card-desc">拍摄素材不足 AI 补全，省去补拍成本</p>
+        <p class="st-card-desc">拍摄素材缺几个镜头要重开机？AI智能补全，省去补拍的场地和人工费。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">AI 补镜头</span>
-          <span class="st-card-tag">省去补拍</span>
+          <span class="st-card-tag">省补拍费</span>
+          <span class="st-card-tag">0等待</span>
         </div>
       </div>
     </div>
@@ -1500,79 +1343,79 @@
     <div class="st-tool-grid">
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#129489;</span>
+          <span class="st-card-icon">🧑‍💼</span>
           <span class="st-card-name">数字人生成</span>
         </div>
-        <p class="st-card-desc">照片生成数字分身，多语言口播一键切换</p>
+        <p class="st-card-desc">每次口播都要请主播到场？照片生成数字分身，随时出镜永不疲倦。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">数字分身</span>
-          <span class="st-card-tag">多语言</span>
+          <span class="st-card-tag">省90%出镜费</span>
+          <span class="st-card-tag">7×24出片</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127748;</span>
+          <span class="st-card-icon">🌅</span>
           <span class="st-card-name">真人场景替换</span>
         </div>
-        <p class="st-card-desc">不改脚本换背景，季节/地域一键切换</p>
+        <p class="st-card-desc">换季要重新跑外景？不改脚本一键换背景，春夏秋冬一镜全收。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">场景替换</span>
-          <span class="st-card-tag">季节切换</span>
+          <span class="st-card-tag">省外景费</span>
+          <span class="st-card-tag">1拍顶4季</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128172;</span>
+          <span class="st-card-icon">💬</span>
           <span class="st-card-name">视频去字幕</span>
         </div>
-        <p class="st-card-desc">AI 识别并擦除字幕，无需逐帧手动处理</p>
+        <p class="st-card-desc">硬字幕挡画面要逐帧抠？AI一键识别擦除，老素材可直接二次复用。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">自动擦除</span>
-          <span class="st-card-tag">逐帧处理</span>
+          <span class="st-card-tag">省95%处理时间</span>
+          <span class="st-card-tag">素材可复用</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127909;</span>
+          <span class="st-card-icon">🎬</span>
           <span class="st-card-name">产品微动</span>
         </div>
-        <p class="st-card-desc">静态产品图添加微动效，无需 3D 建模</p>
+        <p class="st-card-desc">产品图太平没吸引力？添加微动效让静图活起来，无需3D建模也能出彩。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">产品微动</span>
-          <span class="st-card-tag">无需建模</span>
+          <span class="st-card-tag">省3D建模费</span>
+          <span class="st-card-tag">点击率+35%</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#127904;</span>
+          <span class="st-card-icon">🎪</span>
           <span class="st-card-name">视频补帧</span>
         </div>
-        <p class="st-card-desc">低帧率补至 60 帧，画面丝滑如电影级</p>
+        <p class="st-card-desc">卡顿掉帧拉低质感？AI补帧至60帧，普通素材秒变电影级丝滑。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">60 帧补帧</span>
-          <span class="st-card-tag">丝滑画面</span>
+          <span class="st-card-tag">质感升级</span>
+          <span class="st-card-tag">免重拍</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#128269;</span>
+          <span class="st-card-icon">🔍</span>
           <span class="st-card-name">画质增强</span>
         </div>
-        <p class="st-card-desc">720P 秒升 4K，模糊素材高清修复</p>
+        <p class="st-card-desc">老素材清晰度不够不敢投？720P秒升4K，模糊老片直接变高清可投素材。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">720P 升 4K</span>
-          <span class="st-card-tag">高清修复</span>
+          <span class="st-card-tag">老素材可投</span>
+          <span class="st-card-tag">省重拍</span>
         </div>
       </div>
       <div class="st-card">
         <div class="st-card-header">
-          <span class="st-card-icon">&#9199;</span>
+          <span class="st-card-icon">⏮️</span>
           <span class="st-card-name">首尾帧生视频</span>
         </div>
-        <p class="st-card-desc">指定首帧+尾帧，AI 自动补全中间过渡</p>
+        <p class="st-card-desc">转场过渡效果难把控？指定首尾帧，AI自动补全中间，转场精准可控。</p>
         <div class="st-card-tags">
-          <span class="st-card-tag">精确控制</span>
-          <span class="st-card-tag">自动过渡</span>
+          <span class="st-card-tag">转场可控</span>
+          <span class="st-card-tag">省后期</span>
         </div>
       </div>
     </div>
@@ -1581,56 +1424,56 @@
 
 <!-- ==================== 数据展示 ==================== -->
 <section class="stats-section">
-  <div style="text-align:center;margin-bottom:40px;position:relative;z-index:2;">
-    <div class="section-tag" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.15);color:#E0E7FF;">&#128202; 内部实战数据</div>
-    <h2 style="font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:900;color:white;margin-bottom:10px;letter-spacing:-0.02em;">公司内部深度验证，真实数据说话</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:640px;margin:0 auto;line-height:1.7;">营赛 智影已在公司内部大规模使用，覆盖 1,800+ 员工日常创作，产出实效远超预期</p>
+  <div class="section-header">
+    <div class="section-tag section-tag-data">内部实战数据</div>
+    <h2>公司内部深度验证，真实数据说话</h2>
+    <p>智影已在公司内部大规模使用，覆盖 1,800+ 员工日常创作，产出实效远超预期</p>
   </div>
   <div class="stats-grid">
-    <div class="stat-item stat-1"><h3>1,800+</h3><p>覆盖全公司员工</p></div>
-    <div class="stat-item stat-2"><h3>21万+</h3><p>累计任务数</p></div>
-    <div class="stat-item stat-3"><h3>95%+</h3><p>任务成功率</p></div>
-    <div class="stat-item stat-4"><h3>3万+</h3><p>周素材产出</p></div>
+    <div class="stat-card"><h3>1,800+</h3><p>覆盖全公司员工</p></div>
+    <div class="stat-card"><h3>21万+</h3><p>累计任务数</p></div>
+    <div class="stat-card"><h3>95%+</h3><p>任务成功率</p></div>
+    <div class="stat-card"><h3>3万+</h3><p>周素材产出</p></div>
   </div>
 </section>
 
 <!-- ==================== 企业级账号体系 ==================== -->
 <section class="section enterprise-section" id="enterprise">
   <div class="section-header">
-    <div class="section-tag">&#128100; 企业级账号</div>
+    <div class="section-tag section-tag-enterprise">企业级账号</div>
     <h2>企业主 + 多子账户管理</h2>
     <p>专为企业团队设计，统一管理、分工协作、安全合规</p>
   </div>
   <div class="enterprise-grid">
     <div class="enterprise-card">
-      <h4>&#128100; 企业主账号</h4>
+      <h4><span class="ec-icon">👤</span>企业主账号</h4>
       <p>统一管理所有子账户，掌控全局</p>
-      <div class="ec-value">&#10004; 一人管理，全员使用</div>
+      <div class="ec-value">一人管理，全员使用</div>
     </div>
     <div class="enterprise-card">
-      <h4>&#128101; 多子账户</h4>
+      <h4><span class="ec-icon">👥</span>多子账户</h4>
       <p>可为不同部门、团队、项目创建独立子账户</p>
-      <div class="ec-value">&#10004; 分工明确，互不干扰</div>
+      <div class="ec-value">分工明确，互不干扰</div>
     </div>
     <div class="enterprise-card">
-      <h4>&#128179; 额度分配</h4>
+      <h4><span class="ec-icon">💳</span>额度分配</h4>
       <p>企业主可将星火币分配给不同子账户</p>
-      <div class="ec-value">&#10004; 预算可控，避免滥用</div>
+      <div class="ec-value">预算可控，避免滥用</div>
     </div>
     <div class="enterprise-card">
-      <h4>&#128202; 消耗可视</h4>
+      <h4><span class="ec-icon">📊</span>消耗可视</h4>
       <p>企业主可查看所有子账户的消耗记录</p>
-      <div class="ec-value">&#10004; 成本透明，精准核算</div>
+      <div class="ec-value">成本透明，精准核算</div>
     </div>
     <div class="enterprise-card">
-      <h4>&#128274; 权限管控</h4>
+      <h4><span class="ec-icon">🔒</span>权限管控</h4>
       <p>可设置子账户的功能权限、素材访问权限</p>
-      <div class="ec-value">&#10004; 安全合规，分级管理</div>
+      <div class="ec-value">安全合规，分级管理</div>
     </div>
     <div class="enterprise-card">
-      <h4>&#129309; 团队协作</h4>
+      <h4><span class="ec-icon">🤝</span>团队协作</h4>
       <p>资产库、提示词库、人像库支持多账户共享</p>
-      <div class="ec-value">&#10004; 沉淀资产，高效复用</div>
+      <div class="ec-value">沉淀资产，高效复用</div>
     </div>
   </div>
 </section>
@@ -1638,63 +1481,63 @@
 <!-- ==================== 行业覆盖 ==================== -->
 <section class="section industries-section" id="industries">
   <div class="section-header">
-    <div class="section-tag">&#127981; 行业方案</div>
+    <div class="section-tag section-tag-industry">行业方案</div>
     <h2>覆盖多个行业，深度适配你的场景</h2>
     <p>行业模板 + AI 行业理解力双加持，出的素材"懂"你的行业<br>已在公司内部大规模验证，覆盖电商、游戏、家居、保险、汽车、教育等多个行业</p>
   </div>
-  <div class="industries-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 1080px; margin: 0 auto;">
+  <div class="industries-grid">
     <div class="industry-card">
-      <div class="industry-icon ind-icon-1">&#128722;</div>
+      <div class="industry-icon">🛒</div>
       <h4>电商</h4>
       <div class="ind-scene">新品主图 + 短视频 + 品牌大片</div>
       <p>输入产品图+指令，生成动态展示视频，批量创意混剪</p>
     </div>
     <div class="industry-card">
-      <div class="industry-icon ind-icon-2">&#128241;</div>
+      <div class="industry-icon">📱</div>
       <h4>网服</h4>
       <div class="ind-scene">批量素材测试 + 裂变</div>
       <p>定时运行+裂变，一天生成 100 条不同风格素材</p>
     </div>
     <div class="industry-card">
-      <div class="industry-icon ind-icon-3">&#127918;</div>
+      <div class="industry-icon">🎮</div>
       <h4>游戏</h4>
       <div class="ind-scene">推广短片 + 角色展示</div>
       <p>爆款复刻生成热门风格战斗视频，角色动态展示素材</p>
     </div>
     <div class="industry-card">
-      <div class="industry-icon ind-icon-4">&#127891;</div>
+      <div class="industry-icon">🎓</div>
       <h4>教育</h4>
       <div class="ind-scene">口播课程 + 知识科普</div>
       <p>数字人生成，上传人像+音频快速出片，知识内容可视化</p>
     </div>
     <div class="industry-card">
-      <div class="industry-icon ind-icon-5">&#128176;</div>
+      <div class="industry-icon">💰</div>
       <h4>金融保险</h4>
       <div class="ind-scene">理财产品 + 情景剧</div>
       <p>生成沉稳专业风格视频，AI 情景剧适配合规场景</p>
     </div>
     <div class="industry-card">
-      <div class="industry-icon ind-icon-6">&#128765;</div>
+      <div class="industry-icon">🚗</div>
       <h4>汽车</h4>
       <div class="ind-scene">品牌大片 + 产品展示</div>
       <p>二轮车/四轮车 AI 空境，城市穿梭、越野等场景一键生成</p>
     </div>
     <div class="industry-card">
-      <div class="industry-icon ind-icon-1">&#127968;</div>
+      <div class="industry-icon">🏠</div>
       <h4>家居建材</h4>
       <div class="ind-scene">品牌剧情 + 产品微动</div>
       <p>AI 剧情短片（空城计等创意），产品微动展示空间美学</p>
     </div>
     <div class="industry-card">
-      <div class="industry-icon ind-icon-2">&#127758;</div>
+      <div class="industry-icon">🌏</div>
       <h4>出海</h4>
       <div class="ind-scene">多语言素材 + 全球投放</div>
       <p>英语/韩语/西班牙语等多语言 AI 素材，覆盖全球市场</p>
     </div>
-    <div class="industry-card" style="background:linear-gradient(135deg, rgba(79,110,247,0.06), rgba(139,92,246,0.06));border:1px solid rgba(79,110,247,0.15);">
-      <div class="industry-icon" style="background:rgba(79,110,247,0.12);">&#128170;</div>
-      <h4>内部实战验证 &#10003;</h4>
-      <div class="ind-scene" style="color:var(--primary);">公司大规模使用 · 成果卓著</div>
+    <div class="industry-card highlight">
+      <div class="industry-icon">💪</div>
+      <h4>内部实战验证</h4>
+      <div class="ind-scene" style="color:var(--brand)">公司大规模使用 · 成果卓著</div>
       <p>1,800+ 员工日常使用，21万+ 任务累计，95%+ 成功率，周产出 3万+ 素材——数据证明，AI 创意生产力已成标配</p>
     </div>
   </div>
@@ -1703,7 +1546,7 @@
 <!-- ==================== 快速上手 ==================== -->
 <section class="section quickstart-section" id="quickstart">
   <div class="section-header">
-    <div class="section-tag">&#129517; 快速上手</div>
+    <div class="section-tag section-tag-start">快速上手</div>
     <h2>3 步开始使用</h2>
     <p>零门槛，即开即用</p>
   </div>
@@ -1725,34 +1568,34 @@
     </div>
   </div>
   <div class="qs-tip">
-    &#128161; 提示：先用 720P + 5秒 + Fast 模型试方向，满意再提分辨率与时长
+    提示：先用 720P + 5秒 + Fast 模型试方向，满意再提分辨率与时长
   </div>
 </section>
 
 <!-- ==================== 案例作品入口 ==================== -->
 <section class="section cases-section" id="cases">
   <div class="section-header">
-    <div class="section-tag">&#127912; 案例作品</div>
+    <div class="section-tag section-tag-case">案例作品</div>
     <h2>AI 实战案例作品展示</h2>
     <p>精选来自各行各业的一线创作者 AI 案例，从电商到游戏，从美妆到金融——看他们如何用 AI 打造爆款素材，点击率提升 10 倍+</p>
   </div>
   <div style="max-width:960px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px;">
-      <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-light);box-shadow:var(--shadow-md);aspect-ratio:16/9;background:#0F172A;position:relative;">
+      <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--brand-border);box-shadow:var(--shadow-md);aspect-ratio:16/9;background:#0F172A;position:relative;">
         <img src="https://sentinel.yunxdata.com.cn/微信图片_2026-01-29_151518_436.png" style="width:100%;height:100%;object-fit:cover;" alt="案例预览1" loading="lazy">
       </div>
-      <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-light);box-shadow:var(--shadow-md);aspect-ratio:16/9;background:#0F172A;position:relative;">
+      <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--brand-border);box-shadow:var(--shadow-md);aspect-ratio:16/9;background:#0F172A;position:relative;">
         <img src="https://sentinel.yunxdata.com.cn/稿定智能设计202603091214.jpg" style="width:100%;height:100%;object-fit:cover;" alt="案例预览2" loading="lazy">
       </div>
-      <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-light);box-shadow:var(--shadow-md);aspect-ratio:16/9;background:#0F172A;position:relative;">
+      <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--brand-border);box-shadow:var(--shadow-md);aspect-ratio:16/9;background:#0F172A;position:relative;">
         <img src="https://sentinel.yunxdata.com.cn/forum/稿定智能设计202604211548.jpg" style="width:100%;height:100%;object-fit:cover;" alt="案例预览3" loading="lazy">
       </div>
     </div>
     <div style="text-align:center;">
-      <a href="../cases/index.html" class="btn-hero-primary" style="display:inline-flex;align-items:center;gap:8px;padding:15px 40px;border-radius:12px;font-size:16px;font-weight:600;text-decoration:none;color:white;background:var(--gradient-primary);box-shadow:0 4px 24px rgba(79,110,247,0.35);transition:all 0.3s ease;">
-        查看全部案例作品 &rarr;
+      <a href="../cases/index.html" class="btn-hero-primary" style="display:inline-flex;align-items:center;gap:8px;padding:15px 40px;border-radius:var(--radius-md);font-size:16px;font-weight:600;text-decoration:none;color:white;background:var(--gradient-btn);box-shadow:var(--shadow-btn);transition:all 0.3s ease;">
+        查看全部案例作品 →
       </a>
-      <p style="margin-top:16px;font-size:14px;color:var(--text-muted);">12 个精选 AI 实战案例 &middot; 支持在线播放预览 &middot; 按行业筛选</p>
+      <p style="margin-top:16px;font-size:14px;color:var(--text-muted);">12 个精选 AI 实战案例 · 支持在线播放预览 · 按行业筛选</p>
     </div>
   </div>
 </section>
@@ -1763,10 +1606,10 @@
     <h2>现在开始，让 AI 替你干活</h2>
     <p>开户即送价值50000元积分，零成本体验 AI 原生创意力<br>让 AI 帮你把创意变成素材，把广告消耗变成免费生产力</p>
     <div class="hero-btns" style="justify-content:center;">
-      <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-hero-primary">
-        立即免费体验 &rarr;
+      <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-cta-primary">
+        立即免费体验 →
       </a>
-      <a href="https://donsontech.feishu.cn/wiki/EaeCw3CjPiTItgksBY4cmEAfnue?fromScene=spaceOverview" target="_blank" class="btn-hero-secondary">
+      <a href="https://donsontech.feishu.cn/wiki/EaeCw3CjPiTItgksBY4cmEAfnue?fromScene=spaceOverview" target="_blank" class="btn-cta-secondary">
         查看使用文档
       </a>
     </div>
@@ -1776,15 +1619,15 @@
 <!-- ==================== Footer ==================== -->
 <footer class="footer">
   <div class="footer-inner">
-    <p>&copy; 2025 深圳东信时代信息技术有限公司 &middot; 营赛 智影</p>
+    <p>© 2025 深圳东信时代信息技术有限公司 · 智影</p>
     <p style="margin-top: 8px;">
       <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank">产品主页</a>
-      &nbsp;&middot;&nbsp;
+      ·
       <a href="../cases/index.html">案例作品</a>
-      &nbsp;&middot;&nbsp;
+      ·
       <a href="https://donsontech.feishu.cn/wiki/EaeCw3CjPiTItgksBY4cmEAfnue?fromScene=spaceOverview" target="_blank">使用手册</a>
-      &nbsp;&middot;&nbsp;
-      <span style="color:rgba(255,255,255,0.2)">营赛 智影 V1.0</span>
+      ·
+      <span style="color:rgba(255,255,255,0.2)">智影 inVision V1.0</span>
     </p>
   </div>
 </footer>
