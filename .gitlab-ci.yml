@@ -1,0 +1,20 @@
+# GitLab Pages deployment for 智影 inVision website
+# Deploys all static files to GitLab Pages
+
+pages:
+  stage: deploy
+  script:
+    - echo "Deploying to GitLab Pages..."
+    - mkdir -p public
+    - cp -r * public/ 2>/dev/null || true
+    - cp -r ./* public/ 2>/dev/null || true
+    - rm -rf public/.gitlab-ci.yml public/.gitignore
+    - echo "Pages deployment complete."
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  environment:
+    name: production
+    url: $CI_PAGES_URL
