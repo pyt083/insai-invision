@@ -1019,7 +1019,7 @@
   </div>
   <div class="nav-actions">
     <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-nav-login">登录</a>
-    <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-nav-cta">免费试用</a>
+    <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-nav-cta">立即试用</a>
   </div>
 </nav>
 
@@ -1043,7 +1043,7 @@
       </p>
       <div class="hero-btns">
         <a href="./trial/index.html" class="btn-hero-primary">
-          申请试用体验 &rarr;
+          立即试用体验 &rarr;
         </a>
         <a href="#core-value" class="btn-hero-secondary">了解更多</a>
       </div>
@@ -1789,7 +1789,7 @@
     <p>让 AI 帮你把创意变成素材，把广告消耗变成免费生产力</p>
     <div class="hero-btns" style="justify-content:center;">
       <a href="./trial/index.html" class="btn-hero-primary">
-        申请试用体验 &rarr;
+        立即试用体验 &rarr;
       </a>
       <a href="https://donsontech.feishu.cn/wiki/EaeCw3CjPiTItgksBY4cmEAfnue?fromScene=spaceOverview" target="_blank" class="btn-hero-secondary">
         查看使用文档
@@ -1800,6 +1800,11 @@
 
 <!-- ==================== 悬浮按钮组 ==================== -->
 <div class="float-btn-container">
+  <!-- 试用按钮 -->
+  <button class="float-btn float-btn-trial" onclick="togglePopup('trialPopup')" title="立即试用">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    <span>试用</span>
+  </button>
   <!-- 联系按钮 -->
   <button class="float-btn float-btn-contact" onclick="togglePopup('contactPopup')" title="联系我们">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -1810,11 +1815,6 @@
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
     <span>公众号</span>
   </button>
-  <!-- 试用按钮 -->
-  <a href="./trial/index.html" class="float-btn float-btn-trial" title="申请试用">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-    <span>试用</span>
-  </a>
 </div>
 
 <!-- 联系弹窗（企业微信） -->
@@ -1837,11 +1837,50 @@
   <p style="margin-top:12px;color:#64748B;font-size:13px;">东信官方公众号</p>
 </div>
 
+<!-- 试用弹窗（迷你表单） -->
+<div class="float-popup-overlay" id="trialPopupOverlay" onclick="togglePopup('trialPopup')"></div>
+<div class="float-popup" id="trialPopup" style="max-width:400px;">
+  <button class="float-popup-close" onclick="togglePopup('trialPopup')">&times;</button>
+  <h3>立即试用体验</h3>
+  <p class="float-popup-desc" style="margin-bottom:20px;">填写信息，免费获取7天试用体验</p>
+  <form id="trialMiniForm" onsubmit="submitTrialMini(event)" style="text-align:left;">
+    <div style="margin-bottom:12px;">
+      <label style="display:block;font-size:13px;font-weight:600;color:#0F172A;margin-bottom:4px;">公司/品牌名称 <span style="color:#EF4444;">*</span></label>
+      <input type="text" id="trialMiniCompany" required placeholder="请输入您的公司或品牌名称"
+        style="width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:14px;box-sizing:border-box;outline:none;"
+        onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
+    </div>
+    <div style="margin-bottom:12px;">
+      <label style="display:block;font-size:13px;font-weight:600;color:#0F172A;margin-bottom:4px;">联系人姓名 <span style="color:#EF4444;">*</span></label>
+      <input type="text" id="trialMiniName" required placeholder="请输入您的真实姓名"
+        style="width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:14px;box-sizing:border-box;outline:none;"
+        onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
+    </div>
+    <div style="margin-bottom:16px;">
+      <label style="display:block;font-size:13px;font-weight:600;color:#0F172A;margin-bottom:4px;">联系手机号 <span style="color:#EF4444;">*</span></label>
+      <input type="tel" id="trialMiniPhone" required placeholder="请输入手机号"
+        style="width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:14px;box-sizing:border-box;outline:none;"
+        onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
+    </div>
+    <button type="submit" style="width:100%;padding:12px;background:#2563EB;color:#FFF;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">立即申请试用</button>
+  </form>
+  <div id="trialMiniSuccess" style="display:none;text-align:center;padding:20px 0;">
+    <div style="font-size:48px;margin-bottom:12px;">&#10003;</div>
+    <p style="color:#0F172A;font-size:16px;font-weight:600;">感谢申请！</p>
+    <p style="color:#64748B;font-size:14px;">我们将在 1 个工作日内联系您，并为您开通专属试用通道。</p>
+  </div>
+</div>
+
 <!-- 弹窗 JS -->
 <script>
 function togglePopup(id) {
   document.getElementById(id + 'Overlay').classList.toggle('show');
   document.getElementById(id).classList.toggle('show');
+}
+function submitTrialMini(e) {
+  e.preventDefault();
+  document.getElementById('trialMiniForm').style.display = 'none';
+  document.getElementById('trialMiniSuccess').style.display = 'block';
 }
 </script>
 
