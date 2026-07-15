@@ -1224,7 +1224,7 @@ body::after {
 }
 .stats-grid { position: relative !important; z-index: 1 !important; }
 .stat-item {
-  padding: 26px 18px !important;
+  padding: 28px 24px !important;
   border-radius: 22px !important;
   background: rgba(255,255,255,0.78) !important;
   border: 1px solid rgba(119, 176, 255, 0.22) !important;
@@ -1232,7 +1232,8 @@ body::after {
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
 }
-.stat-item p { color: #657593 !important; }
+.stat-item h3 { white-space: nowrap !important; }
+.stat-item p { color: #657593 !important; white-space: nowrap !important; }
 .stat-1 h3 { color: #075DFF !important; }
 .stat-2 h3 { color: #12A897 !important; }
 .stat-3 h3 { color: #8761FF !important; }
@@ -1320,7 +1321,7 @@ body::after {
   .iso-block { font-size: 12px !important; padding: 8px 12px !important; }
   .compare-table-wrap { border-radius: 18px !important; }
   .model-aggregate-block { padding: 24px 20px !important; }
-  .stat-item { padding: 20px 12px !important; }
+  .stat-item { padding: 20px 16px !important; }
 }
 
 @media (max-width: 480px) {
