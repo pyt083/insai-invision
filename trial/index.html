@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>申请试用 - 智影 inVision</title>
+<link rel="icon" href="../assets/insai-invision-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/insai-invision-logo.png">
+<link rel="stylesheet" href="../assets/frameyu-theme.css?v=20260706-v5">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary: #2563EB;
+    --primary-dark: #0F172A;
+    --primary-light: #3B82F6;
+    --primary-blue: #2563EB;
+    --primary-blue-hover: #1D4ED8;
+    --primary-blue-light: #EFF6FF;
+    --accent: #0EA5E9;
+    --accent-blue: #2563EB;
+    --accent-green: #10B981;
+    --accent-purple: #3B82F6;
+    --accent-orange: #0EA5E9;
+    --accent-pink: #3B82F6;
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8FAFC;
+    --bg-tertiary: #F1F5F9;
+    --bg-white: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --border: #E2E8F0;
+    --border-light: #E2E8F0;
+    --border-subtle: #F1F5F9;
+    --border-hover: #CBD5E1;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.10);
+    --shadow-xl: 0 12px 32px rgba(0,0,0,0.12);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --gradient-hero: #F8FAFC;
+    --gradient-primary: #2563EB;
+    --gradient-blue: #2563EB;
+    --gradient-accent-1: #2563EB;
+    --gradient-accent-2: #3B82F6;
+    --gradient-accent-3: #10B981;
+    --gradient-accent-4: #0EA5E9;
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========= Nav ========= */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 72px;
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid rgba(226,232,240,0.8);
+    transition: all 0.3s ease;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 20px; font-weight: 800; color: var(--text-primary);
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--gradient-primary);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 18px; font-weight: 900;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-secondary); font-size: 15px; font-weight: 500;
+    transition: color 0.2s; position: relative;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-actions { display: flex; gap: 12px; align-items: center; }
+  .btn-nav-login {
+    padding: 8px 20px; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    text-decoration: none; color: var(--primary);
+    border: 1px solid var(--border-light); background: transparent;
+    transition: all 0.2s ease;
+  }
+  .btn-nav-login:hover { border-color: var(--primary); background: rgba(37,99,235,0.04); }
+  .btn-nav-cta {
+    padding: 8px 22px; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    text-decoration: none; color: white;
+    background: var(--gradient-primary); border: none;
+    box-shadow: 0 2px 12px rgba(37,99,235,0.3);
+    transition: all 0.25s ease;
+  }
+  .btn-nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37,99,235,0.4); }
+
+  /* ========= Page Layout ========= */
+  .page-wrapper {
+    padding-top: 72px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-section {
+    flex: 1;
+    padding: 60px 24px;
+    background: #0F172A;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .form-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    max-width: 640px;
+    width: 100%;
+    padding: 48px 40px;
+    margin: 20px 0;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .form-header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .form-header p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+  }
+  .form-group label .required {
+    color: #EF4444;
+    margin-left: 2px;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="tel"],
+  .form-group input[type="email"],
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--text-primary);
+    background: #FFFFFF;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+  }
+  .form-group input[type="text"]:focus,
+  .form-group input[type="tel"]:focus,
+  .form-group input[type="email"]:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #94A3B8;
+  }
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 96px;
+  }
+
+  .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+  .radio-group input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #CBD5E1;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .radio-group input[type="radio"]:checked {
+    border-color: #2563EB;
+    background: #2563EB;
+  }
+  .radio-group input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FFFFFF;
+  }
+
+  .btn-submit {
+    width: 100%;
+    height: 48px;
+    border-radius: 8px;
+    background: #2563EB;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    margin-top: 8px;
+  }
+  .btn-submit:hover {
+    background: #1D4ED8;
+  }
+  .btn-submit:active {
+    transform: scale(0.98);
+  }
+
+  .error-msg {
+    color: #EF4444;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+  }
+  .form-group.error input,
+  .form-group.error select {
+    border-color: #EF4444;
+  }
+  .form-group.error .error-msg {
+    display: block;
+  }
+
+  .success-message {
+    display: none;
+    text-align: center;
+    padding: 60px 40px;
+  }
+  .success-message .success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #10B981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 32px;
+    color: white;
+  }
+  .success-message h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+  .success-message p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* ========= Footer ========= */
+  .footer {
+    background: #0F172A;
+    padding: 40px 48px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-inner { max-width: 1080px; margin: 0 auto; }
+  .footer p { color: rgba(255,255,255,0.35); font-size: 13px; line-height: 1.8; }
+  .footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer a:hover { color: var(--primary-light); }
+
+  /* ========= Responsive ========= */
+  @media (max-width: 768px) {
+    .nav { padding: 0 16px; height: 60px; }
+    .nav-logo { font-size: 17px; }
+    .nav-logo-icon { width: 30px; height: 30px; font-size: 15px; }
+    .nav-links { display: none; }
+    .form-section { padding: 40px 16px; }
+    .form-card { padding: 32px 24px; }
+    .form-header h1 { font-size: 1.5rem; }
+    .footer { padding: 30px 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .nav { height: 52px; }
+    .nav-logo { font-size: 15px; gap: 6px; }
+    .nav-logo-icon { width: 26px; height: 26px; font-size: 13px; border-radius: 8px; }
+    .nav-actions .btn-nav-login { padding: 6px 12px; font-size: 12px; }
+    .nav-actions .btn-nav-cta { padding: 6px 14px; font-size: 12px; }
+    .form-section { padding: 24px 12px; }
+    .form-card { padding: 24px 16px; }
+    .form-header h1 { font-size: 1.3rem; }
+    .btn-submit { height: 44px; font-size: 15px; }
+    .footer { padding: 24px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== Nav ==================== -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-icon" aria-hidden="true"></div>
+    <span class="nav-brand-text">
+      <span class="nav-brand-cn">智影</span>
+      <span class="nav-brand-en">inVision</span>
+    </span>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html#core-value">核心能力</a>
+    <a href="../index.html#models">功能亮点</a>
+    <a href="../cases/index.html">案例作品</a>
+    <a href="../index.html#industries">行业方案</a>
+    <a href="https://donsontech.feishu.cn/wiki/EaeCw3CjPiTItgksBY4cmEAfnue?fromScene=spaceOverview" target="_blank">使用文档</a>
+  </div>
+  <div class="nav-actions">
+    <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-nav-login">登录</a>
+    <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-nav-cta">免费试用</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <!-- ==================== Form Section ==================== -->
+  <section class="form-section">
+    <div class="form-card" id="formCard">
+      <div class="form-header">
+        <h1>申请试用 · 营赛智影</h1>
+        <p>填写信息，免费获取7天试用体验 + 专属方案定制</p>
+      </div>
+
+      <form id="trialForm" novalidate>
+        <!-- 公司/品牌名称 -->
+        <div class="form-group" id="group-company">
+          <label>公司/品牌名称 <span class="required">*</span></label>
+          <input type="text" id="company" name="company" placeholder="请输入您的公司或品牌名称" required>
+          <div class="error-msg">请填写公司/品牌名称</div>
+        </div>
+
+        <!-- 所属行业 -->
+        <div class="form-group" id="group-industry">
+          <label>所属行业 <span class="required">*</span></label>
+          <select id="industry" name="industry" required>
+            <option value="">请选择所属行业</option>
+            <option value="电商">电商</option>
+            <option value="游戏">游戏</option>
+            <option value="金融">金融</option>
+            <option value="教育">教育</option>
+            <option value="本地生活">本地生活</option>
+            <option value="美妆个护">美妆个护</option>
+            <option value="3C数码">3C数码</option>
+            <option value="服装服饰">服装服饰</option>
+            <option value="医疗健康">医疗健康</option>
+            <option value="汽车">汽车</option>
+            <option value="其他">其他</option>
+          </select>
+          <div class="error-msg">请选择所属行业</div>
+        </div>
+
+        <!-- 联系人姓名 -->
+        <div class="form-group" id="group-name">
+          <label>联系人姓名 <span class="required">*</span></label>
+          <input type="text" id="name" name="name" placeholder="请输入您的真实姓名" required>
+          <div class="error-msg">请填写联系人姓名</div>
+        </div>
+
+        <!-- 联系手机号 -->
+        <div class="form-group" id="group-phone">
+          <label>联系手机号 <span class="required">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="请输入手机号" required>
+          <div class="error-msg">请填写有效的手机号</div>
+        </div>
+
+        <!-- 联系邮箱 -->
+        <div class="form-group">
+          <label>联系邮箱</label>
+          <input type="email" id="email" name="email" placeholder="请输入邮箱地址">
+        </div>
+
+        <!-- 业务场景 -->
+        <div class="form-group">
+          <label>你希望通过AI视频解决什么业务场景？</label>
+          <textarea id="scenario" name="scenario" placeholder="例如：批量生成电商带货短视频 / 快速产出游戏买量素材 / 制作AI短剧等" rows="3"></textarea>
+        </div>
+
+        <!-- 视频制作需求 -->
+        <div class="form-group">
+          <label>是否有视频制作需求？</label>
+          <div class="radio-group">
+            <label><input type="radio" name="demand" value="每天 1-20 条"> 每天 1-20 条</label>
+            <label><input type="radio" name="demand" value="每天 20-50 条"> 每天 20-50 条</label>
+            <label><input type="radio" name="demand" value="每天 50 条以上"> 每天 50 条以上</label>
+            <label><input type="radio" name="demand" value="暂时不确定"> 暂时不确定</label>
+          </div>
+        </div>
+
+        <!-- 提交按钮 -->
+        <button type="submit" class="btn-submit">立即申请试用</button>
+      </form>
+
+      <!-- 成功消息 -->
+      <div class="success-message" id="successMessage">
+        <div class="success-icon">&#10003;</div>
+        <h2>感谢申请！</h2>
+        <p>我们将在 1 个工作日内联系您，并为您开通专属试用通道。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2025 深圳东信时代信息技术有限公司 &middot; 智影</p>
+      <p style="margin-top: 8px;">
+        <a href="../index.html">产品主页</a>
+        &nbsp;&middot;&nbsp;
+        <a href="../cases/index.html">案例作品</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://donsontech.feishu.cn/wiki/EaeCw3CjPiTItgksBY4cmEAfnue?fromScene=spaceOverview" target="_blank">使用手册</a>
+        &nbsp;&middot;&nbsp;
+        <span style="color:rgba(255,255,255,0.2)">智影 inVision V1.0</span>
+      </p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var form = document.getElementById('trialForm');
+  var formCard = document.getElementById('formCard');
+  var successMessage = document.getElementById('successMessage');
+
+  var requiredFields = [
+    { id: 'company', groupId: 'group-company', label: '公司/品牌名称' },
+    { id: 'industry', groupId: 'group-industry', label: '所属行业' },
+    { id: 'name', groupId: 'group-name', label: '联系人姓名' },
+    { id: 'phone', groupId: 'group-phone', label: '联系手机号' }
+  ];
+
+  function clearErrors() {
+    for (var i = 0; i < requiredFields.length; i++) {
+      var group = document.getElementById(requiredFields[i].groupId);
+      if (group) {
+        group.classList.remove('error');
+      }
+    }
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    clearErrors();
+
+    var hasError = false;
+    var firstErrorGroup = null;
+
+    for (var i = 0; i < requiredFields.length; i++) {
+      var field = document.getElementById(requiredFields[i].id);
+      var group = document.getElementById(requiredFields[i].groupId);
+      if (!field || !field.value.trim()) {
+        if (group) {
+          group.classList.add('error');
+        }
+        if (!firstErrorGroup) {
+          firstErrorGroup = group;
+        }
+        hasError = true;
+      }
+    }
+
+    // Phone validation
+    var phone = document.getElementById('phone');
+    var phoneGroup = document.getElementById('group-phone');
+    if (phone && phone.value.trim() && !/^1[3-9]\d{9}$/.test(phone.value.trim())) {
+      if (phoneGroup) {
+        phoneGroup.classList.add('error');
+        phoneGroup.querySelector('.error-msg').textContent = '请填写有效的手机号';
+      }
+      if (!firstErrorGroup) {
+        firstErrorGroup = phoneGroup;
+      }
+      hasError = true;
+    }
+
+    if (hasError) {
+      if (firstErrorGroup) {
+        firstErrorGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    // Success: hide form, show success message
+    form.style.display = 'none';
+    successMessage.style.display = 'block';
+    formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Clear error on input
+  for (var i = 0; i < requiredFields.length; i++) {
+    var field = document.getElementById(requiredFields[i].id);
+    var group = document.getElementById(requiredFields[i].groupId);
+    if (field && group) {
+      field.addEventListener('input', function(g) {
+        return function() {
+          g.classList.remove('error');
+        };
+      }(group));
+      field.addEventListener('change', function(g) {
+        return function() {
+          g.classList.remove('error');
+        };
+      }(group));
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

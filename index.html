@@ -946,6 +946,35 @@
 @media (max-width: 1024px) { .st-tool-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .st-tool-grid { grid-template-columns: 1fr; } }
 
+  .contact-section {
+  padding: 80px 24px;
+  background: var(--bg-secondary);
+  text-align: center;
+}
+.contact-section h2 {
+  font-size: 2rem; font-weight: 700;
+  color: var(--text-primary); margin-bottom: 8px;
+}
+.contact-section > .contact-content > p {
+  color: var(--text-secondary); margin-bottom: 40px;
+  font-size: 16px;
+}
+.contact-grid {
+  display: flex; gap: 48px; justify-content: center;
+  flex-wrap: wrap; max-width: 640px; margin: 0 auto;
+}
+.contact-card {
+  background: #FFFFFF; border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px;
+  box-shadow: var(--shadow-sm); transition: all 0.3s ease;
+}
+.contact-card:hover { box-shadow: var(--shadow-md); }
+.contact-card h4 {
+  font-size: 16px; font-weight: 600; margin: 16px 0 4px;
+  color: var(--text-primary);
+}
+.contact-card p { color: var(--text-secondary); font-size: 14px; }
+
   </style>
 <link rel="icon" href="./assets/insai-invision-logo.png" type="image/png">
 <link rel="apple-touch-icon" href="./assets/insai-invision-logo.png">
@@ -994,8 +1023,8 @@
         智影，一站式 AI 生成脚本、图片、视频<br>让每个广告主拥有自己的 AI 创意团队
       </p>
       <div class="hero-btns">
-        <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-hero-primary">
-          免费开始使用 &rarr;
+        <a href="./trial/index.html" class="btn-hero-primary">
+          申请试用体验 &rarr;
         </a>
         <a href="#core-value" class="btn-hero-secondary">了解更多</a>
       </div>
@@ -1740,12 +1769,32 @@
     <h2>现在开始，让 AI 替你干活</h2>
     <p>让 AI 帮你把创意变成素材，把广告消耗变成免费生产力</p>
     <div class="hero-btns" style="justify-content:center;">
-      <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank" class="btn-hero-primary">
-        立即免费体验 &rarr;
+      <a href="./trial/index.html" class="btn-hero-primary">
+        申请试用体验 &rarr;
       </a>
       <a href="https://donsontech.feishu.cn/wiki/EaeCw3CjPiTItgksBY4cmEAfnue?fromScene=spaceOverview" target="_blank" class="btn-hero-secondary">
         查看使用文档
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 联系方式 ==================== -->
+<section class="contact-section">
+  <div class="contact-content">
+    <h2>联系我们</h2>
+    <p>扫码添加企业微信，获取专属服务</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <img src="./assets/qr-wecom.png" alt="企业微信二维码" style="width:160px;height:160px;border-radius:8px;">
+        <h4>企业微信</h4>
+        <p>扫码咨询产品详情</p>
+      </div>
+      <div class="contact-card">
+        <img src="./assets/qr-dongxin.png" alt="东信官方公众号" style="width:160px;height:160px;border-radius:8px;">
+        <h4>东信官方公众号</h4>
+        <p>关注获取最新资讯</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1755,7 +1804,7 @@
   <div class="footer-inner">
     <p>&copy; 2025 深圳东信时代信息技术有限公司 &middot; 智影</p>
     <p style="margin-top: 8px;">
-      <a href="https://invision.yingsaidata.com/login?redirect=/generate" target="_blank">产品主页</a>
+      <a href="./trial/index.html">产品主页</a>
       &nbsp;&middot;&nbsp;
       <a href="./cases/index.html">案例作品</a>
       &nbsp;&middot;&nbsp;
