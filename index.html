@@ -946,34 +946,59 @@
 @media (max-width: 1024px) { .st-tool-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .st-tool-grid { grid-template-columns: 1fr; } }
 
-  .contact-section {
-  padding: 80px 24px;
-  background: var(--bg-secondary);
+  /* 悬浮联系按钮 */
+.float-contact-btn {
+  position: fixed; bottom: 80px; right: 24px;
+  width: 56px; height: 56px;
+  background: #2563EB; color: #FFFFFF;
+  border-radius: 28px; border: none;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.35);
+  z-index: 999; transition: all 0.3s ease;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+}
+.float-contact-btn:hover {
+  background: #1D4ED8; transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(37,99,235,0.45);
+}
+/* 弹窗遮罩 */
+.contact-popup-overlay {
+  position: fixed; inset: 0; background: rgba(15,23,42,0.4);
+  z-index: 1000; opacity: 0; visibility: hidden;
+  transition: all 0.3s ease;
+}
+.contact-popup-overlay.show { opacity: 1; visibility: visible; }
+/* 弹窗 */
+.contact-popup {
+  position: fixed; bottom: 50%; right: 50%; transform: translate(50%, 50%);
+  background: #FFFFFF; border-radius: 16px;
+  padding: 32px; max-width: 420px; width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  z-index: 1001; opacity: 0; visibility: hidden;
+  transition: all 0.3s ease;
+}
+.contact-popup.show { opacity: 1; visibility: visible; }
+.contact-popup-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px;
+}
+.contact-popup-header h3 { font-size: 20px; font-weight: 700; color: #0F172A; margin: 0; }
+.contact-popup-close {
+  background: none; border: none; font-size: 28px; color: #94A3B8;
+  cursor: pointer; line-height: 1; padding: 0 4px;
+}
+.contact-popup-close:hover { color: #0F172A; }
+.contact-popup-grid {
+  display: flex; gap: 24px; justify-content: center;
+}
+.contact-popup-card {
   text-align: center;
 }
-.contact-section h2 {
-  font-size: 2rem; font-weight: 700;
-  color: var(--text-primary); margin-bottom: 8px;
+.contact-popup-card h4 {
+  font-size: 15px; font-weight: 600; margin: 12px 0 4px; color: #0F172A;
 }
-.contact-section > .contact-content > p {
-  color: var(--text-secondary); margin-bottom: 40px;
-  font-size: 16px;
-}
-.contact-grid {
-  display: flex; gap: 48px; justify-content: center;
-  flex-wrap: wrap; max-width: 640px; margin: 0 auto;
-}
-.contact-card {
-  background: #FFFFFF; border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 32px;
-  box-shadow: var(--shadow-sm); transition: all 0.3s ease;
-}
-.contact-card:hover { box-shadow: var(--shadow-md); }
-.contact-card h4 {
-  font-size: 16px; font-weight: 600; margin: 16px 0 4px;
-  color: var(--text-primary);
-}
-.contact-card p { color: var(--text-secondary); font-size: 14px; }
+.contact-popup-card p { color: #64748B; font-size: 13px; margin: 0; }
 
   </style>
 <link rel="icon" href="./assets/insai-invision-logo.png" type="image/png">
@@ -1779,25 +1804,41 @@
   </div>
 </section>
 
-<!-- ==================== 联系方式 ==================== -->
-<section class="contact-section">
-  <div class="contact-content">
-    <h2>联系我们</h2>
-    <p>扫码添加企业微信，获取专属服务</p>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <img src="./assets/qr-wecom.png" alt="企业微信二维码" style="width:160px;height:160px;border-radius:8px;">
-        <h4>企业微信</h4>
-        <p>扫码咨询产品详情</p>
-      </div>
-      <div class="contact-card">
-        <img src="./assets/qr-dongxin.png" alt="东信官方公众号" style="width:160px;height:160px;border-radius:8px;">
-        <h4>东信官方公众号</h4>
-        <p>关注获取最新资讯</p>
-      </div>
+<!-- ==================== 悬浮联系按钮 ==================== -->
+<div class="float-contact-btn" id="floatContactBtn" onclick="toggleContactPopup()">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  <span>联系</span>
+</div>
+
+<div class="contact-popup-overlay" id="contactPopupOverlay" onclick="toggleContactPopup()"></div>
+<div class="contact-popup" id="contactPopup">
+  <div class="contact-popup-header">
+    <h3>联系我们</h3>
+    <button class="contact-popup-close" onclick="toggleContactPopup()">&times;</button>
+  </div>
+  <p style="text-align:center;color:#64748B;font-size:14px;margin-bottom:24px;">扫码添加，获取专属服务</p>
+  <div class="contact-popup-grid">
+    <div class="contact-popup-card">
+      <img src="./assets/qr-wecom.png" alt="企业微信二维码" style="width:140px;height:140px;border-radius:8px;border:1px solid #E2E8F0;">
+      <h4>企业微信</h4>
+      <p>扫码咨询产品详情</p>
+    </div>
+    <div class="contact-popup-card">
+      <img src="./assets/qr-dongxin.png" alt="东信官方公众号" style="width:140px;height:140px;border-radius:8px;border:1px solid #E2E8F0;">
+      <h4>东信官方公众号</h4>
+      <p>关注获取最新资讯</p>
     </div>
   </div>
-</section>
+</div>
+
+<script>
+function toggleContactPopup() {
+  document.getElementById('contactPopupOverlay').classList.toggle('show');
+  document.getElementById('contactPopup').classList.toggle('show');
+}
+</script>
 
 <!-- ==================== Footer ==================== -->
 <footer class="footer">
