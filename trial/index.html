@@ -252,6 +252,49 @@
     background: #FFFFFF;
   }
 
+  /* ========= Checkbox Group ========= */
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+  .checkbox-group input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #CBD5E1;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .checkbox-group input[type="checkbox"]:checked {
+    border-color: #2563EB;
+    background: #2563EB;
+  }
+  .checkbox-group input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 4px;
+    height: 8px;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
   .btn-submit {
     width: 100%;
     height: 48px;
@@ -433,24 +476,38 @@
 
         <!-- 联系邮箱 -->
         <div class="form-group">
-          <label>联系邮箱</label>
+          <label>联系邮箱 <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
           <input type="email" id="email" name="email" placeholder="请输入邮箱地址">
         </div>
 
         <!-- 业务场景 -->
         <div class="form-group">
-          <label>你希望通过AI视频解决什么业务场景？</label>
+          <label>你希望通过AI视频解决什么业务场景？ <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
           <textarea id="scenario" name="scenario" placeholder="例如：批量生成电商带货短视频 / 快速产出游戏买量素材 / 制作AI短剧等" rows="3"></textarea>
         </div>
 
         <!-- 视频制作需求 -->
         <div class="form-group">
-          <label>是否有视频制作需求？</label>
-          <div class="radio-group">
-            <label><input type="radio" name="demand" value="每天 1-20 条"> 每天 1-20 条</label>
-            <label><input type="radio" name="demand" value="每天 20-50 条"> 每天 20-50 条</label>
-            <label><input type="radio" name="demand" value="每天 50 条以上"> 每天 50 条以上</label>
-            <label><input type="radio" name="demand" value="暂时不确定"> 暂时不确定</label>
+          <label>是否有视频制作需求？ <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="demand_1_20" value="每天 1-20 条"> 每天 1-20 条</label>
+            <label><input type="checkbox" name="demand_20_50" value="每天 20-50 条"> 每天 20-50 条</label>
+            <label><input type="checkbox" name="demand_50_plus" value="每天 50 条以上"> 每天 50 条以上</label>
+            <label><input type="checkbox" name="demand_unsure" value="暂时不确定"> 暂时不确定</label>
+          </div>
+        </div>
+
+        <!-- 了解渠道 -->
+        <div class="form-group">
+          <label>您从哪里了解到营赛智影？ <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="source_friend" value="朋友推荐"> 朋友推荐</label>
+            <label><input type="checkbox" name="source_douyin" value="抖音"> 抖音</label>
+            <label><input type="checkbox" name="source_wechat" value="微信"> 微信</label>
+            <label><input type="checkbox" name="source_xiaohongshu" value="小红书"> 小红书</label>
+            <label><input type="checkbox" name="source_baidu" value="百度"> 百度</label>
+            <label><input type="checkbox" name="source_ai" value="AI问答"> AI问答</label>
+            <label><input type="checkbox" name="source_other" value="其他"> 其他</label>
           </div>
         </div>
 

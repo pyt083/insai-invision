@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>智影 inVision - 让每条创意，都自带爆款基因</title>
+<title>智影 inVision - Seedance 2.5 首发</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1001,6 +1001,14 @@
 </head>
 <body>
 
+<!-- ==================== Seedance 2.5 首发横幅 ==================== -->
+<div class="launch-banner">
+  <div class="launch-banner-inner">
+    <span>🎉 Seedance 2.5 已上线・新用户注册送 15000 星火币体验金</span>
+    <a href="./trial/index.html">立即试用</a>
+  </div>
+</div>
+
 <!-- ==================== Nav ==================== -->
 <nav class="nav">
   <a href="./product-intro/index.html" class="nav-logo">
@@ -1023,66 +1031,153 @@
   </div>
 </nav>
 
-<!-- ==================== Hero ==================== -->
-<section class="hero">
+<!-- ==================== Seedance 首屏横向滑动 ==================== -->
+<div class="seedance-screen-shell" data-seedance-slider>
+  <div class="seedance-screen-track">
+<section class="hero seedance-hero seedance-screen-panel">
   <div class="hero-orb-1"></div>
   <div class="hero-orb-2"></div>
 
   <div class="hero-container">
     <div class="hero-left">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        AI 原生 &middot; 行业级 &middot; 智能创意平台
-      </div>
       <h1>
-        <span class="line-block">让每条创意，</span>
-        <span class="line-block">都自带<span class="highlight-text">爆款基因</span></span>
+        <span class="line-block">Seedance 2.5 首发・</span>
+        <span class="line-block">企业营销视频进入<span class="highlight-text">新世代</span></span>
       </h1>
       <p class="hero-desc">
-        智影，一站式 AI 生成脚本、图片、视频<br>让每个广告主拥有自己的 AI 创意团队
+        🔥 全网首家上线 Seedance 2.5 的企业级平台
+      </p>
+      <p class="hero-sub">
+        基于 ByteDance Seed 视频模型，将文本提示词、图片、视频片段和音频参考转化为更具电影感的视频，支持最长 30 秒生成、50 个多模态参考与局部编辑控制。
       </p>
       <div class="hero-btns">
         <a href="./trial/index.html" class="btn-hero-primary">
           立即试用体验 &rarr;
         </a>
-        <a href="#core-value" class="btn-hero-secondary">了解更多</a>
+        <a href="#seedance-comparison" class="btn-hero-secondary" data-seedance-goto-compare>查看 2.5 对比</a>
+      </div>
+      <div class="seedance-poster-strip" aria-label="Seedance 2.5 宣发滚动播放图">
+        <div class="seedance-poster-track">
+          <article class="seedance-poster-card">
+            <img src="./cases/thumbs/case_048.jpg" alt="人物动作演示画面">
+            <span>ByteDance Seed 模型</span>
+          </article>
+          <article class="seedance-poster-card">
+            <img src="./cases/thumbs/case_049.jpg" alt="营销场景一致性演示画面">
+            <span>最长 30 秒生成</span>
+          </article>
+          <article class="seedance-poster-card">
+            <img src="./cases/thumbs/case_050.jpg" alt="多语言字幕渲染演示画面">
+            <span>局部编辑控制</span>
+          </article>
+          <article class="seedance-poster-card seedance-poster-wide">
+            <img src="./cases/thumbs/case_006.jpg" alt="多模态参考生成演示画面">
+            <span>文本/图片/视频/音频驱动</span>
+          </article>
+          <article class="seedance-poster-card">
+            <img src="./cases/thumbs/case_048.jpg" alt="人物动作演示画面">
+            <span>ByteDance Seed 模型</span>
+          </article>
+          <article class="seedance-poster-card">
+            <img src="./cases/thumbs/case_049.jpg" alt="营销场景一致性演示画面">
+            <span>最长 30 秒生成</span>
+          </article>
+        </div>
       </div>
     </div>
-    <div class="hero-right home-hero-right">
-      <div class="hero-visual hero-agent-visual home-agent-visual">
-        <div class="agent-platform" aria-hidden="true"></div>
-        <div class="agent-toolbar" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
+    <div class="hero-right seedance-hero-right">
+      <div class="seedance-demo-card">
+        <div class="seedance-demo-topline">
+          <span>Seedance 2.5 首发演示</span>
+          <strong>Seed 视频模型</strong>
         </div>
-        <div class="agent-panel agent-script">
-          <strong><span class="agent-card-icon agent-icon-script" aria-hidden="true"></span>AI 脚本生成</strong>
-          <div class="agent-script-lines" aria-hidden="true"><span></span><span></span></div>
-        </div>
-        <div class="agent-panel agent-video">
-          <strong><span class="agent-card-icon agent-icon-video" aria-hidden="true"></span>AI视频</strong>
-          <div class="agent-video-preview" aria-hidden="true">
-            <span class="agent-video-frame"></span>
-            <span class="agent-video-frame"></span>
-            <span class="agent-video-play"></span>
+        <div class="seedance-demo-frame">
+          <video id="seedanceDemoVideo" poster="./cases/thumbs/case_048.jpg" muted loop playsinline preload="metadata">
+            <source src="./cases/videos/case_048.mp4" type="video/mp4">
+          </video>
+          <button class="seedance-play-button" type="button" data-demo-play aria-label="播放首发演示视频">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 7.5v9l7-4.5-7-4.5z"></path>
+            </svg>
+          </button>
+          <div class="seedance-demo-caption">
+            <span>多模态创意指令</span>
+            <strong>文本 / 图片 / 视频片段 / 音频参考统一驱动</strong>
           </div>
         </div>
-        <div class="agent-panel agent-image">
-          <strong><span class="agent-card-icon agent-icon-image" aria-hidden="true"></span>AI图片</strong>
-          <div class="agent-image-preview" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </div>
+        <div class="seedance-demo-stats">
+          <span>最长 30 秒</span>
+          <span>50 个参考</span>
+          <span>局部编辑</span>
         </div>
-        <div class="agent-phone">
-          <div class="agent-phone-title">AI Agent</div>
-          <div class="agent-avatar" aria-hidden="true"></div>
-          <div class="agent-wave" aria-hidden="true"></div>
-        </div>
-        <div class="agent-chip agent-model"><span></span>多模型聚合</div>
-        <div class="agent-chip agent-digital"><span></span>数字人口播</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ==================== Seedance 2.5 首发对比区 ==================== -->
+<section class="section seedance-compare-section seedance-screen-panel" id="seedance-comparison">
+  <div class="seedance-compare-grid">
+    <div class="seedance-compare-media" aria-label="Seedance 2.0 与 Seedance 2.5 同 prompt 画面对比">
+      <div class="seedance-prompt-card">
+        <span>同一多模态 Prompt</span>
+        <p>生成一条美妆产品种草短片：使用文本提示词、产品图、视频片段和音频参考，保持人物动作、镜头节奏与场景连续性一致。</p>
+      </div>
+      <div class="seedance-version-grid">
+        <article class="seedance-version-card is-old">
+          <div class="seedance-version-head">
+            <strong>Seedance 2.0</strong>
+            <span>上一代效果</span>
+          </div>
+          <div class="seedance-version-screen">
+            <img src="./cases/thumbs/case_048.jpg" alt="Seedance 2.0 生成画面对比">
+            <div class="seedance-text-sample">净白亮采牙膏</div>
+          </div>
+          <ul>
+            <li>短片时长与镜头承接受限</li>
+            <li>参考素材融合能力较弱</li>
+            <li>局部修改通常需要重做整段</li>
+          </ul>
+        </article>
+        <article class="seedance-version-card is-new">
+          <div class="seedance-version-head">
+            <strong>Seedance 2.5</strong>
+            <span>首发升级</span>
+          </div>
+          <div class="seedance-version-screen">
+            <video muted loop playsinline autoplay poster="./cases/thumbs/case_048.jpg">
+              <source src="./cases/videos/case_048.mp4" type="video/mp4">
+            </video>
+            <div class="seedance-text-sample">净白亮采牙膏</div>
+          </div>
+          <ul>
+            <li>最长 30 秒 AI 视频生成</li>
+            <li>支持 50 个多模态参考</li>
+            <li>局部编辑让细节可控迭代</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+    <div class="seedance-compare-copy">
+      <span class="seedance-section-label">首发对比区</span>
+      <h2>同样的创意，2.5 让视频生成控制力全面升级</h2>
+      <p>面向企业营销素材生产，Seedance 2.5 支持最长 30 秒视频、最多 50 个多模态参考，并通过局部编辑把文本、图片、视频片段和音频参考真正纳入同一套创作流程。</p>
+      <div class="seedance-compare-points">
+        <div><strong>Seed 模型</strong><span>ByteDance Seed 视频模型带来电影感生成能力</span></div>
+        <div><strong>30 秒视频</strong><span>更适合完整叙事、产品展示与广告脚本</span></div>
+        <div><strong>多模态参考</strong><span>最多 50 个文本、图片、视频与音频参考</span></div>
+        <div><strong>局部编辑</strong><span>指定画面区域调整，降低整段重做成本</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+  </div>
+  <button class="seedance-slide-button" type="button" data-seedance-next aria-label="查看 Seedance 2.5 对比屏">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9.3 5.3a1 1 0 0 1 1.4 0l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.4-1.4l5.29-5.3L9.3 6.7a1 1 0 0 1 0-1.4z"></path>
+    </svg>
+  </button>
+</div>
 
 <!-- ==================== 核心价值 ==================== -->
 <section class="section compare-section" id="core-value">
@@ -1882,6 +1977,62 @@ function submitTrialMini(e) {
   document.getElementById('trialMiniForm').style.display = 'none';
   document.getElementById('trialMiniSuccess').style.display = 'block';
 }
+
+(function initSeedanceDemoPlayer() {
+  var demoVideo = document.getElementById('seedanceDemoVideo');
+  var playButton = document.querySelector('[data-demo-play]');
+  if (!demoVideo || !playButton) return;
+
+  playButton.addEventListener('click', function() {
+    if (demoVideo.paused) {
+      playButton.classList.add('is-playing');
+      var playPromise = demoVideo.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(function() {
+          playButton.classList.remove('is-playing');
+          demoVideo.setAttribute('controls', 'controls');
+        });
+      }
+    } else {
+      demoVideo.pause();
+    }
+  });
+
+  demoVideo.addEventListener('play', function() {
+    playButton.classList.add('is-playing');
+  });
+
+  demoVideo.addEventListener('pause', function() {
+    playButton.classList.remove('is-playing');
+  });
+})();
+
+(function initSeedanceScreenSlider() {
+  var shell = document.querySelector('[data-seedance-slider]');
+  var toggleButton = document.querySelector('[data-seedance-next]');
+  var compareLinks = document.querySelectorAll('[data-seedance-goto-compare], a[href="#seedance-comparison"]');
+  if (!shell || !toggleButton) return;
+
+  function setSecondScreen(isSecond) {
+    shell.classList.toggle('is-second', isSecond);
+    toggleButton.setAttribute('aria-label', isSecond ? '返回 Seedance 2.5 首屏' : '查看 Seedance 2.5 对比屏');
+  }
+
+  toggleButton.addEventListener('click', function() {
+    setSecondScreen(!shell.classList.contains('is-second'));
+  });
+
+  compareLinks.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      setSecondScreen(true);
+    });
+  });
+
+  if (window.location.hash === '#seedance-comparison') {
+    setSecondScreen(true);
+  }
+})();
 </script>
 
 <!-- ==================== Footer ==================== -->
