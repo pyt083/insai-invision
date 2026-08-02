@@ -8,3 +8,8 @@ __pycache__/
 # Data files (not needed for deployment)
 cases_data.json
 cases_final.json
+# Workspace & build artifacts
+.env
+.edgeone/
+.workbuddy/
+__MACOSX/
