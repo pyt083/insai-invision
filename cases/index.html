@@ -143,27 +143,34 @@
     box-shadow: 0 2px 8px rgba(37,99,235,0.2);
   }
 
-  /* ========= Masonry Grid (CSS columns) ========= */
+  /* ========= Masonry Grid (JS-driven, Safari-safe) ========= */
+  /* 使用 JS 瀑布流，避免 column-count 在 Safari + lazy load 下的渲染错位 */
   .cases-section { padding: 48px 48px 90px; }
   .cases-masonry {
-    column-count: 4;
-    column-gap: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
     max-width: 1400px;
     margin: 0 auto;
   }
-  @media (max-width: 1200px) { .cases-masonry { column-count: 3; } }
-  @media (max-width: 900px) { .cases-masonry { column-count: 2; } }
-  @media (max-width: 600px) { .cases-masonry { column-count: 1; } }
+  .cases-col {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  /* 响应式：<=1200 用 3 列、<=900 用 2 列、<=600 用 1 列，由 JS 控制 */
+  @media (max-width: 1200px) { .cases-masonry { flex-wrap: wrap; } }
 
   .case-card {
-    break-inside: avoid;
-    margin-bottom: 20px;
     border-radius: var(--radius-lg);
     background: var(--bg-white);
     border: 1px solid var(--border-light);
     overflow: hidden; transition: all 0.35s ease;
     cursor: pointer;
     display: block;
+    width: 100%;
   }
   .case-card:hover {
     transform: translateY(-5px); box-shadow: var(--shadow-xl);
@@ -431,20 +438,45 @@ function formatDuration(sec) {
   return m + ':' + (s < 10 ? '0' : '') + s;
 }
 
+function getColumnCount() {
+  var w = window.innerWidth || document.documentElement.clientWidth;
+  if (w >= 1200) return 4;
+  if (w >= 900) return 3;
+  if (w >= 600) return 2;
+  return 1;
+}
+
 function renderCases(filter) {
   var grid = document.getElementById('casesGrid');
   grid.innerHTML = '';
   var filtered = filter === 'all' ? caseData : caseData.filter(function(c) {
     return c.industries.indexOf(filter) >= 0;
   });
-  filtered.forEach(function(c) {
+  var colCount = getColumnCount();
+  // 创建 N 列容器（瀑布流的列）
+  var cols = [];
+  for (var i = 0; i < colCount; i++) {
+    var col = document.createElement('div');
+    col.className = 'cases-col';
+    grid.appendChild(col);
+    cols.push(col);
+  }
+  // 跟踪每列当前累计高度（用 aspect-ratio 估算，避免等图片加载）
+  var colHeights = new Array(colCount).fill(0);
+
+  filtered.forEach(function(c, idx) {
     var tags = c.industries.slice(0,4).map(function(t){return '<span>'+t+'</span>';}).join('');
     var durStr = c.duration ? formatDuration(c.duration) : '';
-    var thumbHtml = c.thumb
-      ? '<img src="' + c.thumb + '?t=20260625162200" alt="' + c.title + '" loading="lazy">'
-      : '<div style="width:100%;aspect-ratio:' + c.w + '/' + c.h + ';background:#0F172A"></div>';
-    var html = '<div class="case-card" data-video="' + c.video + '" data-title="' + c.title.replace(/"/g, '&quot;') + '">' +
-      '<div class="case-thumb-wrap">' +
+    var ar = (c.w && c.h) ? (c.w + '/' + c.h) : '16/9';
+    // 用内联 aspect-ratio 在图片加载前就占出正确高度 —— 避免瀑布流跳变
+    var thumbStyle = 'width:100%;height:100%;object-fit:cover;display:block;';
+    var thumbHtml = '<img src="' + c.thumb + '?t=20260625162200" alt="' + c.title + '" loading="lazy" style="' + thumbStyle + '">';
+    var card = document.createElement('div');
+    card.className = 'case-card';
+    card.setAttribute('data-video', c.video);
+    card.setAttribute('data-title', c.title.replace(/"/g, '&quot;'));
+    card.innerHTML =
+      '<div class="case-thumb-wrap" style="aspect-ratio:' + ar + ';background:#0F172A;">' +
         thumbHtml +
         '<button class="case-play-btn">&#9654;</button>' +
         (durStr ? '<span class="case-duration">' + durStr + '</span>' : '') +
@@ -452,17 +484,38 @@ function renderCases(filter) {
       '<div class="case-card-info">' +
         '<h4>' + c.title + '</h4>' +
         '<div class="case-card-tags">' + tags + '</div>' +
-      '</div>' +
-    '</div>';
-    grid.insertAdjacentHTML('beforeend', html);
+      '</div>';
+
+    // 瀑布流分配：把新卡片放到当前最矮的列
+    var minIdx = 0;
+    for (var i = 1; i < colCount; i++) {
+      if (colHeights[i] < colHeights[minIdx]) minIdx = i;
+    }
+    cols[minIdx].appendChild(card);
+    // 按 w/h 比例估算本卡高度（thumb 高度 + info 约 90px）
+    var thumbH = (typeof window !== 'undefined' && grid.clientWidth)
+      ? (grid.clientWidth / colCount - 20) * (c.h / c.w) // 减去 gap 的近似
+      : 320 * (c.h / c.w);
+    colHeights[minIdx] += thumbH + 20 + 90; // gap + info 区域
   });
-  // Bind clicks
+
+  // 点击事件
   grid.querySelectorAll('.case-card').forEach(function(card) {
     card.addEventListener('click', function() {
       openVideoModal(this.dataset.video, this.dataset.title);
     });
   });
 }
+
+// resize 重排（如果列数变化才需要重排）
+var lastColCount = 0;
+window.addEventListener('resize', function() {
+  var now = getColumnCount();
+  if (now !== lastColCount) {
+    lastColCount = now;
+    renderCases(currentFilter);
+  }
+});
 
 // Filter
 document.getElementById('filterBar').addEventListener('click', function(e) {
@@ -504,6 +557,7 @@ modal.addEventListener('click', function(e) { if (e.target === modal) closeVideo
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeVideoModal(); });
 
 renderCases('all');
+lastColCount = getColumnCount();
 </script>
 
 </body>
