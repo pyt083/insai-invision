@@ -17,13 +17,14 @@
 | 类别 | 总检查项 | 通过 | 失败 | 警告 |
 |------|----------|------|------|------|
 | 前端表单一致性 | 9 | 9 | 0 | 0 |
-| 后端 API 代码审查 | 9 | 8 | 1 | 0 |
+| 后端 API 代码审查 | 9 | 9 | 0 | 0 |
 | 前后端接口契约对齐 | 5 | 5 | 0 | 0 |
-| API 端到端测试 | 11 | 11 | 0 | 0 |
+| API 端到端测试 (Round 1) | 11 | 11 | 0 | 0 |
+| Round 2 回归测试 | 7 | 7 | 0 | 0 |
 | 数据库脚本验证 | 4 | 4 | 0 | 0 |
-| **合计** | **38** | **37** | **1** | **0** |
+| **合计** | **45** | **45** | **0** | **0** |
 
-**智能路由判定: Engineer** — 发现 1 个源码 Bug，需工程师修复。
+**智能路由判定: NoOne** — 所有测试通过，BUG-001 已由工程师修复并验证。
 
 ---
 
@@ -73,53 +74,39 @@
 | 6 | trialValidator.js 枚举值与前端一致 | ✅ 通过 | INDUSTRY/VIDEO_DEMAND/REFERRAL_SOURCE/SOURCE_PAGE 均匹配 |
 | 7 | CORS 支持 *.insai.cn 通配符 | ✅ 通过 | `isOriginAllowed()` 实现通配符匹配逻辑 |
 | 8 | rateLimit 实现 IP 限频 | ✅ 通过 | 内存 Map 实现, 5次/分钟, 含过期清理 |
-| 9 | rateLimit 应用范围合理 | ❌ **失败** | **限频中间件全局应用, 影响健康检查等非提交路由** |
+| 9 | rateLimit 应用范围合理 | ✅ 通过 | Round 2 修复后: 限频仅对 submit 路由生效, /health 不受限频 |
 
-### 3.2 发现的 Bug
+### 3.2 发现的 Bug (已修复)
 
-#### BUG-001: 限频中间件全局应用 (严重性: 中高)
+#### BUG-001: 限频中间件全局应用 (严重性: 中高) — ✅ 已修复
 
-**文件**: `server/src/app.js` 第 28 行
+**文件**: `server/src/app.js` 第 28 行 (原), `server/src/routes/trialRoutes.js` (修复后)
 
-**问题代码**:
+**原问题代码**:
 ```javascript
-// 限频中间件
-app.use(rateLimitMiddleware);  // ← 全局应用, 所有路由都被限频
+// app.js (原) - 全局应用
+app.use(rateLimitMiddleware);
 ```
 
-**影响**:
-- 限频中间件以 `app.use(rateLimitMiddleware)` 方式全局注册, 对 **所有路由** 生效
-- 限频配置为每 IP 每分钟 5 次请求
-- 这意味着 `/health` 健康检查、`/api/unknown` 等所有请求都会消耗限频配额
-- **生产环境影响**:
-  1. 监控系统每 10 秒检查一次 `/health` → 每分钟 6 次 → 超出 5 次限制 → 监控告警误报
-  2. 用户浏览多个页面后提交表单可能被 429 拦截
-  3. 任何非提交请求都会消耗限频配额, 降低实际可用提交次数
-
-**测试验证**:
-- 第一轮测试 (默认 5 次/分钟): 前 5 个请求 (含 1 个健康检查 + 4 个 API 测试) 正常, 第 6 个请求起全部返回 429
-- 健康检查、404 路由、POST 提交全部被 429 拦截
-
-**建议修复**:
-将限频中间件从全局移至 trial 路由级别, 仅对 POST /api/trial/submit 生效:
-
+**修复后代码**:
 ```javascript
-// app.js - 移除全局限频
-// app.use(rateLimitMiddleware);  // ← 删除此行
+// app.js (修复后) - 移除了全局限频注册
+// (rateLimitMiddleware import 和 app.use 均已删除)
 
-// trialRoutes.js - 在 submit 路由添加限频
+// trialRoutes.js (修复后) - 限频仅对 submit 路由生效
 const rateLimitMiddleware = require("../middleware/rateLimit");
 router.post("/submit", rateLimitMiddleware, trialValidationRules, handleValidationErrors, trialController.submit);
 ```
 
-或者保持全局但豁免健康检查:
-```javascript
-// app.js - 健康检查在限频之前注册
-app.get("/health", (_req, res) => { ... });
+**Round 2 验证结果**:
+- ✅ 健康检查连续 10 次全部返回 200 (不受限频)
+- ✅ 404 路由连续 5 次全部返回 404 (不受限频)
+- ✅ Submit 路由前 5 次正常返回 (非 429)
+- ✅ Submit 路由第 6 次返回 429 (限频仍生效)
+- ✅ 限频触发后健康检查仍返回 200
+- ✅ 限频触发后 404 路由仍正常
 
-// 限频中间件 (仅对 /api 路径生效)
-app.use("/api", rateLimitMiddleware);
-```
+**修复效果**: 限频中间件从全局移至 `POST /api/trial/submit` 路由级别, 健康检查和 404 路由不再受影响, 监控系统可正常高频检查。
 
 ---
 
@@ -248,31 +235,13 @@ app.use("/api", rateLimitMiddleware);
 
 ## 七、智能路由判定
 
-### 判定结果: **Engineer**
+### 最终判定结果: **NoOne** — 所有测试通过
 
-### 需工程师修复的问题
+### Bug 修复追踪
 
-| Bug ID | 严重性 | 文件 | 问题描述 |
-|--------|--------|------|----------|
-| BUG-001 | 中高 | `server/src/app.js:28` | 限频中间件全局应用, 影响健康检查等非提交路由 |
-
-### 修复建议
-
-将限频中间件从全局 `app.use(rateLimitMiddleware)` 改为仅应用于 trial 路由:
-
-**方案 A (推荐)**: 在 trialRoutes.js 中对 submit 路由单独应用限频
-```javascript
-// trialRoutes.js
-const rateLimitMiddleware = require("../middleware/rateLimit");
-router.post("/submit", rateLimitMiddleware, trialValidationRules, handleValidationErrors, trialController.submit);
-```
-同时从 app.js 移除 `app.use(rateLimitMiddleware)`。
-
-**方案 B**: 在 app.js 中限定限频路径
-```javascript
-// app.js - 仅对 /api 路径限频, 健康检查不受影响
-app.use("/api", rateLimitMiddleware);
-```
+| Bug ID | 严重性 | 发现轮次 | 修复人 | 验证轮次 | 最终状态 |
+|--------|--------|----------|--------|----------|----------|
+| BUG-001 | 中高 | Round 1 | Engineer (寇豆码) | Round 2 | ✅ 已修复并验证 |
 
 ---
 
@@ -286,10 +255,49 @@ app.use("/api", rateLimitMiddleware);
 
 ---
 
-## 九、结论
+## 九、Round 2 回归测试
 
-试用表单系统整体实现质量高, 38 项检查中 37 项通过。前端表单完全一致, 后端代码结构清晰, 参数校验完善, API 端到端测试全部通过。
+### 测试环境
 
-唯一发现的 Bug 是限频中间件全局应用 (BUG-001), 建议工程师修复后即可上线。该 Bug 不影响核心业务逻辑 (表单提交、数据存储、去重), 仅影响生产环境的健康检查监控和用户体验。
+- Node.js v22.22.2
+- 服务启动: 成功, 端口 3900, 默认限频 5 次/分钟
+- 数据库: 无 MySQL 连接 (预期)
+- 测试脚本: Node.js HTTP 客户端 (正确 UTF-8 编码)
 
-**测试轮次**: Round 1 完成, 等待工程师修复 BUG-001 后进行 Round 2 回归验证。
+### 测试结果
+
+| # | 测试场景 | 预期结果 | 实际结果 | 状态 |
+|---|----------|----------|----------|------|
+| 1 | 健康检查连续 10 次 | 全部 200 (不限频) | 10/10 返回 200 | ✅ |
+| 2 | 404 路由连续 5 次 | 全部 404 (不限频) | 5/5 返回 404 | ✅ |
+| 3 | Submit 前 5 次 | 非 429 (正常处理) | 5/5 返回 500 (无 MySQL) | ✅ |
+| 4 | Submit 第 6 次 | 429 (限频触发) | 返回 429 | ✅ |
+| 5 | 合法数据 submit | 500 (无 MySQL) | 500 | ✅ |
+| 6 | 限频后健康检查 | 200 (不受限频) | 200 | ✅ |
+| 7 | 限频后 404 路由 | 404 (不受限频) | 404 | ✅ |
+
+**Round 2 结果: 7/7 通过, BUG-001 修复验证成功。**
+
+---
+
+## 十、结论
+
+试用表单系统经过两轮测试, 最终 **45 项检查全部通过**。
+
+### 测试轮次总结
+
+| 轮次 | 检查项 | 通过 | 失败 | 路由判定 |
+|------|--------|------|------|----------|
+| Round 1 | 38 | 37 | 1 (BUG-001) | Engineer |
+| Round 2 (回归) | 7 | 7 | 0 | NoOne |
+| **最终** | **45** | **45** | **0** | **NoOne** |
+
+### 系统质量评估
+
+- **前端**: 两个表单完全一致, 共享 JS 逻辑正确, 旧代码已清理
+- **后端**: 代码结构清晰, 参数校验完善, 参数化查询安全, 限频中间件作用范围正确
+- **契约对齐**: 前后端字段映射、HTTP 状态码处理完全一致
+- **数据库**: 建表脚本完整, 字段类型合理, 索引覆盖查询需求
+- **安全性**: 参数化查询防 SQL 注入, CORS 通配符配置, IP 限频防滥用
+
+**最终判定: 系统通过 QA 验证, 可上线部署。**
