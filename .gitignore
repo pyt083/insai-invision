@@ -13,3 +13,7 @@ cases_final.json
 .edgeone/
 .workbuddy/
 __MACOSX/
+# Server dependencies & runtime
+server/node_modules/
+server/.env
+server/logs/

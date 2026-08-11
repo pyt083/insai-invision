@@ -773,6 +773,141 @@
 .float-popup-desc { color: #64748B; font-size: 14px; margin-bottom: 24px; }
 .float-popup img { width: 160px; height: 160px; border-radius: 8px; border: 1px solid #E2E8F0; }
 
+/* ========== 试用弹窗表单样式 ========== */
+.float-popup .form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+.float-popup .form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+  margin-bottom: 6px;
+}
+.float-popup .form-group label .required {
+  color: #EF4444;
+  margin-left: 2px;
+}
+.float-popup .form-group input[type="text"],
+.float-popup .form-group input[type="tel"],
+.float-popup .form-group input[type="email"],
+.float-popup .form-group select,
+.float-popup .form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #0F172A;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+.float-popup .form-group input[type="text"]:focus,
+.float-popup .form-group input[type="tel"]:focus,
+.float-popup .form-group input[type="email"]:focus,
+.float-popup .form-group select:focus,
+.float-popup .form-group textarea:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+.float-popup .form-group input::placeholder,
+.float-popup .form-group textarea::placeholder {
+  color: #94A3B8;
+}
+.float-popup .form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+.float-popup .form-group textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+.float-popup .checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.float-popup .checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0F172A;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+.float-popup .checkbox-group input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #CBD5E1;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+.float-popup .checkbox-group input[type="checkbox"]:checked {
+  border-color: #2563EB;
+  background: #2563EB;
+}
+.float-popup .checkbox-group input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 4px;
+  height: 7px;
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.float-popup .error-msg {
+  color: #EF4444;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}
+.float-popup .form-group.error input,
+.float-popup .form-group.error select,
+.float-popup .form-group.error textarea {
+  border-color: #EF4444;
+}
+.float-popup .form-group.error .error-msg {
+  display: block;
+}
+.float-popup .btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: #2563EB;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 8px;
+}
+.float-popup .btn-submit:hover {
+  background: #1D4ED8;
+}
+.float-popup .btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
   /* ========= Responsive ========= */
   @media (min-width: 1440px) {
     .hero { padding: 140px 80px 100px; }
@@ -1689,37 +1824,100 @@
   <p style="margin-top:12px;color:#64748B;font-size:13px;">东信官方公众号</p>
 </div>
 
-<!-- 试用弹窗（迷你表单） -->
+<!-- 试用弹窗（完整表单） -->
 <div class="float-popup-overlay" id="trialPopupOverlay" onclick="togglePopup('trialPopup')"></div>
-<div class="float-popup" id="trialPopup" style="max-width:400px;">
+<div class="float-popup" id="trialPopup" style="max-width:480px;max-height:80vh;overflow-y:auto;">
   <button class="float-popup-close" onclick="togglePopup('trialPopup')">&times;</button>
   <h3>立即试用体验</h3>
-  <p class="float-popup-desc" style="margin-bottom:20px;">填写信息，免费获取7天试用体验</p>
-  <form id="trialMiniForm" onsubmit="submitTrialMini(event)" style="text-align:left;">
-    <div style="margin-bottom:12px;">
-      <label style="display:block;font-size:13px;font-weight:600;color:#0F172A;margin-bottom:4px;">公司/品牌名称 <span style="color:#EF4444;">*</span></label>
-      <input type="text" id="trialMiniCompany" required placeholder="请输入您的公司或品牌名称"
-        style="width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:14px;box-sizing:border-box;outline:none;"
-        onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
+  <p class="float-popup-desc" style="margin-bottom:20px;">填写信息，免费获取7天试用体验 + 专属方案定制</p>
+  <form id="trialPopupForm" data-trial-form data-source-page="product-intro" novalidate style="text-align:left;">
+    <!-- 公司/品牌名称 -->
+    <div class="form-group">
+      <label>公司/品牌名称 <span class="required">*</span></label>
+      <input type="text" name="company" placeholder="请输入您的公司或品牌名称" required>
+      <div class="error-msg">请填写公司/品牌名称</div>
     </div>
-    <div style="margin-bottom:12px;">
-      <label style="display:block;font-size:13px;font-weight:600;color:#0F172A;margin-bottom:4px;">联系人姓名 <span style="color:#EF4444;">*</span></label>
-      <input type="text" id="trialMiniName" required placeholder="请输入您的真实姓名"
-        style="width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:14px;box-sizing:border-box;outline:none;"
-        onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
+
+    <!-- 所属行业 -->
+    <div class="form-group">
+      <label>所属行业 <span class="required">*</span></label>
+      <select name="industry" required>
+        <option value="">请选择所属行业</option>
+        <option value="电商">电商</option>
+        <option value="游戏">游戏</option>
+        <option value="金融">金融</option>
+        <option value="教育">教育</option>
+        <option value="本地生活">本地生活</option>
+        <option value="美妆个护">美妆个护</option>
+        <option value="3C数码">3C数码</option>
+        <option value="服装服饰">服装服饰</option>
+        <option value="医疗健康">医疗健康</option>
+        <option value="汽车">汽车</option>
+        <option value="其他">其他</option>
+      </select>
+      <div class="error-msg">请选择所属行业</div>
     </div>
-    <div style="margin-bottom:16px;">
-      <label style="display:block;font-size:13px;font-weight:600;color:#0F172A;margin-bottom:4px;">联系手机号 <span style="color:#EF4444;">*</span></label>
-      <input type="tel" id="trialMiniPhone" required placeholder="请输入手机号"
-        style="width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:14px;box-sizing:border-box;outline:none;"
-        onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
+
+    <!-- 联系人姓名 -->
+    <div class="form-group">
+      <label>联系人姓名 <span class="required">*</span></label>
+      <input type="text" name="name" placeholder="请输入您的真实姓名" required>
+      <div class="error-msg">请填写联系人姓名</div>
     </div>
-    <button type="submit" style="width:100%;padding:12px;background:#2563EB;color:#FFF;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">立即申请试用</button>
+
+    <!-- 联系手机号 -->
+    <div class="form-group">
+      <label>联系手机号 <span class="required">*</span></label>
+      <input type="tel" name="phone" placeholder="请输入手机号" required>
+      <div class="error-msg">请填写有效的手机号</div>
+    </div>
+
+    <!-- 联系邮箱 -->
+    <div class="form-group">
+      <label>联系邮箱 <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
+      <input type="email" name="email" placeholder="请输入邮箱地址">
+    </div>
+
+    <!-- 业务场景 -->
+    <div class="form-group">
+      <label>你希望通过AI视频解决什么业务场景？ <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
+      <textarea name="scenario" placeholder="例如：批量生成电商带货短视频 / 快速产出游戏买量素材 / 制作AI短剧等" rows="2"></textarea>
+    </div>
+
+    <!-- 视频制作需求 -->
+    <div class="form-group">
+      <label>是否有视频制作需求？ <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="demand" value="每天1-20条"> 每天 1-20 条</label>
+        <label><input type="checkbox" name="demand" value="每天20-50条"> 每天 20-50 条</label>
+        <label><input type="checkbox" name="demand" value="每天50条以上"> 每天 50 条以上</label>
+        <label><input type="checkbox" name="demand" value="暂时不确定"> 暂时不确定</label>
+      </div>
+    </div>
+
+    <!-- 了解渠道 -->
+    <div class="form-group">
+      <label>您从哪里了解到营赛智影？ <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="source" value="朋友推荐"> 朋友推荐</label>
+        <label><input type="checkbox" name="source" value="抖音"> 抖音</label>
+        <label><input type="checkbox" name="source" value="微信"> 微信</label>
+        <label><input type="checkbox" name="source" value="小红书"> 小红书</label>
+        <label><input type="checkbox" name="source" value="百度"> 百度</label>
+        <label><input type="checkbox" name="source" value="AI问答"> AI问答</label>
+        <label><input type="checkbox" name="source" value="其他"> 其他</label>
+      </div>
+    </div>
+
+    <!-- 提交按钮 -->
+    <button type="submit" class="btn-submit" data-trial-submit>立即申请试用</button>
   </form>
-  <div id="trialMiniSuccess" style="display:none;text-align:center;padding:20px 0;">
-    <div style="font-size:48px;margin-bottom:12px;">&#10003;</div>
-    <p style="color:#0F172A;font-size:16px;font-weight:600;">感谢申请！</p>
-    <p style="color:#64748B;font-size:14px;">我们将在 1 个工作日内联系您，并为您开通专属试用通道。</p>
+
+  <!-- 成功消息 -->
+  <div data-trial-success style="display:none;text-align:center;padding:20px 0;">
+    <div style="width:56px;height:56px;border-radius:50%;background:#10B981;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px;color:white;">&#10003;</div>
+    <p style="color:#0F172A;font-size:16px;font-weight:600;margin-bottom:8px;">感谢申请！</p>
+    <p style="color:#64748B;font-size:14px;line-height:1.6;">我们将在 1 个工作日内联系您，并为您开通专属试用通道。</p>
   </div>
 </div>
 
@@ -1729,12 +1927,8 @@ function togglePopup(id) {
   document.getElementById(id + 'Overlay').classList.toggle('show');
   document.getElementById(id).classList.toggle('show');
 }
-function submitTrialMini(e) {
-  e.preventDefault();
-  document.getElementById('trialMiniForm').style.display = 'none';
-  document.getElementById('trialMiniSuccess').style.display = 'block';
-}
 </script>
+<script src="../assets/js/trial-form.js"></script>
 
 <!-- ==================== Footer ==================== -->
 <footer class="footer">
