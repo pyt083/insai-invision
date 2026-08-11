@@ -31,7 +31,7 @@ const pool = mysql.createPool(dbConfig);
  */
 async function query(sql, params) {
   try {
-    const [rows] = await pool.execute(sql, params || []);
+    const [rows] = await pool.query(sql, params || []);
     return rows;
   } catch (error) {
     logger.error("数据库查询失败: " + error.message);

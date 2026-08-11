@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>营赛智影 - 试用申请管理后台</title>
+<style>
+:root {
+  --primary: #1a73e8;
+  --primary-dark: #1557b0;
+  --primary-light: #e8f0fe;
+  --success: #34a853;
+  --warning: #f9ab00;
+  --danger: #ea4335;
+  --bg: #f0f2f5;
+  --card-bg: #ffffff;
+  --text: #1f2937;
+  --text-secondary: #6b7280;
+  --border: #e5e7eb;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ---- Login Screen ---- */
+.login-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  width: 380px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.login-card h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.login-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 16px;
+}
+
+.login-card input:focus { border-color: var(--primary); }
+
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-card button:hover { background: var(--primary-dark); }
+
+.login-error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-bottom: 12px;
+  display: none;
+}
+
+/* ---- Main Layout ---- */
+.admin-container { display: none; }
+.admin-container.active { display: block; }
+
+.header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.refresh-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.refresh-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-outline {
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-outline:hover { background: var(--primary-light); }
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* ---- Stats Cards ---- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 24px;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.stat-icon.blue { background: #e8f0fe; color: #1a73e8; }
+.stat-icon.green { background: #e6f4ea; color: #34a853; }
+.stat-icon.orange { background: #fef7e0; color: #f9ab00; }
+.stat-icon.purple { background: #f3e8fd; color: #8e24aa; }
+
+.stat-info h3 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ---- Charts Row ---- */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 24px;
+}
+
+.chart-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.chart-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bar-label {
+  width: 80px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 24px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.bar-fill.blue { background: linear-gradient(90deg, #1a73e8, #4285f4); }
+.bar-fill.green { background: linear-gradient(90deg, #34a853, #4caf50); }
+.bar-fill.orange { background: linear-gradient(90deg, #f9ab00, #ffc107); }
+.bar-fill.purple { background: linear-gradient(90deg, #8e24aa, #ab47bc); }
+
+/* ---- Trend Chart ---- */
+.trend-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  padding-top: 8px;
+}
+
+.trend-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.trend-bar-fill {
+  width: 100%;
+  background: linear-gradient(180deg, #4285f4, #1a73e8);
+  border-radius: 4px 4px 0 0;
+  min-height: 4px;
+  transition: height 0.6s ease;
+  position: relative;
+}
+
+.trend-bar-fill:hover::after {
+  content: attr(data-count);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.trend-bar-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* ---- Data Table ---- */
+.table-section {
+  padding: 24px;
+}
+
+.table-toolbar {
+  background: var(--card-bg);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-box {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-box input:focus { border-color: var(--primary); }
+
+.search-box::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat center;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.filter-select:focus { border-color: var(--primary); }
+
+.table-wrapper {
+  background: var(--card-bg);
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead {
+  background: #f9fafb;
+  border-bottom: 2px solid var(--border);
+}
+
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+th.sortable { cursor: pointer; user-select: none; }
+th.sortable:hover { color: var(--primary); }
+th.sortable::after { content: " ↕"; opacity: 0.3; font-size: 11px; }
+th.sort-asc::after { content: " ↑"; opacity: 1; color: var(--primary); }
+th.sort-desc::after { content: " ↓"; opacity: 1; color: var(--primary); }
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+tbody tr { transition: background 0.15s; }
+tbody tr:hover { background: #f9fafb; }
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-pending { background: #fef7e0; color: #b06000; }
+.status-contacted { background: #e8f0fe; color: #1a73e8; }
+.status-approved { background: #e6f4ea; color: #137333; }
+.status-rejected { background: #fce8e6; color: #c5221f; }
+
+.truncate {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.empty-row td {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+/* ---- Pagination ---- */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border);
+}
+
+.pagination-info {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.page-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---- Detail Modal ---- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h2 { font-size: 18px; }
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover { background: #e5e7eb; }
+
+.modal-body { padding: 24px; }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.detail-item label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.detail-item span {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.detail-item.full { grid-column: 1 / -1; }
+
+.status-select-wrapper {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.status-select-wrapper label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.status-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.status-select:focus { border-color: var(--primary); }
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .charts-row { grid-template-columns: 1fr; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .table-toolbar { flex-direction: column; align-items: stretch; }
+}
+
+/* ---- Loading ---- */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.7);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-overlay.active { display: flex; }
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <h1>营赛智影 管理后台</h1>
+    <p>试用申请数据管理系统</p>
+    <div class="login-error" id="loginError">密码错误，请重试</div>
+    <input type="password" id="passwordInput" placeholder="请输入管理密码" autofocus>
+    <button onclick="doLogin()">登 录</button>
+  </div>
+</div>
+
+<!-- Admin Container -->
+<div class="admin-container" id="adminContainer">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <span class="header-logo">营赛智影</span>
+      <span style="color:var(--text-secondary);font-size:14px;">/ 试用申请管理</span>
+    </div>
+    <div class="header-right">
+      <div class="refresh-indicator">
+        <span class="refresh-dot"></span>
+        <span id="lastRefresh">实时同步中</span>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="refreshData()">刷新数据</button>
+      <button class="btn btn-primary btn-sm" onclick="exportCsv()">导出 CSV</button>
+      <button class="btn btn-outline btn-sm" onclick="logout()">退出</button>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon blue">📊</div>
+      <div class="stat-info">
+        <h3 id="statTotal">0</h3>
+        <p>总申请数</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green">📈</div>
+      <div class="stat-info">
+        <h3 id="statToday">0</h3>
+        <p>今日新增</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon orange">⏳</div>
+      <div class="stat-info">
+        <h3 id="statPending">0</h3>
+        <p>待处理</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon purple">✅</div>
+      <div class="stat-info">
+        <h3 id="statProcessed">0</h3>
+        <p>已处理</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>行业分布</h3>
+      <div class="bar-chart" id="industryChart"></div>
+    </div>
+    <div class="chart-card">
+      <h3>最近7天趋势</h3>
+      <div class="trend-chart" id="trendChart"></div>
+    </div>
+  </div>
+
+  <!-- Data Table -->
+  <div class="table-section">
+    <div class="table-toolbar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索公司/联系人/手机号/邮箱..." oninput="onSearchChange()">
+      </div>
+      <select class="filter-select" id="industryFilter" onchange="onFilterChange()">
+        <option value="">全部行业</option>
+        <option value="电商">电商</option>
+        <option value="游戏">游戏</option>
+        <option value="金融">金融</option>
+        <option value="教育">教育</option>
+        <option value="本地生活">本地生活</option>
+        <option value="美妆个护">美妆个护</option>
+        <option value="3C数码">3C数码</option>
+        <option value="服装服饰">服装服饰</option>
+        <option value="医疗健康">医疗健康</option>
+        <option value="汽车">汽车</option>
+        <option value="其他">其他</option>
+      </select>
+      <select class="filter-select" id="statusFilter" onchange="onFilterChange()">
+        <option value="">全部状态</option>
+        <option value="pending">待处理</option>
+        <option value="contacted">已联系</option>
+        <option value="approved">已通过</option>
+        <option value="rejected">已拒绝</option>
+      </select>
+      <select class="filter-select" id="pageSizeSelect" onchange="onFilterChange()">
+        <option value="20">20 条/页</option>
+        <option value="50">50 条/页</option>
+        <option value="100">100 条/页</option>
+      </select>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th class="sortable" data-field="id" onclick="onSort('id')">ID</th>
+            <th class="sortable" data-field="company" onclick="onSort('company')">公司/品牌</th>
+            <th class="sortable" data-field="industry" onclick="onSort('industry')">行业</th>
+            <th class="sortable" data-field="contact_name" onclick="onSort('contact_name')">联系人</th>
+            <th class="sortable" data-field="contact_phone" onclick="onSort('contact_phone')">手机号</th>
+            <th>邮箱</th>
+            <th>视频需求</th>
+            <th>来源</th>
+            <th class="sortable" data-field="status" onclick="onSort('status')">状态</th>
+            <th class="sortable sort-desc" data-field="created_at" onclick="onSort('created_at')">提交时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr class="empty-row"><td colspan="11">加载中...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <div class="pagination-info" id="paginationInfo">共 0 条</div>
+      <div class="pagination-buttons" id="paginationButtons"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>申请详情</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <p style="text-align:center;color:var(--text-secondary);">加载中...</p>
+    </div>
+  </div>
+</div>
+
+<!-- Loading -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+</div>
+
+<script>
+// ---- Config ----
+const ADMIN_TOKEN_KEY = "insai_admin_token";
+const API_BASE = "/api/admin";
+const AUTO_REFRESH_INTERVAL = 10000; // 10 seconds
+
+let authToken = localStorage.getItem(ADMIN_TOKEN_KEY) || "";
+let currentPage = 1;
+let currentPageSize = 20;
+let currentSort = "created_at";
+let currentOrder = "DESC";
+let searchTimer = null;
+let autoRefreshTimer = null;
+
+// ---- Init ----
+if (authToken) {
+  showAdmin();
+  loadData();
+  loadStats();
+  startAutoRefresh();
+} else {
+  showLogin();
+}
+
+// ---- Login ----
+function doLogin() {
+  const input = document.getElementById("passwordInput");
+  const token = input.value.trim();
+
+  if (!token) return;
+
+  // Verify token by calling stats endpoint
+  fetch(API_BASE + "/trial/stats", {
+    headers: { "Authorization": "Bearer " + token }
+  })
+  .then(r => {
+    if (!r.ok) throw new Error("Auth failed");
+    return r.json();
+  })
+  .then(data => {
+    if (data.success) {
+      authToken = token;
+      localStorage.setItem(ADMIN_TOKEN_KEY, token);
+      showAdmin();
+      loadData();
+      loadStats();
+      startAutoRefresh();
+    } else {
+      throw new Error("Auth failed");
+    }
+  })
+  .catch(() => {
+    document.getElementById("loginError").style.display = "block";
+    input.value = "";
+    input.focus();
+  });
+}
+
+document.getElementById("passwordInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") doLogin();
+});
+
+function logout() {
+  authToken = "";
+  localStorage.removeItem(ADMIN_TOKEN_KEY);
+  stopAutoRefresh();
+  showLogin();
+  document.getElementById("passwordInput").value = "";
+  document.getElementById("passwordInput").focus();
+}
+
+function showLogin() {
+  document.getElementById("loginScreen").style.display = "flex";
+  document.getElementById("adminContainer").classList.remove("active");
+}
+
+function showAdmin() {
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("adminContainer").classList.add("active");
+}
+
+// ---- API Helper ----
+function apiFetch(path, options = {}) {
+  const opts = {
+    ...options,
+    headers: {
+      "Authorization": "Bearer " + authToken,
+      "Content-Type": "application/json",
+      ...(options.headers || {})
+    }
+  };
+  return fetch(API_BASE + path, opts).then(r => {
+    if (r.status === 401 || r.status === 403) {
+      logout();
+      throw new Error("认证失败");
+    }
+    return r.json();
+  });
+}
+
+// ---- Load Data ----
+function loadData() {
+  const params = new URLSearchParams({
+    page: currentPage,
+    pageSize: currentPageSize,
+    sort: currentSort,
+    order: currentOrder
+  });
+
+  const search = document.getElementById("searchInput").value.trim();
+  if (search) params.set("search", search);
+
+  const industry = document.getElementById("industryFilter").value;
+  if (industry) params.set("industry", industry);
+
+  const status = document.getElementById("statusFilter").value;
+  if (status) params.set("status", status);
+
+  apiFetch("/trial/list?" + params.toString())
+    .then(data => {
+      if (data.success) {
+        renderTable(data.data);
+        renderPagination(data.pagination);
+      }
+    })
+    .catch(err => console.error("Load data error:", err));
+}
+
+// ---- Load Stats ----
+function loadStats() {
+  apiFetch("/trial/stats")
+    .then(data => {
+      if (data.success) {
+        renderStats(data.data);
+      }
+    })
+    .catch(err => console.error("Load stats error:", err));
+}
+
+// ---- Render Stats ----
+function renderStats(d) {
+  document.getElementById("statTotal").textContent = d.total || 0;
+  document.getElementById("statToday").textContent = d.today || 0;
+  document.getElementById("statPending").textContent = d.pending || 0;
+  document.getElementById("statProcessed").textContent = d.processed || 0;
+
+  // Industry chart
+  const industryChart = document.getElementById("industryChart");
+  const industries = d.byIndustry || [];
+  const maxCount = Math.max(...industries.map(i => i.count), 1);
+  const colors = ["blue", "green", "orange", "purple"];
+
+  if (industries.length === 0) {
+    industryChart.innerHTML = '<p style="color:var(--text-secondary);font-size:13px;text-align:center;padding:20px 0;">暂无数据</p>';
+  } else {
+    industryChart.innerHTML = industries.map((item, i) => {
+      const pct = (item.count / maxCount * 100).toFixed(0);
+      const color = colors[i % colors.length];
+      return `
+        <div class="bar-item">
+          <div class="bar-label">${item.industry}</div>
+          <div class="bar-track">
+            <div class="bar-fill ${color}" style="width:${pct}%">${item.count}</div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  // Trend chart
+  const trendChart = document.getElementById("trendChart");
+  const trend = (d.trend7days || []).reverse();
+  const maxTrend = Math.max(...trend.map(t => t.count), 1);
+
+  if (trend.length === 0) {
+    trendChart.innerHTML = '<p style="color:var(--text-secondary);font-size:13px;text-align:center;padding:20px 0;">暂无数据</p>';
+  } else {
+    trendChart.innerHTML = trend.map(t => {
+      const h = (t.count / maxTrend * 100).toFixed(0);
+      const dateLabel = String(t.date).substring(5); // MM-DD
+      return `
+        <div class="trend-bar">
+          <div class="trend-bar-fill" style="height:${h}%" data-count="${t.count}条"></div>
+          <div class="trend-bar-label">${dateLabel}</div>
+        </div>
+      `;
+    }).join("");
+  }
+}
+
+// ---- Render Table ----
+function renderTable(rows) {
+  const tbody = document.getElementById("tableBody");
+
+  if (!rows || rows.length === 0) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="11">暂无申请数据</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = rows.map(row => {
+    const statusClass = "status-" + (row.status || "pending");
+    const statusText = {
+      pending: "待处理",
+      contacted: "已联系",
+      approved: "已通过",
+      rejected: "已拒绝"
+    }[row.status] || row.status;
+
+    const videoDemandTags = (row.video_demand_list || []).map(d => `<span class="tag">${d}</span>`).join("");
+
+    return `
+      <tr>
+        <td>${row.id}</td>
+        <td class="truncate" title="${escHtml(row.company)}">${escHtml(row.company)}</td>
+        <td>${escHtml(row.industry)}</td>
+        <td>${escHtml(row.contact_name)}</td>
+        <td>${escHtml(row.contact_phone)}</td>
+        <td class="truncate">${escHtml(row.contact_email || "—")}</td>
+        <td><div class="tag-list">${videoDemandTags || "—"}</div></td>
+        <td>${escHtml(row.source_page || "—")}</td>
+        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+        <td style="white-space:nowrap;font-size:13px;">${row.created_at_formatted || escHtml(row.created_at)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" onclick="showDetail(${row.id})">详情</button>
+        </td>
+      </tr>
+    `;
+  }).join("");
+}
+
+// ---- Render Pagination ----
+function renderPagination(p) {
+  document.getElementById("paginationInfo").textContent =
+    `第 ${p.page} / ${p.totalPages || 1} 页，共 ${p.total} 条`;
+
+  const container = document.getElementById("paginationButtons");
+  const totalPages = p.totalPages || 1;
+  const page = p.page;
+
+  let html = "";
+  html += `<button class="page-btn" ${page <= 1 ? "disabled" : ""} onclick="goToPage(${page - 1})">‹</button>`;
+
+  const start = Math.max(1, page - 2);
+  const end = Math.min(totalPages, page + 2);
+
+  if (start > 1) {
+    html += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
+    if (start > 2) html += `<span class="page-btn" style="border:none;cursor:default;">...</span>`;
+  }
+
+  for (let i = start; i <= end; i++) {
+    html += `<button class="page-btn ${i === page ? "active" : ""}" onclick="goToPage(${i})">${i}</button>`;
+  }
+
+  if (end < totalPages) {
+    if (end < totalPages - 1) html += `<span class="page-btn" style="border:none;cursor:default;">...</span>`;
+    html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+  }
+
+  html += `<button class="page-btn" ${page >= totalPages ? "disabled" : ""} onclick="goToPage(${page + 1})">›</button>`;
+
+  container.innerHTML = html;
+}
+
+// ---- Table Interactions ----
+function goToPage(page) {
+  currentPage = page;
+  loadData();
+}
+
+function onSearchChange() {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    currentPage = 1;
+    loadData();
+  }, 300);
+}
+
+function onFilterChange() {
+  currentPage = 1;
+  currentPageSize = parseInt(document.getElementById("pageSizeSelect").value);
+  loadData();
+}
+
+function onSort(field) {
+  if (currentSort === field) {
+    currentOrder = currentOrder === "ASC" ? "DESC" : "ASC";
+  } else {
+    currentSort = field;
+    currentOrder = "DESC";
+  }
+
+  // Update header styles
+  document.querySelectorAll("th.sortable").forEach(th => {
+    th.classList.remove("sort-asc", "sort-desc");
+  });
+  const activeTh = document.querySelector(`th[data-field="${field}"]`);
+  if (activeTh) {
+    activeTh.classList.add(currentOrder === "ASC" ? "sort-asc" : "sort-desc");
+  }
+
+  loadData();
+}
+
+// ---- Detail Modal ----
+function showDetail(id) {
+  document.getElementById("detailModal").classList.add("active");
+  document.getElementById("modalBody").innerHTML = '<p style="text-align:center;color:var(--text-secondary);">加载中...</p>';
+
+  apiFetch("/trial/" + id)
+    .then(data => {
+      if (data.success) {
+        renderDetail(data.data);
+      } else {
+        document.getElementById("modalBody").innerHTML = '<p style="color:var(--danger);">加载失败</p>';
+      }
+    })
+    .catch(() => {
+      document.getElementById("modalBody").innerHTML = '<p style="color:var(--danger);">加载失败</p>';
+    });
+}
+
+function renderDetail(row) {
+  const statusOptions = ["pending", "contacted", "approved", "rejected"];
+  const statusLabels = { pending: "待处理", contacted: "已联系", approved: "已通过", rejected: "已拒绝" };
+
+  const videoDemandTags = (row.video_demand_list || []).map(d => `<span class="tag">${d}</span>`).join(" ");
+  const sourceTags = (row.referral_source_list || []).map(s => `<span class="tag">${s}</span>`).join(" ");
+
+  document.getElementById("modalBody").innerHTML = `
+    <div class="detail-grid">
+      <div class="detail-item">
+        <label>ID</label>
+        <span>#${row.id}</span>
+      </div>
+      <div class="detail-item">
+        <label>状态</label>
+        <span class="status-badge status-${row.status}">${statusLabels[row.status] || row.status}</span>
+      </div>
+      <div class="detail-item">
+        <label>公司/品牌</label>
+        <span>${escHtml(row.company)}</span>
+      </div>
+      <div class="detail-item">
+        <label>所属行业</label>
+        <span>${escHtml(row.industry)}</span>
+      </div>
+      <div class="detail-item">
+        <label>联系人</label>
+        <span>${escHtml(row.contact_name)}</span>
+      </div>
+      <div class="detail-item">
+        <label>手机号</label>
+        <span>${escHtml(row.contact_phone)}</span>
+      </div>
+      <div class="detail-item">
+        <label>邮箱</label>
+        <span>${escHtml(row.contact_email || "—")}</span>
+      </div>
+      <div class="detail-item">
+        <label>来源页面</label>
+        <span>${escHtml(row.source_page || "—")}</span>
+      </div>
+      <div class="detail-item full">
+        <label>业务场景描述</label>
+        <span>${escHtml(row.business_scenario || "—")}</span>
+      </div>
+      <div class="detail-item full">
+        <label>视频制作需求</label>
+        <span><div class="tag-list">${videoDemandTags || "—"}</div></span>
+      </div>
+      <div class="detail-item full">
+        <label>了解渠道</label>
+        <span><div class="tag-list">${sourceTags || "—"}</div></span>
+      </div>
+      <div class="detail-item">
+        <label>提交时间</label>
+        <span>${row.created_at_formatted || row.created_at}</span>
+      </div>
+      <div class="detail-item">
+        <label>更新时间</label>
+        <span>${row.updated_at_formatted || "—"}</span>
+      </div>
+      <div class="detail-item">
+        <label>来源 IP</label>
+        <span>${escHtml(row.source_ip || "—")}</span>
+      </div>
+      <div class="detail-item">
+        <label>User Agent</label>
+        <span style="font-size:12px;word-break:break-all;">${escHtml(row.user_agent || "—")}</span>
+      </div>
+    </div>
+    <div class="status-select-wrapper">
+      <label>更新状态</label>
+      <select class="status-select" id="statusSelect" onchange="updateStatus(${row.id})">
+        ${statusOptions.map(s => `<option value="${s}" ${s === row.status ? "selected" : ""}>${statusLabels[s]}</option>`).join("")}
+      </select>
+    </div>
+  `;
+}
+
+function closeModal() {
+  document.getElementById("detailModal").classList.remove("active");
+}
+
+document.getElementById("detailModal").addEventListener("click", e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+function updateStatus(id) {
+  const status = document.getElementById("statusSelect").value;
+
+  apiFetch("/trial/" + id + "/status", {
+    method: "PUT",
+    body: JSON.stringify({ status })
+  })
+  .then(data => {
+    if (data.success) {
+      loadData();
+      loadStats();
+    }
+  })
+  .catch(err => console.error("Update status error:", err));
+}
+
+// ---- Export CSV ----
+function exportCsv() {
+  showLoading();
+  fetch(API_BASE + "/trial/export", {
+    headers: { "Authorization": "Bearer " + authToken }
+  })
+  .then(r => r.blob())
+  .then(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "trial_applications.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+    hideLoading();
+  })
+  .catch(() => hideLoading());
+}
+
+// ---- Auto Refresh ----
+function startAutoRefresh() {
+  stopAutoRefresh();
+  autoRefreshTimer = setInterval(() => {
+    loadData();
+    loadStats();
+    document.getElementById("lastRefresh").textContent = "最后更新: " + new Date().toLocaleTimeString();
+  }, AUTO_REFRESH_INTERVAL);
+}
+
+function stopAutoRefresh() {
+  if (autoRefreshTimer) {
+    clearInterval(autoRefreshTimer);
+    autoRefreshTimer = null;
+  }
+}
+
+function refreshData() {
+  loadData();
+  loadStats();
+  document.getElementById("lastRefresh").textContent = "最后更新: " + new Date().toLocaleTimeString();
+}
+
+// ---- Loading ----
+function showLoading() {
+  document.getElementById("loadingOverlay").classList.add("active");
+}
+
+function hideLoading() {
+  document.getElementById("loadingOverlay").classList.remove("active");
+}
+
+// ---- Utils ----
+function escHtml(str) {
+  if (str == null) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+</script>
+</body>
+</html>

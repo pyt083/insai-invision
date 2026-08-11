@@ -8,6 +8,7 @@ require("dotenv").config();
 const express = require("express");
 const corsMiddleware = require("./middleware/cors");
 const trialRoutes = require("./routes/trialRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const logger = require("./utils/logger");
 
 const app = express();
@@ -32,6 +33,9 @@ app.use((req, _res, next) => {
 // ---- 路由注册 ----
 // 试用申请路由
 app.use("/api/trial", trialRoutes);
+
+// 后台管理路由
+app.use("/api/admin", adminRoutes);
 
 // 健康检查
 app.get("/health", (_req, res) => {
