@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<meta name="build-version" content="20260812-152304">
+<meta name="build-version" content="20260812-153353">
 <meta http-equiv="Expires" content="0">
 <title>智影 inVision - Seedance 2.5 首发</title>
 <style>
@@ -995,6 +995,145 @@
 .float-popup-desc { color: #64748B; font-size: 14px; margin-bottom: 24px; }
 .float-popup img { width: 160px; height: 160px; border-radius: 8px; border: 1px solid #E2E8F0; }
 
+  /* ========= 试用申请表单弹窗 ========= */
+  .trial-popup-overlay {
+    position: fixed; inset: 0; background: rgba(15,23,42,0.55);
+    z-index: 1100; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+  }
+  .trial-popup-overlay.show { opacity: 1; visibility: visible; }
+  .trial-popup {
+    position: fixed; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.96);
+    background: #FFFFFF; border-radius: 16px;
+    width: min(640px, calc(100vw - 32px));
+    max-height: min(86vh, 820px);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.20);
+    z-index: 1101; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    display: flex; flex-direction: column;
+  }
+  .trial-popup.show { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+  .trial-popup-header {
+    padding: 24px 32px 16px; border-bottom: 1px solid #F1F5F9;
+    position: relative; flex-shrink: 0;
+  }
+  .trial-popup-header h2 {
+    font-size: 22px; font-weight: 800; color: #0F172A; margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+  .trial-popup-header p {
+    font-size: 14px; color: #64748B; margin: 0;
+  }
+  .trial-popup-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; font-size: 28px; color: #94A3B8;
+    cursor: pointer; line-height: 1; padding: 4px;
+  }
+  .trial-popup-close:hover { color: #0F172A; }
+  .trial-popup-body {
+    padding: 24px 32px 32px; overflow-y: auto;
+  }
+  .trial-popup-body .form-group {
+    margin-bottom: 18px; text-align: left;
+  }
+  .trial-popup-body .form-group label {
+    display: block; font-size: 14px; font-weight: 600;
+    color: #475569; margin-bottom: 6px;
+  }
+  .trial-popup-body .form-group label .required { color: #EF4444; margin-left: 2px; }
+  .trial-popup-body .form-group input[type="text"],
+  .trial-popup-body .form-group input[type="tel"],
+  .trial-popup-body .form-group input[type="email"],
+  .trial-popup-body .form-group select,
+  .trial-popup-body .form-group textarea {
+    width: 100%; padding: 13px 14px; border: 1px solid #E2E8F0;
+    border-radius: 8px; font-size: 15px; font-family: inherit;
+    color: #0F172A; background: #FFFFFF;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease; outline: none;
+  }
+  .trial-popup-body .form-group input:focus,
+  .trial-popup-body .form-group select:focus,
+  .trial-popup-body .form-group textarea:focus {
+    border-color: #2563EB; box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .trial-popup-body .form-group input::placeholder,
+  .trial-popup-body .form-group textarea::placeholder { color: #94A3B8; }
+  .trial-popup-body .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center;
+    padding-right: 36px; cursor: pointer;
+  }
+  .trial-popup-body .form-group textarea { resize: vertical; min-height: 84px; }
+  .trial-popup-body .radio-group,
+  .trial-popup-body .checkbox-group {
+    display: flex; flex-wrap: wrap; gap: 14px;
+  }
+  .trial-popup-body .radio-group label,
+  .trial-popup-body .checkbox-group label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 500; color: #0F172A;
+    cursor: pointer; margin-bottom: 0;
+  }
+  .trial-popup-body .radio-group input[type="radio"],
+  .trial-popup-body .checkbox-group input[type="checkbox"] {
+    appearance: none; width: 18px; height: 18px;
+    border: 2px solid #CBD5E1; cursor: pointer;
+    transition: all 0.2s ease; flex-shrink: 0; position: relative;
+  }
+  .trial-popup-body .radio-group input[type="radio"] { border-radius: 50%; }
+  .trial-popup-body .radio-group input[type="radio"]:checked {
+    border-color: #2563EB; background: #2563EB;
+  }
+  .trial-popup-body .radio-group input[type="radio"]:checked::after {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px; height: 6px; border-radius: 50%; background: #FFFFFF;
+  }
+  .trial-popup-body .checkbox-group input[type="checkbox"] { border-radius: 4px; }
+  .trial-popup-body .checkbox-group input[type="checkbox"]:checked {
+    border-color: #2563EB; background: #2563EB;
+  }
+  .trial-popup-body .checkbox-group input[type="checkbox"]:checked::after {
+    content: ''; position: absolute; top: 2px; left: 5px;
+    width: 4px; height: 8px; border: solid #FFFFFF;
+    border-width: 0 2px 2px 0; transform: rotate(45deg);
+  }
+  .trial-popup-body .btn-submit {
+    width: 100%; height: 48px; border-radius: 8px;
+    background: #2563EB; color: #FFFFFF; font-size: 16px;
+    font-weight: 600; border: none; cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .trial-popup-body .btn-submit:hover { background: #1D4ED8; }
+  .trial-popup-body .btn-submit:active { transform: scale(0.98); }
+  .trial-popup-body .error-msg {
+    color: #EF4444; font-size: 13px; margin-top: 6px; display: none;
+  }
+  .trial-popup-body .form-group.error input,
+  .trial-popup-body .form-group.error select { border-color: #EF4444; }
+  .trial-popup-body .form-group.error .error-msg { display: block; }
+  .trial-popup-success {
+    display: none; text-align: center; padding: 48px 32px;
+  }
+  .trial-popup-success .success-icon {
+    width: 64px; height: 64px; border-radius: 50%; background: #10B981;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; font-size: 32px; color: white;
+  }
+  .trial-popup-success h3 { font-size: 20px; font-weight: 700; color: #0F172A; margin-bottom: 10px; }
+  .trial-popup-success p { font-size: 15px; color: #64748B; line-height: 1.7; }
+
+  @media (max-width: 640px) {
+    .trial-popup { width: calc(100vw - 24px); max-height: 90vh; border-radius: 12px; }
+    .trial-popup-header { padding: 18px 20px 12px; }
+    .trial-popup-header h2 { font-size: 18px; }
+    .trial-popup-body { padding: 16px 20px 24px; }
+    .trial-popup-body .form-group { margin-bottom: 14px; }
+    .trial-popup-body .form-group input,
+    .trial-popup-body .form-group select,
+    .trial-popup-body .form-group textarea { padding: 11px 12px; font-size: 14px; }
+  }
+
   </style>
 <link rel="icon" href="./assets/insai-invision-logo.png" type="image/png">
 <link rel="apple-touch-icon" href="./assets/insai-invision-logo.png">
@@ -1897,10 +2036,10 @@
 <!-- ==================== 悬浮按钮组 ==================== -->
 <div class="float-btn-container">
   <!-- 试用按钮 -->
-  <a href="./trial/index.html" class="float-btn float-btn-trial" title="立即试用">
+  <button class="float-btn float-btn-trial" onclick="openTrialPopup()" title="立即试用" type="button">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
     <span>试用</span>
-  </a>
+  </button>
   <!-- 联系按钮 -->
   <button class="float-btn float-btn-contact" onclick="togglePopup('contactPopup')" title="联系我们">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -1933,12 +2072,119 @@
   <p style="margin-top:12px;color:#64748B;font-size:13px;">东信官方公众号</p>
 </div>
 
+<!-- 试用申请表单弹窗（完整版） -->
+<div class="trial-popup-overlay" id="trialPopupOverlay" onclick="closeTrialPopup()"></div>
+<div class="trial-popup" id="trialPopup" role="dialog" aria-modal="true" aria-labelledby="trialPopupTitle">
+  <div class="trial-popup-header">
+    <h2 id="trialPopupTitle">申请试用 · 营赛智影</h2>
+    <p>填写信息，免费获取7天试用体验 + 专属方案定制</p>
+    <button class="trial-popup-close" onclick="closeTrialPopup()" aria-label="关闭">&times;</button>
+  </div>
+  <div class="trial-popup-body">
+    <form id="trialPopupForm" data-trial-form data-source-page="product-intro" novalidate>
+      <div class="form-group" id="trial-popup-group-company">
+        <label>公司/品牌名称 <span class="required">*</span></label>
+        <input type="text" name="company" placeholder="请输入您的公司或品牌名称" required>
+        <div class="error-msg">请填写公司/品牌名称</div>
+      </div>
+
+      <div class="form-group" id="trial-popup-group-industry">
+        <label>所属行业 <span class="required">*</span></label>
+        <select name="industry" required>
+          <option value="">请选择所属行业</option>
+          <option value="电商">电商</option>
+          <option value="游戏">游戏</option>
+          <option value="金融">金融</option>
+          <option value="教育">教育</option>
+          <option value="本地生活">本地生活</option>
+          <option value="美妆个护">美妆个护</option>
+          <option value="3C数码">3C数码</option>
+          <option value="服装服饰">服装服饰</option>
+          <option value="医疗健康">医疗健康</option>
+          <option value="汽车">汽车</option>
+          <option value="其他">其他</option>
+        </select>
+        <div class="error-msg">请选择所属行业</div>
+      </div>
+
+      <div class="form-group" id="trial-popup-group-name">
+        <label>联系人姓名 <span class="required">*</span></label>
+        <input type="text" name="name" placeholder="请输入您的真实姓名" required>
+        <div class="error-msg">请填写联系人姓名</div>
+      </div>
+
+      <div class="form-group" id="trial-popup-group-phone">
+        <label>联系手机号 <span class="required">*</span></label>
+        <input type="tel" name="phone" placeholder="请输入手机号" required>
+        <div class="error-msg">请填写有效的手机号</div>
+      </div>
+
+      <div class="form-group">
+        <label>联系邮箱 <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+        <input type="email" name="email" placeholder="请输入邮箱地址">
+      </div>
+
+      <div class="form-group">
+        <label>你希望通过AI视频解决什么业务场景？ <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+        <textarea name="scenario" placeholder="例如：批量生成电商带货短视频 / 快速产出游戏买量素材 / 制作AI短剧等" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>是否有视频制作需求？ <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="demand" value="每天1-20条"> 每天 1-20 条</label>
+          <label><input type="checkbox" name="demand" value="每天20-50条"> 每天 20-50 条</label>
+          <label><input type="checkbox" name="demand" value="每天50条以上"> 每天 50 条以上</label>
+          <label><input type="checkbox" name="demand" value="暂时不确定"> 暂时不确定</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>您从哪里了解到营赛智影？ <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="source" value="朋友推荐"> 朋友推荐</label>
+          <label><input type="checkbox" name="source" value="抖音"> 抖音</label>
+          <label><input type="checkbox" name="source" value="微信"> 微信</label>
+          <label><input type="checkbox" name="source" value="小红书"> 小红书</label>
+          <label><input type="checkbox" name="source" value="百度"> 百度</label>
+          <label><input type="checkbox" name="source" value="AI问答"> AI问答</label>
+          <label><input type="checkbox" name="source" value="其他"> 其他</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" data-trial-submit>立即申请试用</button>
+    </form>
+
+    <div class="trial-popup-success" data-trial-success>
+      <div class="success-icon">&#10003;</div>
+      <h3>感谢申请！</h3>
+      <p>我们将在 1 个工作日内联系您，并为您开通专属试用通道。</p>
+    </div>
+  </div>
+</div>
+
 <!-- 弹窗 JS -->
 <script>
 function togglePopup(id) {
   document.getElementById(id + 'Overlay').classList.toggle('show');
   document.getElementById(id).classList.toggle('show');
 }
+
+function openTrialPopup() {
+  document.getElementById('trialPopupOverlay').classList.add('show');
+  document.getElementById('trialPopup').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTrialPopup() {
+  document.getElementById('trialPopupOverlay').classList.remove('show');
+  document.getElementById('trialPopup').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeTrialPopup();
+});
 (function initSeedanceDemoPlayer() {
   var demoVideo = document.getElementById('seedanceDemoVideo');
   var playButton = document.querySelector('[data-demo-play]');
@@ -1995,6 +2241,8 @@ function togglePopup(id) {
   }
 })();
 </script>
+
+<script src="./assets/js/trial-form.js"></script>
 
 <!-- ==================== Footer ==================== -->
 <footer class="footer">
