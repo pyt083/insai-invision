@@ -21,14 +21,14 @@
     /**
      * 根据 hostname 判断环境，返回 API 基础地址
      * 开发环境: localhost / 127.0.0.1 → http://localhost:3900
-     * 生产环境: 其他域名 → http://116.204.78.96:3900
+     * 生产环境: 其他域名 → 空字符串（走 Nginx 代理相对路径）
      */
     get base() {
       var host = window.location.hostname;
       if (host === "localhost" || host === "127.0.0.1" || host === "0.0.0.0") {
         return "http://localhost:3900";
       }
-      return "http://116.204.78.96:3900";
+      return "";
     },
     path: "/api/trial/submit",
     get url() {
