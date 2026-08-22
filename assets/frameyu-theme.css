@@ -2386,19 +2386,35 @@ html {
 
 .seedance-hero .hero-container {
   max-width: 1320px !important;
-  grid-template-columns: minmax(0, 0.95fr) minmax(440px, 1.05fr) !important;
-  gap: clamp(36px, 5vw, 76px) !important;
+  grid-template-columns: minmax(720px, 1.18fr) minmax(480px, .82fr) !important;
+  gap: clamp(32px, 3vw, 52px) !important;
 }
 
 .seedance-hero .hero-left {
   align-self: center;
 }
 
-.seedance-hero h1 {
-  max-width: 640px;
+.seedance-hero h1,
+.seedance-hero .seedance-visual-title {
+  max-width: 760px;
   margin-bottom: 18px !important;
-  font-size: clamp(2.45rem, 3.35vw, 3.55rem) !important;
-  line-height: 1.14 !important;
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(2.5rem, 3.5vw, 3.72rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.035em !important;
+  font-weight: 900 !important;
+  color: #0D1837 !important;
+  text-shadow: 0 16px 52px rgba(31, 83, 172, 0.12) !important;
+}
+.seedance-hero .seedance-visual-title .line-block {
+  display: block;
+  white-space: nowrap;
+}
+.seedance-hero .seedance-visual-title .highlight-text {
+  background: var(--gradient-title) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 .seedance-hero .hero-desc {
@@ -2972,7 +2988,8 @@ html {
   .seedance-poster-strip,
   .seedance-hero .hero-desc,
   .seedance-hero .hero-sub,
-  .seedance-hero h1 {
+  .seedance-hero h1,
+  .seedance-hero .seedance-visual-title {
     margin-left: auto !important;
     margin-right: auto !important;
   }
@@ -3038,7 +3055,8 @@ html {
     height: 19px;
   }
 
-  .seedance-hero h1 {
+  .seedance-hero h1,
+  .seedance-hero .seedance-visual-title {
     font-size: 2rem !important;
     line-height: 1.16 !important;
   }
@@ -3128,7 +3146,8 @@ html {
     right: 8px;
   }
 
-  .seedance-hero h1 {
+  .seedance-hero h1,
+  .seedance-hero .seedance-visual-title {
     font-size: 1.64rem !important;
   }
 
