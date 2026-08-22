@@ -2399,9 +2399,9 @@ html {
   max-width: 760px;
   margin-bottom: 18px !important;
   font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: clamp(2.5rem, 3.5vw, 3.72rem) !important;
-  line-height: 1.12 !important;
-  letter-spacing: -0.035em !important;
+  font-size: clamp(3.2rem, 5.2vw, 5rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.04em !important;
   font-weight: 900 !important;
   color: #0D1837 !important;
   text-shadow: 0 16px 52px rgba(31, 83, 172, 0.12) !important;
@@ -2421,17 +2421,17 @@ html {
   max-width: 680px !important;
   margin-bottom: 12px !important;
   color: #0B3E86 !important;
-  font-size: clamp(1rem, 1.35vw, 1.22rem) !important;
+  font-size: clamp(1.2rem, 1.7vw, 1.65rem) !important;
   font-weight: 900 !important;
-  line-height: 1.5 !important;
+  line-height: 1.45 !important;
 }
 
 .seedance-hero .hero-sub {
   max-width: 650px !important;
   margin-bottom: 28px !important;
   color: #43536F !important;
-  font-size: clamp(0.95rem, 1.08vw, 1.02rem) !important;
-  line-height: 1.76 !important;
+  font-size: clamp(1.05rem, 1.3vw, 1.35rem) !important;
+  line-height: 1.72 !important;
 }
 
 .seedance-poster-strip {
@@ -3057,8 +3057,8 @@ html {
 
   .seedance-hero h1,
   .seedance-hero .seedance-visual-title {
-    font-size: 2rem !important;
-    line-height: 1.16 !important;
+    font-size: 2.6rem !important;
+    line-height: 1.12 !important;
   }
 
   .seedance-poster-card {
@@ -3148,15 +3148,15 @@ html {
 
   .seedance-hero h1,
   .seedance-hero .seedance-visual-title {
-    font-size: 1.64rem !important;
+    font-size: 2.1rem !important;
   }
 
   .seedance-hero .hero-desc {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
   }
 
   .seedance-hero .hero-sub {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
     line-height: 1.7 !important;
   }
 

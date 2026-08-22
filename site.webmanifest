@@ -1,0 +1,22 @@
+{
+  "name": "智影 inVision",
+  "short_name": "智影",
+  "icons": [
+    {
+      "src": "/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#2563EB",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "智影，一站式AI创意生产平台"
+}
