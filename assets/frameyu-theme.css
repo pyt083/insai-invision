@@ -2399,7 +2399,7 @@ html {
   max-width: 760px;
   margin-bottom: 18px !important;
   font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: clamp(3.2rem, 5.2vw, 5rem) !important;
+  font-size: clamp(2.75rem, 4.2vw, 4.2rem) !important;
   line-height: 1.08 !important;
   letter-spacing: -0.04em !important;
   font-weight: 900 !important;
@@ -3057,7 +3057,7 @@ html {
 
   .seedance-hero h1,
   .seedance-hero .seedance-visual-title {
-    font-size: 2.6rem !important;
+    font-size: 2.35rem !important;
     line-height: 1.12 !important;
   }
 
@@ -3148,7 +3148,7 @@ html {
 
   .seedance-hero h1,
   .seedance-hero .seedance-visual-title {
-    font-size: 2.1rem !important;
+    font-size: 1.9rem !important;
   }
 
   .seedance-hero .hero-desc {
