@@ -17,3 +17,5 @@ __MACOSX/
 server/node_modules/
 server/.env
 server/logs/
+insai-update.bundle
+brand-fix.bundle
