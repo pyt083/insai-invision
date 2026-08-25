@@ -2380,6 +2380,12 @@ html {
   background: #FBFAFF !important;
 }
 
+.seedance-hero::before,
+.seedance-hero::after {
+  content: none !important;
+  display: none !important;
+}
+
 .seedance-hero .hero-container {
   max-width: 1360px !important;
   grid-template-columns: minmax(560px, 0.98fr) minmax(520px, 0.92fr) !important;
