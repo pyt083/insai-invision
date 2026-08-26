@@ -853,11 +853,21 @@
   resize: vertical;
   min-height: 72px;
 }
+.float-popup .form-row {
+  display: flex;
+  gap: 12px;
+}
+.float-popup .form-row .form-col {
+  flex: 1;
+  min-width: 0;
+}
+.float-popup .radio-group,
 .float-popup .checkbox-group {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
+.float-popup .radio-group label,
 .float-popup .checkbox-group label {
   display: flex;
   align-items: center;
@@ -868,17 +878,37 @@
   cursor: pointer;
   margin-bottom: 0;
 }
+.float-popup .radio-group input[type="radio"],
+.float-popup .radio-group input[type="radio"],
 .float-popup .checkbox-group input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   width: 16px;
   height: 16px;
   border: 2px solid #CBD5E1;
-  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
   position: relative;
+}
+.float-popup .radio-group input[type="radio"] { border-radius: 50%; }
+.float-popup .radio-group input[type="radio"]:checked {
+  border-color: #2563EB;
+  background: #2563EB;
+}
+.float-popup .radio-group input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+.float-popup .checkbox-group input[type="checkbox"] {
+  border-radius: 4px;
 }
 .float-popup .checkbox-group input[type="checkbox"]:checked {
   border-color: #2563EB;
@@ -1012,6 +1042,7 @@
     .k4-card { padding: 24px 20px; }
     .compare-table-wrap { overflow-x: auto; }
     .compare-table { min-width: 540px; }
+    .float-popup .form-row { flex-direction: column; gap: 0; }
     .footer { padding: 28px 12px; }
   }
 </style>
@@ -1854,7 +1885,8 @@
 <div class="float-popup" id="trialPopup" style="max-width:480px;max-height:80vh;overflow-y:auto;">
   <button class="float-popup-close" onclick="togglePopup('trialPopup')">&times;</button>
   <h3>立即试用体验</h3>
-  <p class="float-popup-desc" style="margin-bottom:20px;">填写信息，免费获取7天试用体验 + 专属方案定制</p>
+  <p class="float-popup-desc" style="margin-bottom:10px;">填写信息，免费获取7天试用体验 + 专属方案定制</p>
+  <p class="float-popup-header-note" style="margin-bottom:20px;text-align:left;font-size:12px;color:#1E40AF;background:#EFF6FF;border:1px solid #DBEAFE;border-radius:8px;padding:10px 12px;line-height:1.5;">请详细填写以下信息，有助于为您匹配合适的对接人提供企业定制化服务。</p>
   <form id="trialPopupForm" data-trial-form data-source-page="product-intro" novalidate style="text-align:left;">
     <!-- 公司/品牌名称 -->
     <div class="form-group">
@@ -1899,8 +1931,44 @@
 
     <!-- 联系邮箱 -->
     <div class="form-group">
-      <label>联系邮箱 <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
-      <input type="email" name="email" placeholder="请输入邮箱地址">
+      <label>联系邮箱 <span class="required">*</span></label>
+      <input type="email" name="email" placeholder="请输入邮箱地址" required>
+      <div class="error-msg">请填写有效的邮箱地址</div>
+    </div>
+
+    <!-- 咨询方向 -->
+    <div class="form-group">
+      <label>咨询方向 <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="consultation_direction" value="产品采购"> 产品采购</label>
+        <label><input type="radio" name="consultation_direction" value="定制方案"> 定制方案</label>
+        <label><input type="radio" name="consultation_direction" value="API / 技术接入"> API / 技术接入</label>
+        <label><input type="radio" name="consultation_direction" value="商务合作"> 商务合作</label>
+        <label><input type="radio" name="consultation_direction" value="其他"> 其他</label>
+      </div>
+    </div>
+
+    <!-- 微信号 + 希望联系渠道 -->
+    <div class="form-row">
+      <div class="form-group form-col">
+        <label>微信号 <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
+        <input type="text" name="wechat_id" placeholder="方便时可填写">
+      </div>
+      <div class="form-group form-col">
+        <label>希望联系渠道 <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
+        <select name="preferred_contact_channel">
+          <option value="">请选择联系渠道</option>
+          <option value="电话">电话</option>
+          <option value="邮箱">邮箱</option>
+          <option value="微信">微信</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 预计预算 -->
+    <div class="form-group">
+      <label>预计预算 <span style="font-weight:400;color:#94A3B8;font-size:12px;">（选填）</span></label>
+      <input type="text" name="estimated_budget" placeholder="例如: 1-5 万 / 待评估">
     </div>
 
     <!-- 业务场景 -->
@@ -1932,6 +2000,13 @@
         <label><input type="checkbox" name="source" value="AI问答"> AI问答</label>
         <label><input type="checkbox" name="source" value="其他"> 其他</label>
       </div>
+    </div>
+
+    <!-- 咨询内容 -->
+    <div class="form-group">
+      <label>咨询内容 <span class="required">*</span></label>
+      <textarea name="consultation_content" placeholder="请描述业务场景、预计规模、需要的能力或合作方式" rows="3" required></textarea>
+      <div class="error-msg">请填写咨询内容</div>
     </div>
 
     <!-- 提交按钮 -->

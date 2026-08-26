@@ -43,4 +43,10 @@ router.get("/trial/:id", adminController.detail);
  */
 router.put("/trial/:id/status", adminController.updateStatus);
 
+/**
+ * DELETE /api/admin/trial/:id
+ * 删除单条申请记录（需删除密码，见 controller）
+ */
+router.delete("/trial/:id", adminController.remove);
+
 module.exports = router;

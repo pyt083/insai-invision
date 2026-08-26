@@ -42,6 +42,18 @@ const REFERRAL_SOURCE_VALUES = [
 // 来源页面枚举值
 const SOURCE_PAGE_VALUES = ["product-intro", "trial"];
 
+// 咨询方向枚举值
+const CONSULTATION_DIRECTION_VALUES = [
+  "产品采购",
+  "定制方案",
+  "API / 技术接入",
+  "商务合作",
+  "其他"
+];
+
+// 希望联系渠道枚举值
+const PREFERRED_CONTACT_CHANNEL_VALUES = ["电话", "邮箱", "微信"];
+
 /**
  * 校验规则链数组
  * 用于 POST /api/trial/submit 路由
@@ -79,9 +91,10 @@ const trialValidationRules = [
     .withMessage("手机号格式不正确")
     .trim(),
 
-  // 联系邮箱（可选）
+  // 联系邮箱（必填）
   body("contact_email")
-    .optional({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("联系邮箱不能为空")
     .isEmail()
     .withMessage("邮箱格式不正确")
     .isLength({ max: 128 })
@@ -89,11 +102,47 @@ const trialValidationRules = [
     .normalizeEmail()
     .trim(),
 
+  // 咨询方向（可选）
+  body("consultation_direction")
+    .optional({ checkFalsy: true })
+    .isIn(CONSULTATION_DIRECTION_VALUES)
+    .withMessage(`咨询方向必须是以下值之一: ${CONSULTATION_DIRECTION_VALUES.join(", ")}`)
+    .trim(),
+
+  // 微信号（可选）
+  body("wechat_id")
+    .optional({ checkFalsy: true })
+    .isLength({ max: 64 })
+    .withMessage("微信号长度不能超过64个字符")
+    .trim(),
+
+  // 希望联系渠道（可选）
+  body("preferred_contact_channel")
+    .optional({ checkFalsy: true })
+    .isIn(PREFERRED_CONTACT_CHANNEL_VALUES)
+    .withMessage(`希望联系渠道必须是以下值之一: ${PREFERRED_CONTACT_CHANNEL_VALUES.join(", ")}`)
+    .trim(),
+
+  // 预计预算（可选）
+  body("estimated_budget")
+    .optional({ checkFalsy: true })
+    .isLength({ max: 128 })
+    .withMessage("预计预算长度不能超过128个字符")
+    .trim(),
+
   // 业务场景（可选）
   body("business_scenario")
     .optional({ checkFalsy: true })
     .isLength({ max: 2000 })
     .withMessage("业务场景描述不能超过2000个字符")
+    .trim(),
+
+  // 咨询内容（必填）
+  body("consultation_content")
+    .notEmpty()
+    .withMessage("咨询内容不能为空")
+    .isLength({ max: 4000 })
+    .withMessage("咨询内容不能超过4000个字符")
     .trim(),
 
   // 视频制作需求（可选，数组）
@@ -167,5 +216,7 @@ module.exports = {
   INDUSTRY_VALUES,
   VIDEO_DEMAND_VALUES,
   REFERRAL_SOURCE_VALUES,
-  SOURCE_PAGE_VALUES
+  SOURCE_PAGE_VALUES,
+  CONSULTATION_DIRECTION_VALUES,
+  PREFERRED_CONTACT_CHANNEL_VALUES
 };

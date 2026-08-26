@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>营赛智影 - 试用申请管理后台</title>
+<meta name="build-version" content="admin-sidebar-20260826-2">
 <style>
 :root {
   --primary: #1a73e8;
@@ -642,6 +643,91 @@ tbody tr:hover { background: #f9fafb; }
   .table-toolbar { flex-direction: column; align-items: stretch; }
 }
 
+/* ---- Sidebar Layout ---- */
+.admin-container.active {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: #1f2937;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+.sidebar-brand {
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-brand .logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+
+.sidebar-menu {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.menu-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+.menu-item.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.menu-item .menu-icon { font-size: 16px; }
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 20px;
+  font-size: 12px;
+  color: #64748b;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.view { display: none; }
+.view.active { display: block; }
+
 /* ---- Loading ---- */
 .loading-overlay {
   display: none;
@@ -684,6 +770,16 @@ tbody tr:hover { background: #f9fafb; }
 
 <!-- Admin Container -->
 <div class="admin-container" id="adminContainer">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="logo-dot"></span>营赛智影</div>
+    <nav class="sidebar-menu">
+      <div class="menu-item active" id="menu-trial" onclick="switchView('trial')"><span class="menu-icon">📋</span>试用申请管理</div>
+      <div class="menu-item" id="menu-cases" onclick="switchView('cases')"><span class="menu-icon">🎬</span>案例作品管理</div>
+    </nav>
+    <div class="sidebar-footer">Insai InVision · 管理后台</div>
+  </aside>
+  <div class="main">
   <!-- Header -->
   <div class="header">
     <div class="header-left">
@@ -702,6 +798,7 @@ tbody tr:hover { background: #f9fafb; }
   </div>
 
   <!-- Stats Cards -->
+  <div class="view active" id="view-trial">
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-icon blue">📊</div>
@@ -789,15 +886,18 @@ tbody tr:hover { background: #f9fafb; }
             <th class="sortable" data-field="contact_name" onclick="onSort('contact_name')">联系人</th>
             <th class="sortable" data-field="contact_phone" onclick="onSort('contact_phone')">手机号</th>
             <th>邮箱</th>
+            <th>咨询方向</th>
+            <th>联系渠道</th>
             <th>视频需求</th>
             <th>来源</th>
+            <th>了解渠道</th>
             <th class="sortable" data-field="status" onclick="onSort('status')">状态</th>
             <th class="sortable sort-desc" data-field="created_at" onclick="onSort('created_at')">提交时间</th>
             <th>操作</th>
           </tr>
         </thead>
         <tbody id="tableBody">
-          <tr class="empty-row"><td colspan="11">加载中...</td></tr>
+          <tr class="empty-row"><td colspan="14">加载中...</td></tr>
         </tbody>
       </table>
     </div>
@@ -807,6 +907,21 @@ tbody tr:hover { background: #f9fafb; }
       <div class="pagination-buttons" id="paginationButtons"></div>
     </div>
   </div>
+  </div>
+
+  <!-- 案例作品管理 -->
+  <div class="view" id="view-cases">
+    <div class="table-section">
+      <div style="background:#fff;border-radius:var(--radius);padding:64px 24px;text-align:center;box-shadow:var(--shadow);">
+        <div style="font-size:52px;margin-bottom:16px;">🎬</div>
+        <h2 style="font-size:20px;margin-bottom:8px;color:var(--text);">案例作品管理</h2>
+        <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;">该模块用于管理展示在官网的「案例作品」。<br>功能建设中，敬请期待。</p>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
 </div>
 
 <!-- Detail Modal -->
@@ -818,6 +933,26 @@ tbody tr:hover { background: #f9fafb; }
     </div>
     <div class="modal-body" id="modalBody">
       <p style="text-align:center;color:var(--text-secondary);">加载中...</p>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:440px;">
+    <div class="modal-header">
+      <h2 style="color:var(--danger);">⚠ 删除申请记录</h2>
+      <button class="modal-close" onclick="closeDeleteModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:16px;font-size:14px;color:var(--text);">即将删除 <strong id="deleteCompanyName"></strong> 的试用申请。此操作不可恢复，且会同时删除数据库中的对应数据。</p>
+      <label style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">请输入删除密码</label>
+      <input type="password" id="deletePassword" placeholder="删除密码" style="width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:8px;font-size:14px;outline:none;">
+      <div id="deleteError" style="display:none;color:var(--danger);font-size:13px;margin-top:8px;"></div>
+      <div style="display:flex;gap:12px;margin-top:20px;">
+        <button class="btn btn-outline" style="flex:1;" onclick="closeDeleteModal()">取消</button>
+        <button class="btn btn-sm" style="flex:1;background:var(--danger);color:#fff;" onclick="submitDelete()">确认删除</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1022,7 +1157,7 @@ function renderTable(rows) {
   const tbody = document.getElementById("tableBody");
 
   if (!rows || rows.length === 0) {
-    tbody.innerHTML = '<tr class="empty-row"><td colspan="11">暂无申请数据</td></tr>';
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="12">暂无申请数据</td></tr>';
     return;
   }
 
@@ -1036,6 +1171,7 @@ function renderTable(rows) {
     }[row.status] || row.status;
 
     const videoDemandTags = (row.video_demand_list || []).map(d => `<span class="tag">${d}</span>`).join("");
+    const sourceTags = (row.referral_source_list || []).map(s => `<span class="tag">${s}</span>`).join("");
 
     return `
       <tr>
@@ -1045,12 +1181,16 @@ function renderTable(rows) {
         <td>${escHtml(row.contact_name)}</td>
         <td>${escHtml(row.contact_phone)}</td>
         <td class="truncate">${escHtml(row.contact_email || "—")}</td>
+        <td>${escHtml(row.consultation_direction || "—")}</td>
+        <td>${escHtml(row.preferred_contact_channel || "—")}</td>
         <td><div class="tag-list">${videoDemandTags || "—"}</div></td>
         <td>${escHtml(row.source_page || "—")}</td>
+        <td><div class="tag-list">${sourceTags || "—"}</div></td>
         <td><span class="status-badge ${statusClass}">${statusText}</span></td>
         <td style="white-space:nowrap;font-size:13px;">${row.created_at_formatted || escHtml(row.created_at)}</td>
         <td>
           <button class="btn btn-outline btn-sm" onclick="showDetail(${row.id})">详情</button>
+          <button class="btn btn-sm" style="background:var(--danger);color:#fff;margin-top:4px;" onclick="confirmDelete(${row.id}, '${escHtml(row.company)}')">删除</button>
         </td>
       </tr>
     `;
@@ -1190,6 +1330,26 @@ function renderDetail(row) {
         <label>来源页面</label>
         <span>${escHtml(row.source_page || "—")}</span>
       </div>
+      <div class="detail-item">
+        <label>咨询方向</label>
+        <span>${escHtml(row.consultation_direction || "—")}</span>
+      </div>
+      <div class="detail-item">
+        <label>微信号</label>
+        <span>${escHtml(row.wechat_id || "—")}</span>
+      </div>
+      <div class="detail-item">
+        <label>希望联系渠道</label>
+        <span>${escHtml(row.preferred_contact_channel || "—")}</span>
+      </div>
+      <div class="detail-item">
+        <label>预计预算</label>
+        <span>${escHtml(row.estimated_budget || "—")}</span>
+      </div>
+      <div class="detail-item full">
+        <label>咨询内容</label>
+        <span>${escHtml(row.consultation_content || "—")}</span>
+      </div>
       <div class="detail-item full">
         <label>业务场景描述</label>
         <span>${escHtml(row.business_scenario || "—")}</span>
@@ -1301,6 +1461,79 @@ function showLoading() {
 
 function hideLoading() {
   document.getElementById("loadingOverlay").classList.remove("active");
+}
+
+// ---- Delete ----
+let deleteTargetId = null;
+
+function confirmDelete(id, company) {
+  deleteTargetId = id;
+  document.getElementById("deleteCompanyName").textContent = company || ("#" + id);
+  document.getElementById("deletePassword").value = "";
+  const err = document.getElementById("deleteError");
+  err.style.display = "none";
+  document.getElementById("deleteModal").classList.add("active");
+  document.getElementById("deletePassword").focus();
+}
+
+function closeDeleteModal() {
+  document.getElementById("deleteModal").classList.remove("active");
+  deleteTargetId = null;
+}
+
+function submitDelete() {
+  if (!deleteTargetId) return;
+  const pwd = document.getElementById("deletePassword").value;
+  const err = document.getElementById("deleteError");
+  if (!pwd) {
+    err.textContent = "请输入删除密码";
+    err.style.display = "block";
+    return;
+  }
+  showLoading();
+  apiFetch("/trial/" + deleteTargetId, {
+    method: "DELETE",
+    body: JSON.stringify({ password: pwd })
+  })
+  .then(data => {
+    hideLoading();
+    if (data.success) {
+      closeDeleteModal();
+      loadData();
+      loadStats();
+    } else {
+      err.textContent = data.message || "删除失败";
+      err.style.display = "block";
+    }
+  })
+  .catch(() => {
+    hideLoading();
+    err.textContent = "删除失败，请重试";
+    err.style.display = "block";
+  });
+}
+
+document.getElementById("deleteModal").addEventListener("click", e => {
+  if (e.target === e.currentTarget) closeDeleteModal();
+});
+
+document.getElementById("deletePassword").addEventListener("keydown", e => {
+  if (e.key === "Enter") submitDelete();
+});
+
+// ---- Sidebar Menu Switch ----
+function switchView(name) {
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  const target = document.getElementById("view-" + name);
+  if (target) target.classList.add("active");
+
+  document.getElementById("menu-trial").classList.toggle("active", name === "trial");
+  document.getElementById("menu-cases").classList.toggle("active", name === "cases");
+
+  const subtitle = document.querySelector(".header-left span:last-child");
+  if (subtitle) {
+    subtitle.textContent = name === "cases" ? "/ 案例作品管理" : "/ 试用申请管理";
+  }
 }
 
 // ---- Utils ----

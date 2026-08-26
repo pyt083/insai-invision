@@ -1057,6 +1057,17 @@
   .trial-popup-header p {
     font-size: 14px; color: #64748B; margin: 0;
   }
+  .trial-popup-header-note {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: #EFF6FF;
+    border: 1px solid #DBEAFE;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #1E40AF;
+    line-height: 1.5;
+    text-align: left;
+  }
   .trial-popup-close {
     position: absolute; top: 16px; right: 20px;
     background: none; border: none; font-size: 28px; color: #94A3B8;
@@ -1098,6 +1109,12 @@
     padding-right: 36px; cursor: pointer;
   }
   .trial-popup-body .form-group textarea { resize: vertical; min-height: 84px; }
+  .trial-popup-body .form-row {
+    display: flex; gap: 14px;
+  }
+  .trial-popup-body .form-row .form-col {
+    flex: 1; min-width: 0;
+  }
   .trial-popup-body .radio-group,
   .trial-popup-body .checkbox-group {
     display: flex; flex-wrap: wrap; gap: 14px;
@@ -1166,6 +1183,7 @@
     .trial-popup-body .form-group input,
     .trial-popup-body .form-group select,
     .trial-popup-body .form-group textarea { padding: 11px 12px; font-size: 14px; }
+    .trial-popup-body .form-row { flex-direction: column; gap: 0; }
   }
 
 </style>
@@ -2276,6 +2294,7 @@
   <div class="trial-popup-header">
     <h2 id="trialPopupTitle">申请试用 · 营赛智影</h2>
     <p>填写信息，免费获取7天试用体验 + 专属方案定制</p>
+    <p class="trial-popup-header-note">请详细填写以下信息，有助于为您匹配合适的对接人提供企业定制化服务。</p>
     <button class="trial-popup-close" onclick="closeTrialPopup()" aria-label="关闭">&times;</button>
   </div>
   <div class="trial-popup-body">
@@ -2317,9 +2336,42 @@
         <div class="error-msg">请填写有效的手机号</div>
       </div>
 
+      <div class="form-group" id="trial-popup-group-email">
+        <label>联系邮箱 <span class="required">*</span></label>
+        <input type="email" name="email" placeholder="请输入邮箱地址" required>
+        <div class="error-msg">请填写有效的邮箱地址</div>
+      </div>
+
       <div class="form-group">
-        <label>联系邮箱 <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
-        <input type="email" name="email" placeholder="请输入邮箱地址">
+        <label>咨询方向 <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="consultation_direction" value="产品采购"> 产品采购</label>
+          <label><input type="radio" name="consultation_direction" value="定制方案"> 定制方案</label>
+          <label><input type="radio" name="consultation_direction" value="API / 技术接入"> API / 技术接入</label>
+          <label><input type="radio" name="consultation_direction" value="商务合作"> 商务合作</label>
+          <label><input type="radio" name="consultation_direction" value="其他"> 其他</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group form-col" id="trial-popup-group-wechat">
+          <label>微信号 <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+          <input type="text" name="wechat_id" placeholder="方便时可填写">
+        </div>
+        <div class="form-group form-col" id="trial-popup-group-channel">
+          <label>希望联系渠道 <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+          <select name="preferred_contact_channel">
+            <option value="">请选择联系渠道</option>
+            <option value="电话">电话</option>
+            <option value="邮箱">邮箱</option>
+            <option value="微信">微信</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>预计预算 <span style="font-weight:400;color:#94A3B8;font-size:13px;">（选填）</span></label>
+        <input type="text" name="estimated_budget" placeholder="例如: 1-5 万 / 待评估">
       </div>
 
       <div class="form-group">
@@ -2348,6 +2400,12 @@
           <label><input type="checkbox" name="source" value="AI问答"> AI问答</label>
           <label><input type="checkbox" name="source" value="其他"> 其他</label>
         </div>
+      </div>
+
+      <div class="form-group" id="trial-popup-group-consultation-content">
+        <label>咨询内容 <span class="required">*</span></label>
+        <textarea name="consultation_content" placeholder="请描述业务场景、预计规模、需要的能力或合作方式" rows="4" required></textarea>
+        <div class="error-msg">请填写咨询内容</div>
       </div>
 
       <button type="submit" class="btn-submit" data-trial-submit>立即申请试用</button>

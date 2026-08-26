@@ -88,15 +88,20 @@
    * 收集表单数据并映射到 API 字段
    *
    * 字段映射:
-   *   input[name="company"]   → company
-   *   select[name="industry"] → industry
-   *   input[name="name"]      → contact_name
-   *   input[name="phone"]     → contact_phone
-   *   input[name="email"]     → contact_email
-   *   textarea[name="scenario"] → business_scenario
-   *   checkbox[name="demand"] 选中值 → video_demand 数组（去空格标准化）
-   *   checkbox[name="source"] 选中值 → referral_source 数组（去空格标准化）
-   *   sourcePage 参数          → source_page
+ *   input[name="company"]                → company
+ *   select[name="industry"]              → industry
+ *   input[name="name"]                   → contact_name
+ *   input[name="phone"]                  → contact_phone
+ *   input[name="email"]                  → contact_email
+ *   input[name="consultation_direction"] → consultation_direction
+ *   input[name="wechat_id"]              → wechat_id
+ *   select[name="preferred_contact_channel"] → preferred_contact_channel
+ *   input[name="estimated_budget"]       → estimated_budget
+ *   textarea[name="scenario"]            → business_scenario
+ *   textarea[name="consultation_content"] → consultation_content
+ *   checkbox[name="demand"] 选中值 → video_demand 数组（去空格标准化）
+ *   checkbox[name="source"] 选中值 → referral_source 数组（去空格标准化）
+ *   sourcePage 参数          → source_page
    *
    * @param {HTMLFormElement} formEl - 表单元素
    * @returns {Object} API 请求体对象
@@ -110,7 +115,16 @@
     data.contact_name = trim(formEl.querySelector('[name="name"]') ? formEl.querySelector('[name="name"]').value : "");
     data.contact_phone = trim(formEl.querySelector('[name="phone"]') ? formEl.querySelector('[name="phone"]').value : "");
     data.contact_email = trim(formEl.querySelector('[name="email"]') ? formEl.querySelector('[name="email"]').value : "");
+
+    // 咨询方向：radio 单选
+    var consultationDirectionEl = formEl.querySelector('input[type="radio"][name="consultation_direction"]:checked');
+    data.consultation_direction = consultationDirectionEl ? trim(consultationDirectionEl.value) : "";
+
+    data.wechat_id = trim(formEl.querySelector('[name="wechat_id"]') ? formEl.querySelector('[name="wechat_id"]').value : "");
+    data.preferred_contact_channel = trim(formEl.querySelector('[name="preferred_contact_channel"]') ? formEl.querySelector('[name="preferred_contact_channel"]').value : "");
+    data.estimated_budget = trim(formEl.querySelector('[name="estimated_budget"]') ? formEl.querySelector('[name="estimated_budget"]').value : "");
     data.business_scenario = trim(formEl.querySelector('[name="scenario"]') ? formEl.querySelector('[name="scenario"]').value : "");
+    data.consultation_content = trim(formEl.querySelector('[name="consultation_content"]') ? formEl.querySelector('[name="consultation_content"]').value : "");
 
     // 多选 checkbox: video_demand
     var demandCheckboxes = formEl.querySelectorAll('input[type="checkbox"][name="demand"]:checked');
@@ -191,18 +205,28 @@
       }
     }
 
-    // 联系邮箱（可选，但有值时校验格式）
+    // 联系邮箱（必填）
     var email = formEl.querySelector('[name="email"]');
-    if (email && trim(email.value)) {
+    if (email) {
       var emailValue = trim(email.value);
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+      if (!emailValue) {
+        errors.push({ field: "contact_email", message: "请填写联系邮箱" });
+        addFieldError(email, "请填写联系邮箱");
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
         errors.push({ field: "contact_email", message: "邮箱格式不正确" });
         addFieldError(email, "邮箱格式不正确");
       } else {
         removeFieldError(email);
       }
-    } else if (email) {
-      removeFieldError(email);
+    }
+
+    // 咨询内容（必填）
+    var consultationContent = formEl.querySelector('[name="consultation_content"]');
+    if (consultationContent && !trim(consultationContent.value)) {
+      errors.push({ field: "consultation_content", message: "请填写咨询内容" });
+      addFieldError(consultationContent);
+    } else if (consultationContent) {
+      removeFieldError(consultationContent);
     }
 
     return {
@@ -403,7 +427,12 @@
                   contact_name: "name",
                   contact_phone: "phone",
                   contact_email: "email",
-                  business_scenario: "scenario"
+                  consultation_direction: "consultation_direction",
+                  wechat_id: "wechat_id",
+                  preferred_contact_channel: "preferred_contact_channel",
+                  estimated_budget: "estimated_budget",
+                  business_scenario: "scenario",
+                  consultation_content: "consultation_content"
                 };
                 var domName = fieldMap[err.field] || err.field;
                 fieldEl = formEl.querySelector('[name="' + domName + '"]');

@@ -32,7 +32,8 @@ async function list(req, res) {
     const status = req.query.status?.trim() || "";
     const startDate = req.query.startDate?.trim() || "";
     const endDate = req.query.endDate?.trim() || "";
-    const sortField = ["id", "company", "industry", "contact_name", "contact_phone", "created_at", "status"]
+    const sortField = ["id", "company", "industry", "contact_name", "contact_phone", "contact_email", "consultation_direction",
+      "preferred_contact_channel", "created_at", "status"]
       .includes(req.query.sort) ? req.query.sort : "created_at";
     const sortOrder = req.query.order?.toUpperCase() === "ASC" ? "ASC" : "DESC";
 
@@ -41,9 +42,9 @@ async function list(req, res) {
     const params = [];
 
     if (search) {
-      conditions.push("(company LIKE ? OR contact_name LIKE ? OR contact_phone LIKE ? OR contact_email LIKE ?)");
+      conditions.push("(company LIKE ? OR contact_name LIKE ? OR contact_phone LIKE ? OR contact_email LIKE ? OR wechat_id LIKE ? OR consultation_content LIKE ?)");
       const kw = `%${search}%`;
-      params.push(kw, kw, kw, kw);
+      params.push(kw, kw, kw, kw, kw, kw);
     }
 
     if (industry) {
@@ -195,7 +196,8 @@ async function exportCsv(req, res) {
 
     const headers = [
       "ID", "公司/品牌", "行业", "联系人", "手机号", "邮箱",
-      "业务场景", "视频需求", "了解渠道", "来源页面",
+      "咨询方向", "微信号", "希望联系渠道", "预计预算",
+      "业务场景", "咨询内容", "视频需求", "了解渠道", "来源页面",
       "IP", "状态", "提交时间"
     ];
 
@@ -209,7 +211,12 @@ async function exportCsv(req, res) {
         escapeCsv(row.contact_name),
         escapeCsv(row.contact_phone),
         escapeCsv(row.contact_email || ""),
+        escapeCsv(row.consultation_direction || ""),
+        escapeCsv(row.wechat_id || ""),
+        escapeCsv(row.preferred_contact_channel || ""),
+        escapeCsv(row.estimated_budget || ""),
         escapeCsv(row.business_scenario || ""),
+        escapeCsv(row.consultation_content || ""),
         escapeCsv(row.video_demand || ""),
         escapeCsv(row.referral_source || ""),
         escapeCsv(row.source_page || ""),
@@ -313,6 +320,47 @@ async function detail(req, res) {
   }
 }
 
+/**
+ * DELETE /api/admin/trial/:id
+ * 删除申请记录（需管理员删除密码）
+ */
+async function remove(req, res) {
+  try {
+    const { id } = req.params;
+    const { password } = req.body || {};
+
+    const DELETE_PASSWORD = process.env.ADMIN_DELETE_PASSWORD || "admin123456";
+    if (!password || password !== DELETE_PASSWORD) {
+      return res.status(403).json({
+        success: false,
+        message: "删除密码错误，无权删除"
+      });
+    }
+
+    const result = await query("DELETE FROM trial_applications WHERE id = ?", [id]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "记录不存在"
+      });
+    }
+
+    logger.info(`Admin 删除申请: id=${id}`);
+
+    return res.json({
+      success: true,
+      message: "删除成功"
+    });
+  } catch (error) {
+    logger.error("Admin 删除失败: " + error.message);
+    return res.status(500).json({
+      success: false,
+      message: "删除失败: " + error.message
+    });
+  }
+}
+
 // ---- 辅助函数 ----
 
 function formatDateTime(isoStr) {
@@ -345,5 +393,6 @@ module.exports = {
   stats,
   exportCsv,
   updateStatus,
-  detail
+  detail,
+  remove
 };
