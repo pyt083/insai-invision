@@ -94,10 +94,6 @@
  *   input[name="phone"]                  → contact_phone
  *   input[name="email"]                  → contact_email
  *   input[name="consultation_direction"] → consultation_direction
- *   input[name="wechat_id"]              → wechat_id
- *   select[name="preferred_contact_channel"] → preferred_contact_channel
- *   input[name="estimated_budget"]       → estimated_budget
- *   textarea[name="scenario"]            → business_scenario
  *   textarea[name="consultation_content"] → consultation_content
  *   checkbox[name="demand"] 选中值 → video_demand 数组（去空格标准化）
  *   checkbox[name="source"] 选中值 → referral_source 数组（去空格标准化）
@@ -120,10 +116,6 @@
     var consultationDirectionEl = formEl.querySelector('input[type="radio"][name="consultation_direction"]:checked');
     data.consultation_direction = consultationDirectionEl ? trim(consultationDirectionEl.value) : "";
 
-    data.wechat_id = trim(formEl.querySelector('[name="wechat_id"]') ? formEl.querySelector('[name="wechat_id"]').value : "");
-    data.preferred_contact_channel = trim(formEl.querySelector('[name="preferred_contact_channel"]') ? formEl.querySelector('[name="preferred_contact_channel"]').value : "");
-    data.estimated_budget = trim(formEl.querySelector('[name="estimated_budget"]') ? formEl.querySelector('[name="estimated_budget"]').value : "");
-    data.business_scenario = trim(formEl.querySelector('[name="scenario"]') ? formEl.querySelector('[name="scenario"]').value : "");
     data.consultation_content = trim(formEl.querySelector('[name="consultation_content"]') ? formEl.querySelector('[name="consultation_content"]').value : "");
 
     // 多选 checkbox: video_demand
@@ -428,10 +420,6 @@
                   contact_phone: "phone",
                   contact_email: "email",
                   consultation_direction: "consultation_direction",
-                  wechat_id: "wechat_id",
-                  preferred_contact_channel: "preferred_contact_channel",
-                  estimated_budget: "estimated_budget",
-                  business_scenario: "scenario",
                   consultation_content: "consultation_content"
                 };
                 var domName = fieldMap[err.field] || err.field;

@@ -32,10 +32,6 @@ function collectFormData(body, req) {
     contact_phone: body.contact_phone || "",
     contact_email: body.contact_email || null,
     consultation_direction: body.consultation_direction || null,
-    wechat_id: body.wechat_id || null,
-    preferred_contact_channel: body.preferred_contact_channel || null,
-    estimated_budget: body.estimated_budget || null,
-    business_scenario: body.business_scenario || null,
     consultation_content: body.consultation_content || null,
     video_demand: videoDemand,
     referral_source: referralSource,
@@ -73,10 +69,9 @@ async function saveApplication(data) {
   const sql = `
     INSERT INTO trial_applications
       (company, industry, contact_name, contact_phone, contact_email,
-       consultation_direction, wechat_id, preferred_contact_channel, estimated_budget,
-       business_scenario, consultation_content, video_demand, referral_source, source_page,
+       consultation_direction, consultation_content, video_demand, referral_source, source_page,
        source_ip, user_agent, status, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   const params = [
@@ -86,10 +81,6 @@ async function saveApplication(data) {
     data.contact_phone,
     data.contact_email,
     data.consultation_direction,
-    data.wechat_id,
-    data.preferred_contact_channel,
-    data.estimated_budget,
-    data.business_scenario,
     data.consultation_content,
     data.video_demand,
     data.referral_source,

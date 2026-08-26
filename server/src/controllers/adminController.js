@@ -33,7 +33,7 @@ async function list(req, res) {
     const startDate = req.query.startDate?.trim() || "";
     const endDate = req.query.endDate?.trim() || "";
     const sortField = ["id", "company", "industry", "contact_name", "contact_phone", "contact_email", "consultation_direction",
-      "preferred_contact_channel", "created_at", "status"]
+      "created_at", "status"]
       .includes(req.query.sort) ? req.query.sort : "created_at";
     const sortOrder = req.query.order?.toUpperCase() === "ASC" ? "ASC" : "DESC";
 
@@ -42,9 +42,9 @@ async function list(req, res) {
     const params = [];
 
     if (search) {
-      conditions.push("(company LIKE ? OR contact_name LIKE ? OR contact_phone LIKE ? OR contact_email LIKE ? OR wechat_id LIKE ? OR consultation_content LIKE ?)");
+      conditions.push("(company LIKE ? OR contact_name LIKE ? OR contact_phone LIKE ? OR contact_email LIKE ? OR consultation_content LIKE ?)");
       const kw = `%${search}%`;
-      params.push(kw, kw, kw, kw, kw, kw);
+      params.push(kw, kw, kw, kw, kw);
     }
 
     if (industry) {
@@ -196,8 +196,7 @@ async function exportCsv(req, res) {
 
     const headers = [
       "ID", "公司/品牌", "行业", "联系人", "手机号", "邮箱",
-      "咨询方向", "微信号", "希望联系渠道", "预计预算",
-      "业务场景", "咨询内容", "视频需求", "了解渠道", "来源页面",
+      "咨询方向", "咨询内容", "视频需求", "了解渠道", "来源页面",
       "IP", "状态", "提交时间"
     ];
 
@@ -212,10 +211,6 @@ async function exportCsv(req, res) {
         escapeCsv(row.contact_phone),
         escapeCsv(row.contact_email || ""),
         escapeCsv(row.consultation_direction || ""),
-        escapeCsv(row.wechat_id || ""),
-        escapeCsv(row.preferred_contact_channel || ""),
-        escapeCsv(row.estimated_budget || ""),
-        escapeCsv(row.business_scenario || ""),
         escapeCsv(row.consultation_content || ""),
         escapeCsv(row.video_demand || ""),
         escapeCsv(row.referral_source || ""),

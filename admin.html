@@ -887,7 +887,6 @@ tbody tr:hover { background: #f9fafb; }
             <th class="sortable" data-field="contact_phone" onclick="onSort('contact_phone')">手机号</th>
             <th>邮箱</th>
             <th>咨询方向</th>
-            <th>联系渠道</th>
             <th>视频需求</th>
             <th>来源</th>
             <th>了解渠道</th>
@@ -897,7 +896,7 @@ tbody tr:hover { background: #f9fafb; }
           </tr>
         </thead>
         <tbody id="tableBody">
-          <tr class="empty-row"><td colspan="14">加载中...</td></tr>
+          <tr class="empty-row"><td colspan="13">加载中...</td></tr>
         </tbody>
       </table>
     </div>
@@ -1182,7 +1181,6 @@ function renderTable(rows) {
         <td>${escHtml(row.contact_phone)}</td>
         <td class="truncate">${escHtml(row.contact_email || "—")}</td>
         <td>${escHtml(row.consultation_direction || "—")}</td>
-        <td>${escHtml(row.preferred_contact_channel || "—")}</td>
         <td><div class="tag-list">${videoDemandTags || "—"}</div></td>
         <td>${escHtml(row.source_page || "—")}</td>
         <td><div class="tag-list">${sourceTags || "—"}</div></td>
@@ -1334,25 +1332,9 @@ function renderDetail(row) {
         <label>咨询方向</label>
         <span>${escHtml(row.consultation_direction || "—")}</span>
       </div>
-      <div class="detail-item">
-        <label>微信号</label>
-        <span>${escHtml(row.wechat_id || "—")}</span>
-      </div>
-      <div class="detail-item">
-        <label>希望联系渠道</label>
-        <span>${escHtml(row.preferred_contact_channel || "—")}</span>
-      </div>
-      <div class="detail-item">
-        <label>预计预算</label>
-        <span>${escHtml(row.estimated_budget || "—")}</span>
-      </div>
       <div class="detail-item full">
         <label>咨询内容</label>
         <span>${escHtml(row.consultation_content || "—")}</span>
-      </div>
-      <div class="detail-item full">
-        <label>业务场景描述</label>
-        <span>${escHtml(row.business_scenario || "—")}</span>
       </div>
       <div class="detail-item full">
         <label>视频制作需求</label>
