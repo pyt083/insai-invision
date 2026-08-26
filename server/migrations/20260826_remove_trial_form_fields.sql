@@ -6,7 +6,7 @@
 USE `invision`;
 
 ALTER TABLE `trial_applications`
-  DROP COLUMN IF EXISTS `wechat_id`,
-  DROP COLUMN IF EXISTS `preferred_contact_channel`,
-  DROP COLUMN IF EXISTS `estimated_budget`,
-  DROP COLUMN IF EXISTS `business_scenario`;
+  DROP COLUMN `wechat_id`,
+  DROP COLUMN `preferred_contact_channel`,
+  DROP COLUMN `estimated_budget`,
+  DROP COLUMN `business_scenario`;
