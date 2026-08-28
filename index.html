@@ -2437,6 +2437,9 @@ window._agl = window._agl || [];
   </div>
   <div class="trial-popup-body">
     <form id="trialPopupForm" data-trial-form data-source-page="product-intro" novalidate>
+      <input type="hidden" name="bd_vid" id="bdVidFieldPopup">
+      <!-- 百度营销 oCPC: 透传用户落地页完整 URL（含 bd_vid），后端以此为 logidUrl 上报 -->
+      <input type="hidden" name="landing_url" id="landingUrlFieldPopup">
       <div class="form-group" id="trial-popup-group-company">
         <label>公司/品牌名称 <span class="required">*</span></label>
         <input type="text" name="company" placeholder="请输入您的公司或品牌名称" required>
@@ -2520,7 +2523,7 @@ window._agl = window._agl || [];
         <div class="error-msg">请填写咨询内容</div>
       </div>
 
-      <button type="submit" class="btn-submit" data-trial-submit>立即申请试用</button>
+      <button type="submit" class="btn-submit" data-trial-submit data-agl-cvt="5">立即申请试用</button>
     </form>
 
     <div class="trial-popup-success" data-trial-success>
@@ -2686,6 +2689,20 @@ document.addEventListener('keydown', function(e) {
 </script>
 
 <script src="./assets/js/trial-form.js"></script>
+<script>
+  // 百度营销: 回填 URL 中的 bd_vid 参数到 trial 弹窗 hidden field
+  (function () {
+    var m = window.location.search.match(/[?&]bd_vid=([^&#]+)/);
+    if (m) {
+      var el = document.getElementById("bdVidFieldPopup");
+      if (el) el.value = decodeURIComponent(m[1]);
+    }
+    // 透传用户落地页完整 URL（含 bd_vid），后端用作 logidUrl 上报
+    var lu = document.getElementById("landingUrlFieldPopup");
+    if (lu) lu.value = window.location.href;
+  })();
+</script>
+
 
 <!-- ==================== Footer ==================== -->
 <footer class="footer">
