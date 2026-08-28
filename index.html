@@ -2,10 +2,23 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<!-- 百度营销 oCPC 全站基础代码（PV/UV 自动采集；转化事件通过 _agl.push 上报） -->
+<script>
+window._agl = window._agl || [];
+(function () {
+  _agl.push(['production', '_f7L2XwGXjyszb4d1e2oxPybgD']);
+  var agl = document.createElement('script');
+  agl.type = 'text/javascript';
+  agl.async = true;
+  agl.src = 'https://fxgate.baidu.com/angelia/fcagl.js?production=_f7L2XwGXjyszb4d1e2oxPybgD';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(agl, s);
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<meta name="build-version" content="20260826-190922">
+<meta name="build-version" content="20260827-baidu-ocpc">
 <meta http-equiv="Expires" content="0">
 <title>智影｜一站式 AI 创意生产平台</title>
 <link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -1191,34 +1204,44 @@
   /* New full-screen product overview between Seedance and core value. */
   .invision-home {
     position: relative;
-    min-height: 60svh;
+    min-height: 100svh;
     overflow: hidden;
+    isolation: isolate;
     display: flex;
     align-items: center;
-    background: transparent;
+    background:
+      radial-gradient(ellipse at 67% 46%, rgba(255,255,255,.92) 0 5%, rgba(202,224,255,.48) 20%, transparent 42%),
+      radial-gradient(ellipse at 84% 20%, rgba(255,255,255,.8), transparent 29%),
+      radial-gradient(ellipse at 12% 88%, rgba(255,255,255,.72), transparent 32%),
+      linear-gradient(135deg, #e6f1ff 0%, #f8fbff 47%, #e5f0ff 100%);
     color: #102a58;
   }
   .invision-home::before {
     content: '';
-    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(126deg, transparent 0 18%, rgba(255,255,255,.54) 18.05% 18.15%, transparent 18.2% 100%),
+      linear-gradient(90deg, rgba(241,248,255,.55) 0%, rgba(235,245,255,.1) 54%, rgba(224,239,255,.1) 100%);
   }
-  .invision-home-inner { width: min(1320px, calc(100% - 96px)); margin: 0 auto; padding: 74px 0 28px; }
-  .invision-home-copy { width: min(590px, 48%); position: relative; z-index: 2; transform: translateX(-24px); }
+  .invision-home-inner { width: min(1320px, calc(100% - 96px)); margin: 0 auto; padding: 96px 0 54px; }
+  .invision-home-copy { width: min(590px, 48%); position: relative; z-index: 2; transform: translateX(-28px); }
   .invision-home-kicker { display: inline-flex; align-items: center; gap: 9px; padding: 8px 18px; border-radius: 999px; background: rgba(255,255,255,.78); box-shadow: 0 8px 24px rgba(49,116,208,.1); color: #1471ed; font-size: 14px; font-weight: 700; }
   .invision-home-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #2685f5; box-shadow: 0 0 0 4px rgba(38,133,245,.12); }
-  .invision-home h2 { margin: 18px 0 18px; font-size: clamp(2.7rem, 4.4vw, 4.35rem); line-height: 1.1; letter-spacing: -.025em; font-weight: 900; color: #122d5b; }
+  .invision-home h2 { margin: 22px 0 25px; font-size: clamp(2.8rem, 4.75vw, 4.65rem); line-height: 1.12; letter-spacing: -.025em; font-weight: 900; color: #122d5b; }
   .invision-home h2 em { color: #347ff1; font-style: normal; }
   .invision-home-desc { color: #17396f; font-size: 17px; font-weight: 700; line-height: 1.65; white-space: nowrap; }
   .invision-home-sub { margin-top: 10px; color: #55729e; font-size: 16px; line-height: 1.55; }
-  .invision-home-actions { display: flex; gap: 16px; margin-top: 20px; }
+  .invision-home-actions { display: flex; gap: 16px; margin-top: 28px; }
   .invision-home-actions a { display: inline-flex; align-items: center; gap: 8px; padding: 16px 29px; border-radius: 999px; text-decoration: none; font-size: 16px; font-weight: 800; }
   .invision-home-primary { color: #fff; background: linear-gradient(135deg,#2387fa,#2c6cf0); box-shadow: 0 12px 24px rgba(42,119,241,.25); }
   .invision-home-secondary { color: #14356b; background: rgba(255,255,255,.82); }
-  .invision-home-highlights { display: grid; grid-template-columns: repeat(4, max-content); gap: 24px; margin-top: 32px; color: #17396f; }
+  .invision-home-highlights { display: grid; grid-template-columns: repeat(4, max-content); gap: 30px; margin-top: 52px; color: #17396f; }
   .invision-home-highlights span { display: grid; grid-template-columns: 22px auto; grid-template-rows: auto auto; column-gap: 8px; align-items: center; white-space: nowrap; font-size: 14px; font-weight: 800; line-height: 1.2; }
   .invision-home-highlights b { grid-row: 1 / 3; color: #2580f6; font-size: 22px; font-weight: 700; }
   .invision-home-highlights small { grid-column: 2; margin-top: 3px; color: #6683af; font-size: 11px; font-weight: 600; }
-  .invision-home-orbit { position: absolute; width: min(480px, 40vw); aspect-ratio: 1; left: 56%; top: 50%; transform: translate(-2%,-50%); border-radius: 50%; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.95) 0 16%, rgba(173,203,255,.7) 17% 19%, rgba(255,255,255,.22) 20% 41%, transparent 42%), radial-gradient(circle, rgba(132,179,255,.3), transparent 65%); box-shadow: 0 0 80px rgba(99,156,246,.22); }
+  .invision-home-orbit { position: absolute; width: min(540px, 44vw); aspect-ratio: 1; left: 54%; top: 50%; transform: translate(-2%,-50%); border-radius: 50%; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.95) 0 16%, rgba(173,203,255,.7) 17% 19%, rgba(255,255,255,.22) 20% 41%, transparent 42%), radial-gradient(circle, rgba(132,179,255,.3), transparent 65%); box-shadow: 0 0 90px rgba(99,156,246,.26); }
   .invision-home-orbit::before, .invision-home-orbit::after { content: ''; position: absolute; inset: 10%; border: 1px solid rgba(107,168,255,.25); border-radius: 50%; transform: rotate(-18deg) scaleX(1.22); }
   .invision-home-orbit::after { inset: 18%; transform: rotate(22deg) scaleX(1.34); }
   .invision-home-play { position: absolute; inset: 0; margin: auto; width: 66px; height: 66px; border: 0; border-radius: 50%; background: linear-gradient(135deg,#55a9ff,#3373ed); box-shadow: 0 12px 28px rgba(47,112,238,.32); cursor: pointer; }
@@ -1228,44 +1251,22 @@
   .invision-home-feature i { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 7px; background: #3282f6; color: white; font-style: normal; }
   .invision-home-feature:nth-child(2){ top: 3%; left: 4%; } .invision-home-feature:nth-child(3){ top: 28%; left: -10%; } .invision-home-feature:nth-child(4){ bottom: 18%; left: -8%; } .invision-home-feature:nth-child(5){ bottom: 0; left: 37%; } .invision-home-feature:nth-child(6){ top: 1%; right: 3%; } .invision-home-feature:nth-child(7){ top: 30%; right: -8%; } .invision-home-feature:nth-child(8){ bottom: 17%; right: 0; }
   .invision-home-dots { position:absolute; right:24px; bottom:34px; display:grid; gap:8px; } .invision-home-dots span { width:38px; height:38px; display:grid; place-items:center; border-radius:50%; color:#fff; font-size:11px; font-weight:700; background:#2580f6; box-shadow:0 5px 14px rgba(31,111,229,.25); }
-  .invision-home-zone {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(ellipse at 67% 46%, rgba(255,255,255,.92) 0 5%, rgba(202,224,255,.48) 20%, transparent 42%),
-      radial-gradient(ellipse at 84% 20%, rgba(255,255,255,.8), transparent 29%),
-      radial-gradient(ellipse at 12% 88%, rgba(255,255,255,.72), transparent 32%),
-      linear-gradient(135deg, #e6f1ff 0%, #f8fbff 47%, #e5f0ff 100%);
-  }
-  .invision-home-zone::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(126deg, transparent 0 18%, rgba(255,255,255,.54) 18.05% 18.15%, transparent 18.2% 100%),
-      linear-gradient(90deg, rgba(241,248,255,.55) 0%, rgba(235,245,255,.1) 54%, rgba(224,239,255,.1) 100%);
-  }
-  .invision-home-zone > section {
-    position: relative;
-    z-index: 1;
-  }
-  @media (max-width: 900px) { .invision-home-inner{width:min(680px,calc(100% - 40px)); padding:84px 0 34px;} .invision-home-copy{width:52%; transform:none;} .invision-home-desc{white-space:normal;} .invision-home-orbit{left:43%; width:52vw;} .invision-home-highlights{grid-template-columns:repeat(2,auto); margin-top:28px;} .invision-home-feature{font-size:12px; padding:9px 12px;} }
-  @media (max-width: 640px) { .invision-home{min-height:100svh; align-items:flex-start;} .invision-home-inner{width:calc(100% - 32px); padding:82px 0 24px;} .invision-home-copy{width:100%; text-align:center; transform:none;} .invision-home h2{font-size:clamp(2rem,10vw,3rem); margin:16px 0;} .invision-home-desc{font-size:14px;} .invision-home-sub{font-size:12px;} .invision-home-actions{justify-content:center; gap:8px;} .invision-home-actions a{padding:11px 18px; font-size:13px;} .invision-home-highlights{justify-content:center; gap:10px 16px; font-size:10px;} .invision-home-orbit{top:auto; bottom:-16%; left:50%; width:92vw; transform:translateX(-50%);} .invision-home-feature{font-size:10px; padding:7px 9px; border-radius:12px;} .invision-home-feature small{font-size:8px;} .invision-home-feature:nth-child(2){top:4%;left:2%;}.invision-home-feature:nth-child(3){top:25%;left:-3%;}.invision-home-feature:nth-child(4){bottom:21%;left:0;}.invision-home-feature:nth-child(5){bottom:4%;left:28%;}.invision-home-feature:nth-child(6){top:3%;right:0;}.invision-home-feature:nth-child(7){top:26%;right:-2%;}.invision-home-feature:nth-child(8){bottom:21%;right:0;} .invision-home-dots{display:none;} }
+  @media (max-width: 900px) { .invision-home-inner{width:min(680px,calc(100% - 40px)); padding:100px 0 42px;} .invision-home-copy{width:52%; transform:none;} .invision-home-desc{white-space:normal;} .invision-home-orbit{left:43%; width:58vw;} .invision-home-highlights{grid-template-columns:repeat(2,auto); margin-top:30px;} .invision-home-feature{font-size:12px; padding:9px 12px;} }
+  @media (max-width: 640px) { .invision-home{min-height:100svh; align-items:flex-start;} .invision-home-inner{width:calc(100% - 32px); padding:88px 0 28px;} .invision-home-copy{width:100%; text-align:center; transform:none;} .invision-home h2{font-size:clamp(2rem,10vw,3rem); margin:16px 0;} .invision-home-desc{font-size:14px;} .invision-home-sub{font-size:12px;} .invision-home-actions{justify-content:center; gap:8px;} .invision-home-actions a{padding:11px 18px; font-size:13px;} .invision-home-highlights{justify-content:center; gap:10px 16px; font-size:10px;} .invision-home-orbit{top:auto; bottom:-18%; left:50%; width:92vw; transform:translateX(-50%);} .invision-home-feature{font-size:10px; padding:7px 9px; border-radius:12px;} .invision-home-feature small{font-size:8px;} .invision-home-feature:nth-child(2){top:4%;left:2%;}.invision-home-feature:nth-child(3){top:25%;left:-3%;}.invision-home-feature:nth-child(4){bottom:21%;left:0;}.invision-home-feature:nth-child(5){bottom:4%;left:28%;}.invision-home-feature:nth-child(6){top:3%;right:0;}.invision-home-feature:nth-child(7){top:26%;right:-2%;}.invision-home-feature:nth-child(8){bottom:21%;right:0;} .invision-home-dots{display:none;} }
 </style>
 <link rel="stylesheet" href="./assets/frameyu-theme.css?v=20260824-wan3-solidbg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"智影","url":"https://invision.insai.cn/","logo":"https://invision.insai.cn/logo-512.png","image":"https://invision.insai.cn/og-image.png"}
 </script>
 </head>
-<body class="home-page">
+<body>
 <h1 class="seo-page-title">智影 AI · 一站式AI创意生产平台——视频、图片、文本、数字人、工具全流程批量创作平台。</h1>
 
 <!-- ==================== Wan3.0 首发横幅 ==================== -->
 <div class="launch-banner">
   <div class="launch-banner-inner">
     <span>🚀 Wan3.0 公测上线・全新一代视频生成模型，原生30秒 + 全能参考・新用户注册送 15000 星火币体验金</span>
-    <a href="./trial/index.html">免费试用</a>
+    <a href="./trial/index.html">立即试用</a>
   </div>
 </div>
 
@@ -1290,46 +1291,6 @@
     <a href="./trial/index.html" class="btn-nav-cta">立即试用</a>
   </div>
 </nav>
-
-<!-- ==================== 顶部横条广告轮播 ==================== -->
-<section class="ad-top-carousel" aria-label="大模型横条广告轮播">
-  <div class="ad-top-window">
-    <div class="ad-top-track">
-      <a class="ad-top-slide ad-top-slide-seedance" href="./seedance25/index.html">
-        <span>🎉 Seedance 2.5 已上线 · 新用户注册送 15000 星火币体验金</span>
-        <strong>免费试用</strong>
-      </a>
-      <a class="ad-top-slide ad-top-slide-wan" href="./wan3/index.html">
-        <span>🚀 Wan3.0 公测上线 · 全新一代视频生成模型，原生30秒 + 全能参考 · 新用户注册送 15000 星火币体验金</span>
-        <strong>免费试用</strong>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== 大模型广告位 ==================== -->
-<section class="model-ad-shelf" aria-label="大模型广告展示位">
-  <div class="model-ad-track">
-    <a class="model-ad-card model-ad-card-seedance" href="./seedance25/index.html">
-      <span class="model-ad-copy">
-        <strong>Seedance 2.5 首发</strong>
-        <small>企业营销视频进入新世代</small>
-      </span>
-      <span class="model-ad-visual" aria-hidden="true">
-        <i></i><i></i><i></i>
-      </span>
-    </a>
-    <a class="model-ad-card model-ad-card-wan" href="./wan3/index.html">
-      <span class="model-ad-copy">
-        <strong>Wan3.0 公测上线</strong>
-        <small>原生30秒 · 全能参考 · 可交付视频</small>
-      </span>
-      <span class="model-ad-visual" aria-hidden="true">
-        <i></i><i></i><i></i>
-      </span>
-    </a>
-  </div>
-</section>
 
 <!-- ==================== Wan3.0 首屏横向滑动 ==================== -->
 <div class="seedance-screen-shell" data-seedance-slider>
@@ -1571,7 +1532,6 @@
 </section>
 
 <!-- ==================== 智影首页总览 ==================== -->
-<div class="invision-home-zone">
 <section class="invision-home" id="invision-home" aria-label="智影 AI 创意平台首页">
   <div class="invision-home-inner">
     <div class="invision-home-copy">
@@ -1587,74 +1547,6 @@
     </div>
   </div>
 </section>
-
-<!-- ==================== 功能轮播展示 ==================== -->
-<section class="feature-carousel-section" aria-label="智影功能轮播展示">
-  <div class="feature-carousel-toolbar" aria-hidden="true">
-    <span>AI 视频</span>
-    <span>AI 图片</span>
-    <span>AI 文本</span>
-    <span>数字人</span>
-    <span>AI Agent</span>
-  </div>
-  <div class="feature-carousel-window">
-    <div class="feature-carousel-track" data-feature-carousel-track></div>
-  </div>
-</section>
-</div>
-
-<script>
-(function initFeatureCarousel() {
-  var track = document.querySelector('[data-feature-carousel-track]');
-  if (!track) return;
-
-  var base = './assets/feature-icons-official/';
-  var items = [
-    ['AI视频', '一键生成高质量营销视频。', 'AI视频.png'],
-    ['AI图片', '智能生成与编辑美图。', 'AI图片.png'],
-    ['AI文本', '智能写作与文案生成。', 'AI文本.png'],
-    ['数字人', '虚拟数字人视频与互动。', '数字人.png'],
-    ['AI Agent', '智能代理执行自动化任务。', 'AI Agent.png'],
-    ['多模型聚合', '多模型接入与智能切换。', '多模型聚合.png'],
-    ['素材库', '海量素材管理与一键调用。', '素材库.png'],
-    ['支持多语言多国家', '全球多语言本土化适配。', '支持多语言多国家.png'],
-    ['多投放平台适配', '主流平台一站式分发。', '多投放平台适配.png'],
-    ['企业级功能', '权限、数据与支付管理。', '企业级功能.png'],
-    ['能力概述', '全链路 AI 创意能力总览。', '能力概述.png'],
-    ['7×24小时定时批量生成', '全天候自动化批量生产。', '7×24小时定时批量生成.png'],
-    ['爆款复刻4K超清画质', '高保真复刻并输出4K内容。', '爆款复制4K超清画质.png'],
-    ['局部编辑', '局部修改更加灵活高效。', '精准局部调整.png'],
-    ['AI分镜头视频修改', '按分镜调整视频片段。', 'AI分镜头视频修改.png'],
-    ['最长支持5分钟AI视频', '支持更长时长视频生成。', '最长支持5分钟AI视频.png'],
-    ['视频去字幕', '一键清理视频字幕信息。', '视频去字幕.png'],
-    ['画质增强', '提升视频与图片清晰度。', '画质增强.png'],
-    ['无限画布', '自由延展创意构图空间。', '无限画布.png'],
-    ['素材投放前测', '先测后投，提升投放效果。', '素材投放前测.png'],
-    ['声音克隆', '复刻音色打造专属声音。', '高仿声音克隆.png'],
-    ['图片/视频提示词反推', '反向解析素材生成提示词。', '图片视频提示词反推.png'],
-    ['视频抠像换背景', '快速替换视频背景内容。', '视频抠像换背景.png'],
-    ['素材库（批量管理）', '批量分类管理与检索。', '素材库（批量管理素材）.png'],
-    ['支持多语言多国家（本地化）', '本土风俗和语言智能适配。', '支持多语言多国家_2.png'],
-    ['多投放平台适配（主流平台）', '覆盖抖音、YouTube、TikTok等。', '多投放平台适配（主流平台）.png'],
-    ['支持海外国家本土化适配', '出海内容按地区风俗适配。', '支持海外国家本土化适配.png'],
-    ['企业级功能（全方位管理）', '多账号与权限体系支持。', '企业级功能（全方位管理）.png'],
-    ['众多低门槛提示词场景模板库', '拿来即用的高转化模板库。', '众多低门槛提示词场景模板库.png']
-  ];
-
-  var html = [];
-  items.concat(items).forEach(function(item) {
-    html.push(
-      '<a class="feature-carousel-card" href="https://invision.insai.cn/login?redirect=/generate" target="_blank" rel="noopener noreferrer">' +
-        '<span class="feature-icon"><img src="' + base + item[2] + '" alt="" aria-hidden="true"></span>' +
-        '<b>' + item[0] + '</b>' +
-        '<span>' + item[1] + '</span>' +
-      '</a>'
-    );
-  });
-  track.innerHTML = '';
-  track.innerHTML = html.join('');
-})();
-</script>
 
 <!-- ==================== 核心价值 ==================== -->
 <section class="section compare-section" id="core-value">
@@ -2420,6 +2312,9 @@
   </div>
   <div class="trial-popup-body">
     <form id="trialPopupForm" data-trial-form data-source-page="product-intro" novalidate>
+      <input type="hidden" name="bd_vid" id="bdVidFieldPopup">
+      <!-- 百度营销 oCPC: 透传用户落地页完整 URL（含 bd_vid），后端以此为 logidUrl 上报 -->
+      <input type="hidden" name="landing_url" id="landingUrlFieldPopup">
       <div class="form-group" id="trial-popup-group-company">
         <label>公司/品牌名称 <span class="required">*</span></label>
         <input type="text" name="company" placeholder="请输入您的公司或品牌名称" required>
@@ -2503,7 +2398,7 @@
         <div class="error-msg">请填写咨询内容</div>
       </div>
 
-      <button type="submit" class="btn-submit" data-trial-submit>立即申请试用</button>
+      <button type="submit" class="btn-submit" data-trial-submit data-agl-cvt="5">立即申请试用</button>
     </form>
 
     <div class="trial-popup-success" data-trial-success>
@@ -2658,6 +2553,19 @@ document.addEventListener('keydown', function(e) {
 </script>
 
 <script src="./assets/js/trial-form.js"></script>
+<script>
+  // 百度营销: 回填 URL 中的 bd_vid 参数到 trial 弹窗 hidden field
+  (function () {
+    var m = window.location.search.match(/[?&]bd_vid=([^&#]+)/);
+    if (m) {
+      var el = document.getElementById("bdVidFieldPopup");
+      if (el) el.value = decodeURIComponent(m[1]);
+    }
+    // 透传用户落地页完整 URL（含 bd_vid），后端用作 logidUrl 上报
+    var lu = document.getElementById("landingUrlFieldPopup");
+    if (lu) lu.value = window.location.href;
+  })();
+</script>
 
 <!-- ==================== Footer ==================== -->
 <footer class="footer">
@@ -2680,3 +2588,4 @@ document.addEventListener('keydown', function(e) {
 
 </body>
 </html>
+
