@@ -9,6 +9,7 @@ const express = require("express");
 const corsMiddleware = require("./middleware/cors");
 const trialRoutes = require("./routes/trialRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const baiduCallbackRoutes = require("./routes/baiduCallbackRoutes");
 const logger = require("./utils/logger");
 
 const app = express();
@@ -36,6 +37,10 @@ app.use("/api/trial", trialRoutes);
 
 // 后台管理路由
 app.use("/api/admin", adminRoutes);
+
+// 百度商业 API 订阅推送 callback
+// 必须在 CORS 与限频之前，保证百度服务器 IP 不被拦截
+app.use("/api/baidu/callback", baiduCallbackRoutes);
 
 // 健康检查
 app.get("/health", (_req, res) => {

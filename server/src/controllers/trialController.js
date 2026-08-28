@@ -5,6 +5,7 @@
 
 const { pool, query } = require("../config/database");
 const logger = require("../utils/logger");
+const baiduConvert = require("../utils/baiduConvert");
 
 /**
  * 从请求体收集表单数据
@@ -36,6 +37,7 @@ function collectFormData(body, req) {
     video_demand: videoDemand,
     referral_source: referralSource,
     source_page: body.source_page || null,
+    landing_url: body.landing_url || null,
     source_ip: req.ip || req.connection.remoteAddress || null,
     user_agent: req.headers["user-agent"] || null,
     status: "pending",
@@ -70,8 +72,8 @@ async function saveApplication(data) {
     INSERT INTO trial_applications
       (company, industry, contact_name, contact_phone, contact_email,
        consultation_direction, consultation_content, video_demand, referral_source, source_page,
-       source_ip, user_agent, status, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       landing_url, source_ip, user_agent, status, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   const params = [
@@ -85,6 +87,7 @@ async function saveApplication(data) {
     data.video_demand,
     data.referral_source,
     data.source_page,
+    data.landing_url,
     data.source_ip,
     data.user_agent,
     data.status,
@@ -132,7 +135,15 @@ async function submit(req, res) {
 
     logger.info(`申请保存成功: id=${insertId}, phone=${data.contact_phone}`);
 
-    // 4. 返回成功
+    // 4. 异步上报百度营销线索 API（newType=3 = 表单提交成功）
+    //    - 失败仅记日志，不影响 HTTP 响应
+    //    - 未携带 bd_vid 时会跳过（自然流量不上报）
+    //    - 传入 insertId 作为 outerEventId，同一记录重复提交时百度不重复计转化
+    baiduConvert.reportTrialFormSubmit(req, { id: insertId }).catch((err) => {
+      logger.error("百度线索 API 异步上报异常: " + err.message);
+    });
+
+    // 5. 返回成功
     return res.status(200).json({
       success: true,
       message: "申请提交成功"

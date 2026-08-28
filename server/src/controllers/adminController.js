@@ -5,6 +5,7 @@
 
 const { query } = require("../config/database");
 const logger = require("../utils/logger");
+const baiduConvert = require("../utils/baiduConvert");
 
 /**
  * GET /api/admin/trial/list
@@ -281,6 +282,69 @@ async function updateStatus(req, res) {
 }
 
 /**
+ * POST /api/admin/trial/:id/mark-intent
+ * 销售标记"回访-发现意向"。
+ *   - 更新 status = contacted, updated_at = now
+ *   - 异步上报百度营销线索 API newType=75（回访-发现意向）
+ *   - 任何百度异常都不影响后台业务
+ *   - 没有检测到 bd_vid 时只更新状态，不上报（百度后台不会出现转化，对真实数据零污染）
+ */
+async function markIntent(req, res) {
+  try {
+    const { id } = req.params;
+
+    // 1. 查找记录（含 landing_url，用于百度 newType=75 上报归因）
+    const rows = await query(
+      "SELECT id, contact_phone, status, landing_url FROM trial_applications WHERE id = ?",
+      [id]
+    );
+    if (rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "记录不存在"
+      });
+    }
+    const record = rows[0];
+
+    // 2. 更新状态 -> contacted
+    const now = new Date().toISOString();
+    await query(
+      "UPDATE trial_applications SET status = ?, updated_at = ? WHERE id = ?",
+      ["contacted", now, id]
+    );
+
+    // 3. 异步上报百度营销线索 API newType=75
+    //    不 await：避免百度接口慢/挂导致后台操作员等待
+    //    优先使用记录中的 landing_url（含用户点击时的 bd_vid）
+    let reported = false;
+    try {
+      reported = await baiduConvert.reportIntentDiscovered(req, record);
+    } catch (e) {
+      logger.error(`百度上报异常 id=${id}: ${e.message}`);
+    }
+
+    logger.info(
+      `Admin 标记意向: id=${id}, phone=${record.contact_phone}, reported=${reported}`
+    );
+
+    return res.json({
+      success: true,
+      reported,
+      message: reported
+        ? "已标记意向并上报百度营销"
+        : "已标记意向（百度上报失败或无 bd_vid，请核对来源链接）",
+      status: "contacted"
+    });
+  } catch (error) {
+    logger.error("markIntent 失败: " + error.message);
+    return res.status(500).json({
+      success: false,
+      message: "操作失败: " + error.message
+    });
+  }
+}
+
+/**
  * GET /api/admin/trial/:id
  * 获取单条记录详情
  */
@@ -388,6 +452,7 @@ module.exports = {
   stats,
   exportCsv,
   updateStatus,
+  markIntent,
   detail,
   remove
 };

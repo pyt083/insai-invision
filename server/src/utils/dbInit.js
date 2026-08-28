@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS \`homepage\`.\`trial_applications\` (
   \`video_demand\`             VARCHAR(255) DEFAULT NULL COMMENT '视频制作需求（逗号分隔）',
   \`referral_source\`          VARCHAR(255) DEFAULT NULL COMMENT '了解渠道（逗号分隔）',
   \`source_page\`              VARCHAR(32)  DEFAULT NULL COMMENT '来源页面',
+  \`landing_url\`              VARCHAR(1024) DEFAULT NULL COMMENT '百度广告落地页URL(含bd_vid)',
   \`source_ip\`         VARCHAR(64)  DEFAULT NULL COMMENT '提交者IP',
   \`user_agent\`        VARCHAR(512) DEFAULT NULL COMMENT '浏览器UA',
   \`status\`            VARCHAR(32)  NOT NULL DEFAULT 'pending' COMMENT '处理状态',

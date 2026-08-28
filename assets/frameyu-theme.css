@@ -3115,7 +3115,7 @@ html {
 }
 
 .wan3-video-modal.show {
-  display: flex;
+  display: flex !important;
 }
 
 .wan3-video-backdrop {
@@ -3687,3 +3687,493 @@ html {
   }
 }
 
+/* Home advertising shelf and one-line capability carousel */
+body.home-page .launch-banner,
+body.home-page .seedance-screen-shell,
+body.home-page .wan3-core-section {
+  display: none !important;
+}
+
+body.home-page .nav {
+  top: 0 !important;
+}
+
+body.home-page {
+  padding-top: 124px;
+}
+
+html:has(body.home-page) {
+  scroll-padding-top: 140px !important;
+}
+
+body.home-page [id] {
+  scroll-margin-top: 140px !important;
+}
+
+.ad-top-carousel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 68px;
+  z-index: 990;
+  padding: 10px clamp(14px, 2.5vw, 32px) 8px;
+  background: linear-gradient(180deg, #f7fbff 0%, rgba(255,255,255,0.96) 100%);
+}
+
+.ad-top-window {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.ad-top-track {
+  display: flex;
+  width: 200%;
+  animation: adTopCarouselScroll 8s ease-in-out infinite;
+}
+
+.ad-top-window:hover .ad-top-track {
+  animation-play-state: paused;
+}
+
+.ad-top-slide {
+  position: relative;
+  flex: 0 0 50%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 18px 0 20px;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(46, 91, 176, 0.18);
+  overflow: hidden;
+}
+
+.ad-top-slide span {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.ad-top-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.ad-top-cta,
+.ad-top-slide strong {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.95);
+  color: #2768ff;
+  font-size: 14px;
+  font-weight: 950;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 8px 16px rgba(22, 67, 167, 0.14);
+}
+
+.ad-top-slide::before,
+.ad-top-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.ad-top-slide::after {
+  inset: auto -6% -52% auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.16);
+  filter: blur(2px);
+}
+
+.ad-top-slide-seedance {
+  background: linear-gradient(90deg, #0d58de 0%, #2f84f6 52%, #1db4ff 100%);
+}
+
+.ad-top-slide-wan {
+  background: linear-gradient(90deg, #6e2be7 0%, #833ef0 48%, #b04fff 100%);
+}
+
+.ad-top-slide-seedance::before {
+  background:
+    radial-gradient(circle at 12% 50%, rgba(255,255,255,0.16), transparent 28%),
+    linear-gradient(90deg, rgba(255,255,255,0.06), transparent 52%);
+}
+
+.ad-top-slide-wan::before {
+  background:
+    radial-gradient(circle at 12% 50%, rgba(255,255,255,0.14), transparent 28%),
+    linear-gradient(90deg, rgba(255,255,255,0.06), transparent 52%);
+}
+
+.model-ad-shelf {
+  position: relative;
+  z-index: 20;
+  padding: 34px clamp(18px, 5vw, 86px) 42px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.98) 0%, #F7FBFF 100%);
+  border-bottom: 0;
+}
+
+.model-ad-track {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 1.2vw, 20px);
+}
+
+.model-ad-card {
+  position: relative;
+  min-height: 128px;
+  overflow: hidden;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 28px;
+  text-decoration: none;
+  color: #FFFFFF;
+  box-shadow: 0 18px 44px rgba(12, 28, 68, 0.12);
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.model-ad-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 58px rgba(12, 28, 68, 0.18);
+}
+
+.model-ad-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.95;
+}
+
+.model-ad-card::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  right: -72px;
+  top: -82px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  filter: blur(2px);
+}
+
+.model-ad-card-seedance::before {
+  background:
+    linear-gradient(110deg, rgba(4, 13, 33, 0.98) 0%, rgba(8, 20, 47, 0.92) 45%, rgba(42, 151, 255, 0.62) 100%),
+    radial-gradient(circle at 82% 36%, rgba(68, 190, 255, 0.9), transparent 28%);
+}
+
+.model-ad-card-wan::before {
+  background:
+    linear-gradient(105deg, rgba(31, 10, 82, 0.98) 0%, rgba(92, 39, 205, 0.94) 55%, rgba(181, 100, 255, 0.9) 100%);
+}
+
+.model-ad-copy,
+.model-ad-visual {
+  position: relative;
+  z-index: 2;
+}
+
+.model-ad-copy {
+  display: grid;
+  gap: 7px;
+}
+
+.model-ad-copy strong {
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  line-height: 1.14;
+  font-weight: 950;
+}
+
+.model-ad-copy small {
+  color: rgba(255,255,255,0.76);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.model-ad-visual {
+  flex: 0 0 170px;
+  height: 82px;
+  display: block;
+}
+
+.model-ad-visual i {
+  position: absolute;
+  display: block;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 14px 26px rgba(0,0,0,0.16);
+}
+
+.model-ad-visual i:nth-child(1) {
+  width: 78px;
+  height: 54px;
+  left: 0;
+  top: 18px;
+}
+
+.model-ad-visual i:nth-child(2) {
+  width: 76px;
+  height: 76px;
+  left: 46px;
+  top: 0;
+  background: rgba(255,255,255,0.24);
+}
+
+.model-ad-visual i:nth-child(3) {
+  width: 88px;
+  height: 52px;
+  right: 0;
+  top: 26px;
+}
+
+.feature-carousel-section {
+  position: relative;
+  overflow: hidden;
+  padding: 54px 0 70px;
+  background: transparent;
+}
+
+.feature-carousel-section::before,
+.feature-carousel-section::after {
+  display: none;
+}
+
+.feature-carousel-section::before {
+  background: none;
+}
+
+.feature-carousel-section::after {
+  background: none;
+}
+
+.feature-carousel-toolbar {
+  display: none;
+}
+
+.feature-carousel-toolbar span {
+  min-width: 70px;
+  text-align: center;
+  color: #0C1A3A;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.feature-carousel-window {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.feature-carousel-track {
+  display: flex;
+  width: max-content;
+  gap: 22px;
+  padding: 0 22px;
+  animation: featureCarouselScroll 58s linear infinite;
+  will-change: transform;
+}
+
+.feature-carousel-window:hover .feature-carousel-track {
+  animation-play-state: paused;
+}
+
+.feature-carousel-card {
+  flex: 0 0 248px;
+  min-height: 270px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 12px;
+  padding: 22px 20px 24px;
+  border-radius: 14px;
+  text-decoration: none;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.82), rgba(240,248,255,0.66));
+  border: 1px solid rgba(164, 203, 255, 0.38);
+  box-shadow: 0 16px 40px rgba(104, 143, 194, 0.12), inset 0 1px 0 rgba(255,255,255,0.88);
+  color: #102A52;
+  transition: transform 0.24s ease, background 0.24s ease;
+  backdrop-filter: blur(18px) saturate(1.16);
+  -webkit-backdrop-filter: blur(18px) saturate(1.16);
+}
+
+.feature-carousel-card:hover {
+  transform: translateY(-5px);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.92), rgba(232,244,255,0.9));
+}
+
+.feature-carousel-card::before {
+  content: "";
+  display: none;
+}
+
+.feature-icon {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-top: 0;
+  border-radius: 0;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.feature-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 24px rgba(64, 107, 168, 0.12));
+}
+
+.feature-carousel-card b {
+  color: #0F2B56;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 950;
+  text-align: center;
+}
+
+.feature-carousel-card > span:last-child {
+  color: #5E7290;
+  font-size: 13px;
+  line-height: 1.55;
+  text-align: center;
+  max-width: 190px;
+}
+
+@keyframes featureCarouselScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes adTopCarouselScroll {
+  0%, 42% { transform: translateX(0); }
+  50%, 92% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@media (max-width: 900px) {
+  .model-ad-track {
+    grid-template-columns: 1fr;
+  }
+
+  .model-ad-card {
+    min-height: 112px;
+  }
+
+  .feature-carousel-card {
+    flex-basis: 220px;
+    min-height: 248px;
+  }
+
+  .feature-icon {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  body.home-page {
+    padding-top: 110px;
+  }
+
+  body.home-page .nav {
+    top: 0 !important;
+  }
+
+  html:has(body.home-page) {
+    scroll-padding-top: 126px !important;
+  }
+
+  body.home-page [id] {
+    scroll-margin-top: 126px !important;
+  }
+
+  .ad-top-carousel {
+    top: 56px;
+    padding: 8px 14px;
+  }
+
+  .ad-top-slide {
+    height: 40px;
+    padding: 0 10px 0 14px;
+  }
+
+  .ad-top-slide span {
+    font-size: 12px;
+  }
+
+  .ad-top-cta,
+  .ad-top-slide strong {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .model-ad-shelf {
+    padding: 24px 14px 30px;
+  }
+
+  .model-ad-card {
+    min-height: 104px;
+    padding: 18px;
+  }
+
+  .model-ad-visual {
+    display: none;
+  }
+
+  .feature-carousel-section {
+    padding: 42px 0 56px;
+  }
+
+  .feature-carousel-toolbar {
+    margin-bottom: 30px;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .feature-carousel-toolbar span {
+    min-width: 62px;
+    font-size: 12px;
+  }
+
+  .feature-carousel-card {
+    flex-basis: 196px;
+    min-height: 224px;
+  }
+
+  .feature-carousel-card > span:last-child {
+    max-width: 160px;
+  }
+}

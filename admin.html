@@ -15,9 +15,10 @@ window._agl = window._agl || [];
   s.parentNode.insertBefore(agl, s);
 })();
 </script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>营赛智影 - 试用申请管理后台</title>
-<meta name="build-version" content="admin-sidebar-20260827-1">
+<meta name="build-version" content="20260828">
 <style>
 :root {
   --primary: #1a73e8;
@@ -1201,7 +1202,6 @@ function renderTable(rows) {
         <td style="white-space:nowrap;font-size:13px;">${row.created_at_formatted || escHtml(row.created_at)}</td>
         <td>
           <button class="btn btn-outline btn-sm" onclick="showDetail(${row.id})">详情</button>
-          <button class="btn btn-sm" style="background:var(--success, #10B981);color:#fff;margin-top:4px;" onclick="markIntent(${row.id})" title="将状态改为已联系，并向百度营销上报转化（新）">标记意向</button>
           <button class="btn btn-sm" style="background:var(--danger);color:#fff;margin-top:4px;" onclick="confirmDelete(${row.id}, '${escHtml(row.company)}')">删除</button>
         </td>
       </tr>
@@ -1406,31 +1406,6 @@ function updateStatus(id) {
     }
   })
   .catch(err => console.error("Update status error:", err));
-}
-
-// ---- Mark Intent (回访-发现意向 → 百度营销 newType=75) ----
-function markIntent(id) {
-  if (!confirm("标记该申请为「回访-发现意向」？\n\n将自动更新状态为【已联系】并向百度营销上报转化。")) {
-    return;
-  }
-
-  apiFetch("/trial/" + id + "/mark-intent", { method: "POST" })
-    .then(data => {
-      if (data.success) {
-        const msg = data.reported
-          ? "已标记意向并上报百度营销"
-          : "已标记意向，但百度上报失败（或无 bd_vid）\n请在百度统计/推广后台核对来源链接";
-        alert(msg);
-        loadData();
-        loadStats();
-      } else {
-        alert("操作失败：" + (data.message || "未知错误"));
-      }
-    })
-    .catch(err => {
-      console.error("MarkIntent error:", err);
-      alert("请求失败：" + err.message);
-    });
 }
 
 // ---- Export CSV ----

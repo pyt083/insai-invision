@@ -15,10 +15,11 @@ window._agl = window._agl || [];
   s.parentNode.insertBefore(agl, s);
 })();
 </script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<meta name="build-version" content="20260827-baidu-ocpc">
+<meta name="build-version" content="20260828">
 <meta http-equiv="Expires" content="0">
 <title>智影｜一站式 AI 创意生产平台</title>
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
@@ -1901,9 +1902,6 @@ window._agl = window._agl || [];
   <p class="float-popup-desc" style="margin-bottom:10px;">填写信息，免费获取7天试用体验 + 专属方案定制</p>
   <p class="float-popup-header-note" style="margin-bottom:20px;text-align:left;font-size:12px;color:#1E40AF;background:#EFF6FF;border:1px solid #DBEAFE;border-radius:8px;padding:10px 12px;line-height:1.5;">请详细填写以下信息，有助于为您匹配合适的对接人提供企业定制化服务。</p>
   <form id="trialPopupForm" data-trial-form data-source-page="product-intro" novalidate style="text-align:left;">
-    <input type="hidden" name="bd_vid" id="bdVidFieldPopup">
-    <!-- 百度营销 oCPC: 透传用户落地页完整 URL（含 bd_vid），后端以此为 logidUrl 上报 -->
-    <input type="hidden" name="landing_url" id="landingUrlFieldPopup">
     <!-- 公司/品牌名称 -->
     <div class="form-group">
       <label>公司/品牌名称 <span class="required">*</span></label>
@@ -1997,7 +1995,7 @@ window._agl = window._agl || [];
     </div>
 
     <!-- 提交按钮 -->
-    <button type="submit" class="btn-submit" data-trial-submit data-agl-cvt="5">立即申请试用</button>
+    <button type="submit" class="btn-submit" data-trial-submit>立即申请试用</button>
   </form>
 
   <!-- 成功消息 -->
@@ -2016,19 +2014,6 @@ function togglePopup(id) {
 }
 </script>
 <script src="../assets/js/trial-form.js"></script>
-<script>
-  // 百度营销: 回填 URL 中的 bd_vid 参数到 trial 弹窗 hidden field
-  (function () {
-    var m = window.location.search.match(/[?&]bd_vid=([^&#]+)/);
-    if (m) {
-      var el = document.getElementById("bdVidFieldPopup");
-      if (el) el.value = decodeURIComponent(m[1]);
-    }
-    // 透传用户落地页完整 URL（含 bd_vid），后端用作 logidUrl 上报
-    var lu = document.getElementById("landingUrlFieldPopup");
-    if (lu) lu.value = window.location.href;
-  })();
-</script>
 
 <!-- ==================== Footer ==================== -->
 <footer class="footer">

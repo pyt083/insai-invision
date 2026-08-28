@@ -44,6 +44,15 @@ router.get("/trial/:id", adminController.detail);
 router.put("/trial/:id/status", adminController.updateStatus);
 
 /**
+ * POST /api/admin/trial/:id/mark-intent
+ * 销售标记"回访-发现意向"
+ *   1) 更新 status = contacted
+ *   2) 异步上报百度营销线索 API newType=75（回访-发现意向）
+ *   3) 上报失败不影响后台业务
+ */
+router.post("/trial/:id/mark-intent", adminController.markIntent);
+
+/**
  * DELETE /api/admin/trial/:id
  * 删除单条申请记录（需删除密码，见 controller）
  */
