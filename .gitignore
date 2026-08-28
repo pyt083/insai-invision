@@ -19,3 +19,9 @@ server/.env
 server/logs/
 insai-update.bundle
 brand-fix.bundle
+# QA 浏览器测试 profile（非网站内容，不入库）
+output/qa/chrome-profile/
+output/qa/chrome-profile-2/
+output/qa/chrome-profile-3/
+output/qa/edge-profile-home/
+output/qa/edge-profile-home-soft/

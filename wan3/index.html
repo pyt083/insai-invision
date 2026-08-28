@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Wan3.0 首发｜智影</title>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" href="../assets/frameyu-theme.css?v=20260827-ads">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Inter', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    color: #201A45;
+    background: #FBFAFF;
+  }
+  .wan-top-strip {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1200;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    background: linear-gradient(90deg, #6F31E6 0%, #7D39EF 50%, #B765FF 100%);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 900;
+    text-align: center;
+  }
+  .wan-detail-nav {
+    position: fixed;
+    top: 42px;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(18px, 5vw, 86px);
+    background: rgba(255,255,255,0.86);
+    border-bottom: 1px solid rgba(206, 196, 255, 0.38);
+    backdrop-filter: blur(18px);
+  }
+  .wan-detail-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #201A45;
+    font-weight: 900;
+    text-decoration: none;
+  }
+  .wan-detail-logo img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+  }
+  .wan-detail-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .wan-detail-actions a {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 850;
+  }
+  .wan-back {
+    color: #4B209B;
+    background: #FFFFFF;
+    border: 1px solid rgba(132, 82, 230, 0.18);
+  }
+  .wan-trial {
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #1388FF, #20C7FF);
+    box-shadow: 0 14px 28px rgba(18,107,255,0.24);
+  }
+  .wan-hero {
+    min-height: 900px;
+    display: flex;
+    align-items: center;
+    padding: 150px clamp(18px, 7vw, 140px) 82px;
+    background:
+      radial-gradient(ellipse at 76% 42%, rgba(169, 110, 255, 0.12), transparent 34%),
+      radial-gradient(ellipse at 20% 88%, rgba(139, 92, 246, 0.08), transparent 38%),
+      #FBFAFF;
+  }
+  .wan-hero-grid {
+    width: min(1380px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(460px, 0.98fr) minmax(480px, 0.92fr);
+    gap: clamp(60px, 7vw, 116px);
+    align-items: center;
+  }
+  .wan-copy h1 {
+    margin: 0 0 26px;
+    color: #0D1837;
+    font-size: clamp(2.18rem, 3.18vw, 3.45rem);
+    line-height: 1.13;
+    font-weight: 950;
+  }
+  .wan-title-line {
+    display: block;
+    white-space: nowrap;
+  }
+  .wan-copy h1 .wan-title-accent {
+    color: #9A53F1;
+  }
+  .wan-copy h2 {
+    margin: 0 0 22px;
+    color: #7440E7;
+    font-size: clamp(1.18rem, 1.7vw, 1.6rem);
+    line-height: 1.35;
+    font-weight: 950;
+  }
+  .wan-copy p {
+    max-width: 640px;
+    margin: 0;
+    color: #5D6376;
+    font-size: 18px;
+    line-height: 1.88;
+    font-weight: 650;
+  }
+  .wan-cta-row {
+    margin-top: 38px;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .wan-cta-row a {
+    min-height: 54px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 32px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 900;
+    text-decoration: none;
+  }
+  .wan-cta-primary {
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #1388FF, #20C7FF);
+    box-shadow: 0 18px 34px rgba(18, 107, 255, 0.24);
+  }
+  .wan-cta-secondary {
+    color: #201A45;
+    background: #FFFFFF;
+    border: 1px solid rgba(206, 196, 255, 0.7);
+  }
+  .wan-case-rail {
+    overflow: hidden;
+    width: min(660px, 100%);
+    margin-top: 36px;
+  }
+  .wan-case-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: wanCaseScroll 38s linear infinite;
+    will-change: transform;
+  }
+  .wan-case-rail:hover .wan-case-track {
+    animation-play-state: paused;
+  }
+  .wan-case-card {
+    position: relative;
+    flex: 0 0 190px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #34107A;
+    box-shadow: 0 18px 38px rgba(91, 39, 190, 0.2);
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+  }
+  .wan-case-card:focus-visible {
+    outline: 3px solid rgba(116, 64, 231, 0.36);
+    outline-offset: 4px;
+  }
+  .wan-case-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .wan-case-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(35,9,91,0.08), rgba(35,9,91,0.86));
+  }
+  .wan-case-card span {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    z-index: 2;
+    color: #FFFFFF;
+    font-size: 15px;
+    line-height: 1.25;
+    font-weight: 950;
+  }
+  .wan-demo-card {
+    padding: 22px;
+    border-radius: 30px;
+    background: #FFFFFF;
+    border: 1px solid rgba(206, 196, 255, 0.72);
+    box-shadow: 0 34px 88px rgba(91, 39, 190, 0.13);
+  }
+  .wan-demo-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 4px 18px;
+  }
+  .wan-demo-head strong {
+    color: #2A225B;
+    font-size: 20px;
+    font-weight: 950;
+  }
+  .wan-demo-head span {
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 18px;
+    border-radius: 999px;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #7440E7, #A857FF);
+    font-size: 14px;
+    font-weight: 950;
+  }
+  .wan-demo-stage {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    aspect-ratio: 1.46 / 1;
+    background: #351076;
+    cursor: pointer;
+  }
+  .wan-demo-stage:focus-visible {
+    outline: 3px solid rgba(116, 64, 231, 0.36);
+    outline-offset: 4px;
+  }
+  .wan-demo-stage video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .wan-demo-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(47, 13, 116, 0.02), rgba(28, 8, 75, 0.5));
+  }
+  .wan-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    transform: translate(-50%, -50%);
+  }
+  .wan-play::after {
+    content: "";
+    position: absolute;
+    left: 33px;
+    top: 25px;
+    border-left: 25px solid #7137E8;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+  }
+  .wan-demo-caption {
+    position: absolute;
+    z-index: 4;
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    display: grid;
+    gap: 8px;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 950;
+  }
+  .wan-demo-caption small {
+    width: max-content;
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.18);
+    font-size: 13px;
+    font-weight: 950;
+  }
+  .wan-demo-tags {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .wan-demo-tags span {
+    min-height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    color: #5D28C9;
+    background: #F1E9FF;
+    border: 1px solid rgba(122,57,230,0.14);
+    font-size: 14px;
+    font-weight: 950;
+    text-align: center;
+  }
+  .wan-core {
+    padding: 76px clamp(18px, 5vw, 86px) 104px;
+    background: #FBFAFF;
+  }
+  .wan-core-header {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+  .wan-core-header h2 {
+    margin: 0;
+    color: #232744;
+    font-size: clamp(2.1rem, 3.1vw, 3.15rem);
+    line-height: 1.12;
+    font-weight: 950;
+  }
+  .wan-core-header p {
+    margin: 12px 0 0;
+    color: #7A78A9;
+    font-size: 15px;
+  }
+  .wan-core-grid {
+    max-width: 1360px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .wan-core-card {
+    min-height: 220px;
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    gap: 15px;
+    padding: 30px 22px 24px;
+    border-radius: 18px;
+    background: #FFFFFF;
+    border: 1px solid rgba(206, 196, 255, 0.55);
+    box-shadow: 0 12px 30px rgba(121, 104, 204, 0.08);
+    text-align: center;
+  }
+  .wan-core-icon {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: rgba(227, 222, 255, 0.78);
+    color: #6C5ED5;
+    font-size: 24px;
+    font-weight: 950;
+  }
+  .wan-core-card h3 {
+    margin: 0;
+    color: #2A2D48;
+    font-size: 18px;
+    line-height: 1.28;
+    font-weight: 900;
+  }
+  .wan-core-card p {
+    margin: 0;
+    color: #7B769D;
+    font-size: 13px;
+    line-height: 1.72;
+  }
+  .model-video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .model-video-modal.show {
+    display: flex;
+  }
+  .model-video-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(22, 9, 55, 0.68);
+    backdrop-filter: blur(12px);
+  }
+  .model-video-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(92vw, 980px);
+    padding: 20px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(255,255,255,0.72);
+    box-shadow: 0 34px 92px rgba(50, 20, 112, 0.34);
+  }
+  .model-video-dialog video {
+    display: block;
+    width: 100%;
+    max-height: 74vh;
+    border-radius: 16px;
+    background: #000000;
+  }
+  .model-video-title {
+    margin: 0 46px 14px 2px;
+    color: #2A225B;
+    font-size: 18px;
+    line-height: 1.35;
+    font-weight: 950;
+  }
+  .model-video-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #2A225B;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(61, 30, 126, 0.16);
+  }
+  @keyframes wanCaseScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 1100px) {
+    .wan-hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .wan-copy p,
+    .wan-case-rail {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .wan-cta-row {
+      justify-content: center;
+    }
+    .wan-core-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 700px) {
+    .wan-top-strip {
+      font-size: 12px;
+      line-height: 1.35;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    .wan-detail-nav {
+      top: 46px;
+      height: auto;
+      min-height: 60px;
+      padding: 10px 14px;
+    }
+    .wan-detail-actions a {
+      min-height: 34px;
+      padding: 0 12px;
+      font-size: 12px;
+    }
+    .wan-hero {
+      min-height: auto;
+      padding: 126px 16px 58px;
+    }
+    .wan-copy h1 {
+      font-size: 1.92rem;
+    }
+    .wan-title-line {
+      white-space: normal;
+    }
+    .wan-copy p {
+      font-size: 15px;
+    }
+    .wan-case-card {
+      flex-basis: 142px;
+      height: 188px;
+    }
+    .wan-demo-tags {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .wan-core-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wan-top-strip">Wan3.0 公测上线 · 全新一代视频生成模型，原生30秒 + 全能参考 · 新用户注册送 15000 星火币体验金</div>
+<nav class="wan-detail-nav">
+  <a class="wan-detail-logo" href="../index.html">
+    <img src="../assets/insai-invision-logo.png" alt="">
+    <span>智影 inVision</span>
+  </a>
+  <div class="wan-detail-actions">
+    <a class="wan-back" href="../index.html">返回首页</a>
+    <a class="wan-trial" href="../trial/index.html">立即试用</a>
+  </div>
+</nav>
+
+<main>
+  <section class="wan-hero">
+    <div class="wan-hero-grid">
+      <div class="wan-copy">
+        <h1><span class="wan-title-line">Wan3.0 首发 ·</span><span class="wan-title-line wan-title-accent">企业营销视频从可用走向可交付</span></h1>
+        <h2>全面上线阿里通义万相 Wan3.0 视频生成模型</h2>
+        <p>基于全新架构设计的一代视频生成模型，原生30秒时长生成，支持图、文、视频、音频四种模态全能参考，进一步支持文档与网页输入。超写实世界渲染、像素级一致性保持、更强视听冲击力，让营销视频创作从“可看”走向“可交付”。</p>
+        <div class="wan-cta-row">
+          <a class="wan-cta-primary" href="../trial/index.html">立即试用体验 →</a>
+          <a class="wan-cta-secondary" href="#wan-core">查看核心亮点</a>
+        </div>
+        <div class="wan-case-rail">
+          <div class="wan-case-track">
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/单视频时长提升至30秒.mp4" muted loop playsinline autoplay preload="metadata"></video><span>单视频时长提升至30秒</span></button>
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/视频编辑.mp4" muted loop playsinline autoplay preload="metadata"></video><span>视频编辑</span></button>
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/控制白膜.mp4" muted loop playsinline autoplay preload="metadata"></video><span>控制白膜</span></button>
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/绿幕编辑.mp4" muted loop playsinline autoplay preload="metadata"></video><span>绿幕编辑</span></button>
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/叙事更强.mp4" muted loop playsinline autoplay preload="metadata"></video><span>叙事更强</span></button>
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/演员调度，角色情绪.mp4" muted loop playsinline autoplay preload="metadata"></video><span>演员调度，角色情绪</span></button>
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/音频编辑.mp4" muted loop playsinline autoplay preload="metadata"></video><span>音频编辑</span></button>
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/卡点剪辑.mp4" muted loop playsinline autoplay preload="metadata"></video><span>卡点剪辑</span></button>
+            <button class="wan-case-card" type="button"><video src="../../../模型/seedance2.5/视频延长.mp4" muted loop playsinline autoplay preload="metadata"></video><span>视频延长</span></button>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/单视频时长提升至30秒.mp4" muted loop playsinline autoplay preload="metadata"></video><span>单视频时长提升至30秒</span></div>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/视频编辑.mp4" muted loop playsinline autoplay preload="metadata"></video><span>视频编辑</span></div>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/控制白膜.mp4" muted loop playsinline autoplay preload="metadata"></video><span>控制白膜</span></div>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/绿幕编辑.mp4" muted loop playsinline autoplay preload="metadata"></video><span>绿幕编辑</span></div>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/叙事更强.mp4" muted loop playsinline autoplay preload="metadata"></video><span>叙事更强</span></div>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/演员调度，角色情绪.mp4" muted loop playsinline autoplay preload="metadata"></video><span>演员调度，角色情绪</span></div>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/音频编辑.mp4" muted loop playsinline autoplay preload="metadata"></video><span>音频编辑</span></div>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/卡点剪辑.mp4" muted loop playsinline autoplay preload="metadata"></video><span>卡点剪辑</span></div>
+            <div class="wan-case-card" aria-hidden="true"><video src="../../../模型/seedance2.5/视频延长.mp4" muted loop playsinline autoplay preload="metadata"></video><span>视频延长</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="wan-demo-card">
+        <div class="wan-demo-head">
+          <strong>Wan3.0 效果演示</strong>
+          <span>万相视频模型</span>
+        </div>
+        <div class="wan-demo-stage" role="button" tabindex="0" data-video-title="Wan3.0 效果演示" data-video-open="../assets/wan3/wan3-demo-main.mp4">
+          <video src="../assets/wan3/wan3-demo-main.mp4" poster="../assets/wan3/wan3-reference.png" muted loop playsinline autoplay preload="metadata"></video>
+          <span class="wan-play" aria-hidden="true"></span>
+          <div class="wan-demo-caption"><small>全能参考创作</small>图 / 文 / 视频 / 音频 / 文档 / 网页 多模态统一驱动</div>
+        </div>
+        <div class="wan-demo-tags">
+          <span>原生30秒</span>
+          <span>全能参考</span>
+          <span>像素级一致性</span>
+          <span>超写实渲染</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wan-core" id="wan-core">
+    <header class="wan-core-header">
+      <h2>五大核心亮点</h2>
+      <p>从“生成一个镜头”走向“讲述一段完整的故事”</p>
+    </header>
+    <div class="wan-core-grid">
+      <article class="wan-core-card"><span class="wan-core-icon">30</span><h3>原生30秒时长</h3><p>更丰富的信息承载空间，更完整叙事能力，支持智能时长自动判断。</p></article>
+      <article class="wan-core-card"><span class="wan-core-icon">All</span><h3>全能参考</h3><p>图/文/视频/音频四种模态 + 文档/网页输入，All-in-One 创作。</p></article>
+      <article class="wan-core-card"><span class="wan-core-icon">4K</span><h3>超写实渲染</h3><p>2D/3D画面渲染质感摒弃AI感，准确渲染软件UI、动画、文字。</p></article>
+      <article class="wan-core-card"><span class="wan-core-icon">↔</span><h3>像素级一致性</h3><p>角色、道具、声音、空间关系均可稳定对齐，精准复刻参考细节。</p></article>
+      <article class="wan-core-card"><span class="wan-core-icon">▶</span><h3>视听冲击力</h3><p>动作、舞蹈、声音、情绪多维度表达，贴近专业导演+演员的成片。</p></article>
+    </div>
+  </section>
+</main>
+<div class="model-video-modal" id="modelVideoModal" aria-hidden="true">
+  <div class="model-video-backdrop" data-video-close></div>
+  <div class="model-video-dialog" role="dialog" aria-modal="true" aria-labelledby="modelVideoTitle">
+    <button class="model-video-close" type="button" data-video-close aria-label="关闭视频预览">&times;</button>
+    <h2 class="model-video-title" id="modelVideoTitle">视频预览</h2>
+    <video id="modelPreviewVideo" controls playsinline preload="metadata"></video>
+  </div>
+</div>
+<script>
+(function initModelVideoPreview() {
+  var modal = document.getElementById('modelVideoModal');
+  var previewVideo = document.getElementById('modelPreviewVideo');
+  var titleNode = document.getElementById('modelVideoTitle');
+  var closeButton = modal ? modal.querySelector('[data-video-close]') : null;
+  if (!modal || !previewVideo || !titleNode) return;
+
+  var activeTrigger = null;
+
+  document.querySelectorAll('.wan-case-card').forEach(function(card) {
+    var video = card.querySelector('video');
+    var label = card.querySelector('span');
+    if (!video) return;
+    card.setAttribute('data-video-open', video.getAttribute('src'));
+    card.setAttribute('data-video-title', label ? label.textContent.trim() : 'Wan3.0 视频预览');
+    if (!card.hasAttribute('aria-hidden')) {
+      card.setAttribute('aria-label', (label ? label.textContent.trim() : '视频') + '，点击预览');
+    }
+  });
+
+  function openModal(trigger) {
+    var src = trigger.getAttribute('data-video-open');
+    if (!src) return;
+    activeTrigger = trigger;
+    titleNode.textContent = trigger.getAttribute('data-video-title') || '视频预览';
+    previewVideo.pause();
+    previewVideo.removeAttribute('src');
+    previewVideo.setAttribute('src', src);
+    previewVideo.load();
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (closeButton) closeButton.focus();
+    previewVideo.play().catch(function() {});
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    previewVideo.pause();
+    previewVideo.removeAttribute('src');
+    previewVideo.load();
+    document.body.style.overflow = '';
+    if (activeTrigger && typeof activeTrigger.focus === 'function') activeTrigger.focus();
+    activeTrigger = null;
+  }
+
+  document.addEventListener('click', function(event) {
+    if (event.target.closest('[data-video-close]')) {
+      closeModal();
+      return;
+    }
+    var trigger = event.target.closest('[data-video-open]');
+    if (trigger) openModal(trigger);
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && modal.classList.contains('show')) {
+      closeModal();
+      return;
+    }
+    if ((event.key === 'Enter' || event.key === ' ') && document.activeElement && document.activeElement.matches('[data-video-open]')) {
+      event.preventDefault();
+      openModal(document.activeElement);
+    }
+  });
+})();
+</script>
+</body>
+</html>
